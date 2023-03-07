@@ -11,7 +11,7 @@
 			@csrf
 
 
-			<h1 class="block text-4xl font-bold text-gray-800 dark:text-white mb-11">レビューの投稿</h1>
+			<h1 class="block text-4xl font-bold text-gray-800 dark:text-white mb-11">レビューの投稿 </h1>
 
 
 			<div class="mb-8">
