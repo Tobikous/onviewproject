@@ -90,17 +90,6 @@
 					<span class="title-font ">時間帯：{{$showReview['time']}}</span>
 					<div class="flex mt-7">
 
-						@if (!is_null($myShowReview))
-						<button
-							class="flex ml-auto text-white bg-orange-500 border-0 pt-4 font-semibold pb-2 px-6 focus:outline-none hover:bg-orange-600 rounded"
-							type="button" onclick="location.href = '/edit/{{$showReview['id']}}'">レビューを編集する</button>
-
-						<form method='POST' action="/delete/{{$showReview['id']}}" id='delete-form'>
-							@csrf
-							<button type="submit"><i
-									class="fa fa-trash fa-2x  border-0 py-2 px-6 text-gray-500 hover:text-gray-700"></i></button>
-						</form>
-						@endif
 					</div>
 
 				</div>

@@ -47,7 +47,7 @@
 								{{$review['onsenName']}}</h1>
 							<p class="leading-relaxed mb-2 line-clamp-3">{{$review['content']}}</p>
 							<a class="text-yellow-500 hover:text-yellow-600 inline-flex items-center p-1.5"
-								href="/show/{{$review['id']}}">レビュー詳細
+								href="/showGuest/{{$review['id']}}">レビュー詳細
 								<svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
 									fill="none" stroke-linecap="round" stroke-linejoin="round">
 									<path d="M5 12h14"></path>

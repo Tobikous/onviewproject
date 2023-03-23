@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     protected $table = 'review';
-    protected $fillable = ['content','star','time','user_id','onsenName','tag_id','image'];
+    protected $fillable = ['content','star','time','user_id','onsenName','tag_id','image','formatted_address','latitude','longitude'];
 
     public function scopeLatestOrder($query)
     {

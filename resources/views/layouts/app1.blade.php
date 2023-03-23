@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="{{ asset('build/assets/app-5005f49e.css') }}">
 	<script src="{{ asset('build/assets/app-95b87cd7.js') }}"></script>
 
+
+
 </head>
 
 
@@ -88,8 +90,11 @@
 			<nav
 				class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
 				@guest
+				<a class="mr-10 inline-flex font-bold  text-gray-900">ようこそ、ゲスト様</a>
 				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('login') }}">ログイン</a>
 				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('register') }}">会員登録</a>
+				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('home') }}">ホーム</a>
+				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('article') }}">レビュー一覧</a>
 				@endguest
 
 				@auth
@@ -98,8 +103,6 @@
 				</a>
 				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('home') }}">ホーム</a>
 				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('article') }}">レビュー一覧</a>
-
-				@if(Auth::user()->id !== 1 )
 				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('create') }}">レビューの投稿</a>
 				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('logout') }}" onclick="event.preventDefault();
                     	document.getElementById('logout-form').submit();">ログアウト
@@ -107,14 +110,6 @@
 				<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 					@csrf
 				</form>
-				@else
-				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    	document.getElementById('logout-form').submit();">ログイン
-				</a>
-				<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-					@csrf
-				</form>
-				@endif
 				@endauth
 			</nav>
 

@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\Onsen;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 class ArticleController extends Controller
 {
@@ -46,9 +47,40 @@ class ArticleController extends Controller
         }
     }
 
+
+
+
+
     public function store(UserRequest $request)
     {
+        function geocodeAddress($address)
+        {
+            $apiKey = env('GOOGLE_MAPS_API_KEY');
+            $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$apiKey}";
+
+            $response = Http::get($url);
+            $pdata = $response->json();
+
+            if ($pdata['status'] === 'OK') {
+                $location = $pdata['results'][0]['geometry']['location'];
+                $formatted_address = $pdata['results'][0]['formatted_address'];
+
+                return [
+                    'latitude' => $location['lat'],
+                    'longitude' => $location['lng'],
+                    'formatted_address' => $formatted_address,
+                ];
+            }
+        }
+
+
         $data = $request->all();
+
+        $request->validate([
+            'onsenName' => 'required',
+        ]);
+
+        $geocodedData = geocodeAddress($request->onsenName);
 
         $image = $request->file('image');
         if ($request->hasFile('image')) {
@@ -80,11 +112,18 @@ class ArticleController extends Controller
             'image' => $imagepath,
             'tag_id' => $tagId,
             'onsenName' => $data['onsenName'],
-            'status' => 1
+            'formatted_address' => $geocodedData['formatted_address'],
+            'latitude' => $geocodedData['latitude'],
+            'longitude' => $geocodedData['longitude']
         ]);
 
         return redirect()->route('home')->with('success', 'レビューを投稿しました。');
     }
+
+
+
+
+
 
     public function show($id)
     {

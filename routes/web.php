@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('login');
 });
+
+// Route::get('/homeGuest', [GuestController::class, 'index'])->name('homeGuest');
+// Route::get('/showGuest/{id}', [GuestController::class, 'show'])->name('showGuest');
+// Route::get('/articleGuest', [GuestController::class, 'article'])->name('articleGuest');
+Route::get('/maps', [GuestController::class, 'maps'])->name('maps');
+
+Route::get('/login/guest', function () {
+    auth()->loginUsingId(1);
+    return redirect('/');
+})->name('login.guest');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
