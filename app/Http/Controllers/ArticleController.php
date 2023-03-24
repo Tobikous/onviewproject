@@ -6,22 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Tag;
 use App\Models\Onsen;
+use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this -> middleware('auth');
-    }
-
     /**
     * Show the application dashboard.
     *
@@ -38,13 +30,13 @@ class ArticleController extends Controller
     public function create()
     {
         $user = \Auth::user();
-        if ($user['id'] !== 1) {
-            $allTags = Tag::get();
-            $reviews = Review::latestOrder()->get();
-            return view('create', compact('user', 'allTags', 'reviews'));
-        } else {
-            return redirect()->route('home')->with('success', 'ゲストは記事を投稿できません。');
-        }
+        // if ($user['id'] !== 1) {
+        $allTags = Tag::get();
+        $reviews = Review::latestOrder()->get();
+        return view('create', compact('user', 'allTags', 'reviews'));
+        // } else {
+        //     return redirect()->route('home')->with('success', 'ゲストは記事を投稿できません。');
+        // }
     }
 
 
@@ -53,34 +45,14 @@ class ArticleController extends Controller
 
     public function store(UserRequest $request)
     {
-        function geocodeAddress($address)
-        {
-            $apiKey = env('GOOGLE_MAPS_API_KEY');
-            $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$apiKey}";
-
-            $response = Http::get($url);
-            $pdata = $response->json();
-
-            if ($pdata['status'] === 'OK') {
-                $location = $pdata['results'][0]['geometry']['location'];
-                $formatted_address = $pdata['results'][0]['formatted_address'];
-
-                return [
-                    'latitude' => $location['lat'],
-                    'longitude' => $location['lng'],
-                    'formatted_address' => $formatted_address,
-                ];
-            }
-        }
-
-
         $data = $request->all();
 
         $request->validate([
             'onsenName' => 'required',
         ]);
 
-        $geocodedData = geocodeAddress($request->onsenName);
+        $newReview = new Review();
+        $geocodedData = $newReview -> geocodeAddress($request->onsenName);
 
         $image = $request->file('image');
         if ($request->hasFile('image')) {
@@ -130,14 +102,25 @@ class ArticleController extends Controller
         $user = \Auth::user();
         $showReview = Review::where('id', $id)
         ->first();
-        $myShowReview = Review::where('id', $id)->where('user_id', $user['id'])
-        ->first();
+
+        // if (Auth::check()) {
+        //     $myShowReview = Review::where('id', $id)->where('user_id', $user['id'])
+        //     ->first();
+        // } else {
+        //     $myShowReview = null;
+        // }
         // $myReview = $user()->reviews();
+
         $tagId = $showReview['tag_id'];
         $tags = Tag::where('id', $tagId)->first();
+
         $onsenName = $showReview['onsenName'];
         $onsen = Onsen::where('name', $onsenName)->first();
-        return view('show', compact('user', 'showReview', 'myShowReview', 'tags', 'onsen'));
+
+        $users = $showReview['user_id'];
+        $userName = User::where('id', $users)->first();
+
+        return view('show', compact('user', 'showReview', 'tags', 'onsen', 'userName'));
     }
 
     public function edit($id)

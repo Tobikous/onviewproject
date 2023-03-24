@@ -22,12 +22,13 @@
 				onclick="location.href='{{ route('create') }}'">レビューを投稿する</button>
 			@endauth
 
-		</div>
+			@guest
+			<button
+				class=" m-auto text-white bg-orange-500 border-0 py-8 px-20 focus:outline-none hover:bg-orange-600 rounded font-semibold text-4xl"
+				onclick="location.href='{{ route('login') }}'">ログインはこちらから</button>
+			@endguest
 
-		<div>
-			<a href="{{ route('maps') }}">グーグルマップ</a>
 		</div>
-
 
 
 		<section class="text-gray-600 body-font">
@@ -70,18 +71,19 @@
 			<div class="container px-5 py-24 mx-auto">
 				<h1 class="title-font text-3xl font-medium text-gray-900 mb-5">自分が投稿したレビュー</h1>
 				<div class="flex flex-wrap -m-4">
-					@foreach($myReviews AS $myReview)
+					@foreach($reviews AS $review)
+					@if($review->isWrittenByUser(auth()->user()))
 					<div class="p-4 md:w-1/3">
 						<div class="h-full border-2 border-gray-300 border-opacity-60 rounded-lg overflow-hidden">
-							<img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{$myReview['image']}}"
+							<img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{$review['image']}}"
 								alt="blog">
 							<div class="p-6">
-								<h1 class="title-font text-lg font-medium text-gray-900 ">{{$myReview['onsenName']}}
+								<h1 class="title-font text-lg font-medium text-gray-900 ">{{$review['onsenName']}}
 								</h1>
 								<h2 class="text-yellow-500 tracking-widest text-s title-font font-medium  mb-3">
-									{{$myReview['star']}}
+									{{$review['star']}}
 								</h2>
-								<p class="leading-relaxed mb-3 line-clamp-3">{{$myReview['content']}}</p>
+								<p class="leading-relaxed mb-3 line-clamp-3">{{$review['content']}}</p>
 								<div class="flex items-center flex-wrap ">
 									<a class="text-yellow-500 inline-flex items-center md:mb-2 lg:mb-0 p-1"
 										href="/show/{{$review['id']}}">レビュー詳細
@@ -111,6 +113,7 @@
 							</div>
 						</div>
 					</div>
+					@endif
 					@endforeach
 				</div>
 			</div>

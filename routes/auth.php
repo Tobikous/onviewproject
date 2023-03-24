@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/show/{id}', [ArticleController::class, 'show'])->name('show');
-Route::get('/article', [ArticleController::class, 'article'])->name('article');
-
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
@@ -61,10 +57,6 @@ Route::middleware('auth')->group(function () {
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-    Route::get('/', [HomeController::class, 'index'])->name('index');
-
-
 
     Route::get('/create', [ArticleController::class, 'create'])->name('create');
     Route::post('/store', [ArticleController::class, 'store'])->name('store');

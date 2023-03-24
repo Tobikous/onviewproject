@@ -6,10 +6,10 @@
 	<session class="text-gray-600 body-font overflow-hidden">
 		<div class="container px-5 py-12 mx-auto">
 			<div class="lg:w-4/5 mx-auto flex flex-wrap">
-				<img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64  object-cover object-center rounded"
+				<img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 m-4 object-cover object-center rounded"
 					src="{{$showReview['image']}}">
 
-				<div id="map" class="lg:w-1/2 w-full lg:h-auto h-64  object-cover object-center rounded"></div>
+				<div id="map" class="lg:w-1/2 h-64 m-4 w-full object-cover z-0"></div>
 
 				<script>
 					var data = @json($showReview);
@@ -18,10 +18,6 @@
 					var lngData = data['longitude'];
 					var adress = data['formatted_address'];
 					var areaData = data['onsenName'];
-					console.log(areaData);
-					console.log(adress);
-					console.log(latData);
-					console.log(lngData);
 
 					function createInfoWindowContent(address, area) {
 						return `<div> <h1>${address}</h1> <p>${area}</p></div>`;
@@ -74,7 +70,7 @@
 							<p class="leading-relaxed line-clamp-7 text-yellow-500">{{$showReview['star']}}</p>
 						</span>
 						<span class="ml-3 pl-3 py-1 border-l-2 border-gray-200 space-x-2s">
-							<p class="text-gray-900 text-base font-medium">投稿者：{{$showReview['name']}}</p>
+							<p class="text-gray-900 text-base font-medium">投稿者：{{$userName['name']}}</p>
 							<p class="text-sm">投稿日：{{$showReview['created_at']}}</p>
 							<p class="text-sm">更新日：{{$showReview['updated_at']}}</p>
 
@@ -88,9 +84,10 @@
 					</div>
 					<span class="title-font ">タグ：{{$tags['name']}}</span>
 					<span class="title-font ">時間帯：{{$showReview['time']}}</span>
+					@auth
 					<div class="flex mt-7">
 
-						@if (!is_null($myShowReview))
+						@if($showReview->isWrittenByUser(auth()->user()))
 						<button
 							class="flex ml-auto text-white bg-orange-500 border-0 pt-4 font-semibold pb-2 px-6 focus:outline-none hover:bg-orange-600 rounded"
 							type="button" onclick="location.href = '/edit/{{$showReview['id']}}'">レビューを編集する</button>
@@ -102,6 +99,7 @@
 						</form>
 						@endif
 					</div>
+					@endauth
 
 				</div>
 			</div>
