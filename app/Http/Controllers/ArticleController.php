@@ -14,29 +14,20 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
-    /**
-    * Show the application dashboard.
-    *
-    * @return \Illuminate\Contracts\Support\Renderable
-    */
-
     public function article()
     {
         $user = \Auth::user();
         $reviews = Review::latestOrder()->paginate(5);
+
         return view('article', compact('user', 'reviews'));
     }
 
     public function create()
     {
         $user = \Auth::user();
-        // if ($user['id'] !== 1) {
         $allTags = Tag::get();
         $reviews = Review::latestOrder()->get();
         return view('create', compact('user', 'allTags', 'reviews'));
-        // } else {
-        //     return redirect()->route('home')->with('success', 'ゲストは記事を投稿できません。');
-        // }
     }
 
 
@@ -96,7 +87,6 @@ class ArticleController extends Controller
 
 
 
-
     public function show($id)
     {
         $user = \Auth::user();
@@ -123,6 +113,10 @@ class ArticleController extends Controller
         return view('show', compact('user', 'showReview', 'tags', 'onsen', 'userName'));
     }
 
+
+
+
+
     public function edit($id)
     {
         $user = \Auth::user();
@@ -135,6 +129,10 @@ class ArticleController extends Controller
         $onsen = Onsen::where('name', $onsenName)->first();
         return view('edit', compact('user', 'showReview', 'tags', 'allTags', 'onsen'));
     }
+
+
+
+
 
     public function update(UserRequest $request, $id)
     {
@@ -161,6 +159,10 @@ class ArticleController extends Controller
         'tag_id' => $tagId ]);
         return redirect()->route('home')->with('success', 'レビューを更新しました。');
     }
+
+
+
+
 
     public function delete(Request $request, $id)
     {

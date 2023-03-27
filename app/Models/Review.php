@@ -21,6 +21,11 @@ class Review extends Model
         return $query->where('id', $id);
     }
 
+    public function scopeMatchUser($id)
+    {
+        return User::where('id', $users);
+    }
+
     public function isWrittenByUser(User $user): bool
     {
         return $this->user_id == $user->id;

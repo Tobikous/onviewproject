@@ -26,6 +26,7 @@
 	<link rel="stylesheet" href="{{ asset('build/assets/app-5005f49e.css') }}">
 	<script src="{{ asset('build/assets/app-95b87cd7.js') }}"></script>
 
+	<script src="{{ asset('js/app.js') }}" defer></script>
 
 
 </head>
@@ -104,6 +105,8 @@
 				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('home') }}">ホーム</a>
 				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('article') }}">レビュー一覧</a>
 				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('create') }}">レビューの投稿</a>
+				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="/user/profile">各種変更</a>
+
 				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('logout') }}" onclick="event.preventDefault();
                     	document.getElementById('logout-form').submit();">ログアウト
 				</a>
