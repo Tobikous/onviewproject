@@ -6,9 +6,9 @@
 
 	<div class="max-w-2xl mx-auto bg-white p-16">
 
-		<form method='POST' action="{{ route('update', [ 'id' =>$showReview['id'] ]) }}" enctype="multipart/form-data">
-			<input type='hidden' name='user_id' value="{{$user['id']}}">
-			<input type='hidden' name='onsenName' value="{{$showReview['onsenName']}}">
+		<form method='POST' action="{{ route('update', [ 'id' =>$review['id'] ]) }}" enctype="multipart/form-data">
+			<input type='hidden' name='user_id' value="{{$loggedInUser['id']}}">
+			<input type='hidden' name='onsenName' value="{{$review['onsenName']}}">
 			@csrf
 
 
@@ -27,14 +27,14 @@
 			<div class="mb-8">
 				<label for="onsenmei"
 					class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">温泉名:</label>
-				{{$onsen['name']}}
+				{{ $review->onsen->name }}
 			</div>
 
 			<div class="mb-8">
 				<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">レビュー点数:</label>
-				<select name='star' value="{{$showReview['star']}}"
+				<select name='star' value="{{$review['star']}}"
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-					<option selected>{{$showReview['star']}}</option>
+					<option selected>{{$review['star']}}</option>
 					<option>★☆☆☆☆</option>
 					<option>★★☆☆☆</option>
 					<option>★★★☆☆</option>
@@ -47,7 +47,7 @@
 				<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">時間帯:</label>
 				<select name='time'
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-					<option selected>{{$showReview['time']}}</option>
+					<option selected>{{$review['time']}}</option>
 					<option>早朝</option>
 					<option>午前</option>
 					<option>昼</option>
@@ -60,13 +60,13 @@
 				<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">レビュー詳細:</label>
 				<textarea name='content'
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-					maxlength='3000' row='4'>{{$showReview['content']}}</textarea>
+					maxlength='3000' row='4'>{{$review['content']}}</textarea>
 			</div>
 
 
 			<div class="mb-8">
 				<label for="tag" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">タグ</label>
-				<input name='tag' type="text" value="{{ $tags['name'] }}"
+				<input name='tag' type="text" value="{{ $review->tags->name }}"
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					id="tag" list="tags" placeholder="テキスト入力もしくはクリック">
 				<datalist id="tags">
@@ -80,7 +80,7 @@
 			<div class="mb-8">
 				<label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">写真</label>
 				<div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
-					<input type="file" name='image' id="image" src="{{ '/storage/' . $showReview['image']}}">
+					<input type="file" name='image' id="image" src="{{ '/storage/' . $review['image']}}">
 					<div class="space-y-1 text-center">
 
 						<svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
@@ -108,7 +108,7 @@
 			<div>
 				<button type="button"
 					class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
-					onclick="location.href = '/show/{{$showReview['id']}}'">更新をやめる</button>
+					onclick="location.href = '/show/{{$review['id']}}'">更新をやめる</button>
 			</div>
 		</form>
 

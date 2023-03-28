@@ -16,18 +16,19 @@ class ArticleController extends Controller
 {
     public function article()
     {
-        $user = \Auth::user();
+        $loggedInUser = \Auth::user();
         $reviews = Review::latestOrder()->paginate(5);
 
-        return view('article', compact('user', 'reviews'));
+        return view('article', compact('loggedInUser', 'reviews'));
     }
 
     public function create()
     {
-        $user = \Auth::user();
+        $loggedInUser = \Auth::user();
         $allTags = Tag::get();
         $reviews = Review::latestOrder()->get();
-        return view('create', compact('user', 'allTags', 'reviews'));
+
+        return view('create', compact('loggedInUser', 'allTags', 'reviews'));
     }
 
 
@@ -89,28 +90,10 @@ class ArticleController extends Controller
 
     public function show($id)
     {
-        $user = \Auth::user();
-        $showReview = Review::where('id', $id)
-        ->first();
+        $loggedInUser = \Auth::user();
+        $review = Review::scopeMatchReview($id);
 
-        // if (Auth::check()) {
-        //     $myShowReview = Review::where('id', $id)->where('user_id', $user['id'])
-        //     ->first();
-        // } else {
-        //     $myShowReview = null;
-        // }
-        // $myReview = $user()->reviews();
-
-        $tagId = $showReview['tag_id'];
-        $tags = Tag::where('id', $tagId)->first();
-
-        $onsenName = $showReview['onsenName'];
-        $onsen = Onsen::where('name', $onsenName)->first();
-
-        $users = $showReview['user_id'];
-        $userName = User::where('id', $users)->first();
-
-        return view('show', compact('user', 'showReview', 'tags', 'onsen', 'userName'));
+        return view('show', compact('loggedInUser', 'review'));
     }
 
 
@@ -119,15 +102,16 @@ class ArticleController extends Controller
 
     public function edit($id)
     {
-        $user = \Auth::user();
-        $showReview = Review::where('id', $id)->where('user_id', $user['id'])
-        ->first();
-        $tagId = $showReview['tag_id'];
-        $tags = Tag::where('id', $tagId)->first();
+        $loggedInUser = \Auth::user();
+        $review = Review::scopeMatchReview($id);
+
+        if ($loggedInUser->id !== $review->user_id) {
+            return redirect()->back()->with('error', 'このレビューを編集する権限はありません。');
+        }
+
         $allTags = Tag::get();
-        $onsenName = $showReview['onsenName'];
-        $onsen = Onsen::where('name', $onsenName)->first();
-        return view('edit', compact('user', 'showReview', 'tags', 'allTags', 'onsen'));
+
+        return view('edit', compact('loggedInUser', 'review', 'allTags', ));
     }
 
 

@@ -50,4 +50,14 @@ class Review extends Model
             ];
         }
     }
+
+    public static function scopeMatchReview($id)
+    {
+        $review = self::find($id);
+        $review->tags = Tag::find($review->tag_id);
+        $review->onsen = Onsen::where('name', $review->onsenName)->first();
+        $review->userName = User::find($review->user_id);
+
+        return $review;
+    }
 }
