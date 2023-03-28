@@ -27,8 +27,8 @@
 					<span class="ml-3 pl-3 py-1 border-l-2 border-gray-200 space-x-2s">
 						<p class="text-gray-900 text-base font-medium">投稿者：{{ $review->userName->name }}
 						</p>
-						<p class="text-sm">投稿日：{{$review['created_at']}}</p>
-						<p class="text-sm">更新日：{{$review['updated_at']}}</p>
+						<p class="text-sm">投稿日：{{$review['created_at']->format('Y年m月d日')}}</p>
+						<p class="text-sm">更新日：{{$review['updated_at']->format('Y年m月d日')}}</p>
 					</span>
 				</div>
 

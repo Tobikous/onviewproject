@@ -24,8 +24,10 @@
 						<div class="py-8 flex flex-wrap md:flex-nowrap">
 							<div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
 								<span class="font-semibold title-font text-gray-700">投稿者：</span>
-								<span class="mt-1 text-gray-500 text-sm">投稿日：{{$review['created_at']}}</span>
-								<span class="mt-1 text-gray-500 text-sm">更新日：{{$review['updated_at']}}</span>
+								<span
+									class="mt-1 text-gray-500 text-sm">投稿日：{{$review['created_at']->format('Y年m月d日')}}</span>
+								<span
+									class="mt-1 text-gray-500 text-sm">更新日：{{$review['updated_at']->format('Y年m月d日')}}</span>
 
 							</div>
 							<div class="md:flex-grow">
