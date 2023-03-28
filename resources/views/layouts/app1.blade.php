@@ -86,13 +86,13 @@
 					</g>
 				</svg>
 
-				<span class="ml-3 font-medium text-xl">{{ config('app.name', 'Laravel') }}</span>
+				<span class="ml-3 font-extrabold text-2xl">{{ config('app.name', 'Laravel') }}</span>
 			</a>
 			<nav
 				class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 flex flex-col md:flex-row md:items-center">
 				@guest
 				<div
-					class="mr-12 inline-flex font-extrabold text-lg text-gray-900 justify-center w-full md:w-auto mb-2 md:mb-0">
+					class="mr-12 inline-flex font-normal text-lg text-gray-900 justify-center w-full md:w-auto mb-2 md:mb-0">
 					ようこそ、ゲスト様
 				</div>
 				<div class="flex flex-wrap items-center justify-center">
@@ -108,7 +108,7 @@
 
 				@auth
 				<div
-					class="mr-12 inline-flex font-extrabold text-lg text-gray-900 justify-center w-full md:w-auto mb-2 md:mb-0">
+					class="mr-12 inline-flex font-normal text-lg text-gray-900 justify-center w-full md:w-auto mb-2 md:mb-0">
 					ようこそ、{{ Auth::user()->name }}様
 				</div>
 				<div class="flex flex-wrap items-center justify-center">
