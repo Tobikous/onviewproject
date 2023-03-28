@@ -21,7 +21,7 @@
 			<x-input-label for="name" :value="__('アカウント名')" />
 			<x-text-input id="name" name="name" type="text"
 				class="w-3/4 bg-white rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-				:value="old('name', $user->name)" required autofocus autocomplete="name" />
+				:value="old('name', $user->name)" maxlength="10" required autofocus autocomplete="name" />
 			<x-input-error class="mt-2" :messages="$errors->get('name')" />
 		</div>
 

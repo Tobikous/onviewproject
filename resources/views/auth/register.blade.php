@@ -15,12 +15,12 @@
 					<div class="grid gap-y-4">
 
 						<div>
-							<label for="email" class="block text-sm mb-2 dark:text-white">名前</label>
+							<label for="name" class="block text-sm mb-2 dark:text-white">名前</label>
 							<div>
 								<input id="name" type="text" name="name" value="{{ old('name') }}" required
 									autocomplete="name" autofocus
 									class="w-full bg-white rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-									required aria-describedby="email-error">
+									maxlength="10" required aria-describedby="email-error">
 								@error('name')
 								<span class="invalid-feedback hidden text-xs text-red-600 mt-2" id="email-error"
 									role="alert">

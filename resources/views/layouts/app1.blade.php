@@ -36,7 +36,7 @@
 
 	<header class="bg-orange-100 text-gray-600 body-font sticky top-0 z-10">
 		<div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-			<a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="{{ url('/') }}">
+			<a class="flex title-font font-medium items-center text-gray-900 mb-1 md:mb-0" href="{{ url('/') }}">
 
 				<svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
 					xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" class="w-12 h-12 opacity-1"
@@ -89,30 +89,43 @@
 				<span class="ml-3 font-medium text-xl">{{ config('app.name', 'Laravel') }}</span>
 			</a>
 			<nav
-				class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+				class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 flex flex-col md:flex-row md:items-center">
 				@guest
-				<a class="mr-10 inline-flex font-bold  text-gray-900">ようこそ、ゲスト様</a>
-				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('login') }}">ログイン</a>
-				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('register') }}">会員登録</a>
-				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('home') }}">ホーム</a>
-				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('article') }}">レビュー一覧</a>
+				<div
+					class="mr-12 inline-flex font-extrabold text-lg text-gray-900 justify-center w-full md:w-auto mb-2 md:mb-0">
+					ようこそ、ゲスト様
+				</div>
+				<div class="flex flex-wrap items-center justify-center">
+					<a class="mr-8 font-medium text-orange-600 hover:text-orange-800"
+						href="{{ route('login') }}">ログイン</a>
+					<a class="mr-8 font-medium text-orange-600 hover:text-orange-800"
+						href="{{ route('register') }}">会員登録</a>
+					<a class="mr-8 font-medium text-orange-600 hover:text-orange-800" href="{{ route('home') }}">ホーム</a>
+					<a class="mr-8 font-medium text-orange-600 hover:text-orange-800"
+						href="{{ route('article') }}">レビュー一覧</a>
+				</div>
 				@endguest
 
 				@auth
-				<a class="mr-10 inline-flex font-bold  text-gray-900">
+				<div
+					class="mr-12 inline-flex font-extrabold text-lg text-gray-900 justify-center w-full md:w-auto mb-2 md:mb-0">
 					ようこそ、{{ Auth::user()->name }}様
-				</a>
-				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('home') }}">ホーム</a>
-				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('article') }}">レビュー一覧</a>
-				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('create') }}">レビューの投稿</a>
-				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="/user/profile">各種変更</a>
-
-				<a class="mr-7 text-yellow-500 hover:text-yellow-600" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    	document.getElementById('logout-form').submit();">ログアウト
-				</a>
-				<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-					@csrf
-				</form>
+				</div>
+				<div class="flex flex-wrap items-center justify-center">
+					<a class="mr-8 font-medium text-orange-600 hover:text-orange-800" href="{{ route('home') }}">ホーム</a>
+					<a class="mr-8 font-medium text-orange-600 hover:text-orange-800"
+						href="{{ route('article') }}">レビュー一覧</a>
+					<a class="mr-8 font-medium text-orange-600 hover:text-orange-800"
+						href="{{ route('create') }}">レビューの投稿</a>
+					<a class="mr-8 font-medium text-orange-600 hover:text-orange-800" href="/user/profile">各種変更</a>
+					<a class="mr-8 font-medium text-orange-600 hover:text-orange-800" href="{{ route('logout') }}"
+						onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">ログアウト
+					</a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+						@csrf
+					</form>
+				</div>
 				@endauth
 			</nav>
 
@@ -183,7 +196,7 @@
 						<div class="w-40 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
 							<label for="footer-field" class="leading-7 text-sm text-gray-600">Placeholder</label>
 							<input type="text" id="footer-field" name="footer-field"
-								class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:bg-transparent focus:ring-2 focus:ring-yellow-200 focus:border-yellow-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+								class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:bg-transparent focus:ring-2 focus:ring-orange-200 focus:border-orange-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
 						</div>
 						<button
 							class="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded">Button</button>
