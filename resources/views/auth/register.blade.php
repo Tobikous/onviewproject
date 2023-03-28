@@ -1,4 +1,5 @@
 @extends('layouts.app1')
+
 @section('content')
 <html class="h-full">
 <main class="w-full max-w-md mx-auto p-6">
