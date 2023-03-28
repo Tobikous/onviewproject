@@ -13,7 +13,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\EditReviewController;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -65,13 +65,13 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-    Route::get('/create', [ArticleController::class, 'create'])->name('create');
+    Route::get('/create', [EditReviewController::class, 'create'])->name('create');
 
-    Route::post('/store', [ArticleController::class, 'store'])->name('store');
+    Route::post('/store', [EditReviewController::class, 'store'])->name('store');
 
-    Route::get('/edit/{id}', [ArticleController::class, 'edit'])->name('edit');
+    Route::get('/edit/{id}', [EditReviewController::class, 'edit'])->name('edit');
 
-    Route::post('/update/{id}', [ArticleController::class, 'update'])->name('update');
+    Route::post('/update/{id}', [EditReviewController::class, 'update'])->name('update');
 
-    Route::post('/delete/{id}', [ArticleController::class, 'delete'])->name('delete');
+    Route::post('/delete/{id}', [EditReviewController::class, 'delete'])->name('delete');
 });

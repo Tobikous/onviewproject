@@ -16,6 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         $loggedInUser = \Auth::user();
+
         $reviews = Review::latestOrder()->paginate(3);
 
         return view('home', compact('loggedInUser', 'reviews'));
