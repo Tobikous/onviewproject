@@ -13,30 +13,43 @@ class Review extends Model
     protected $table = 'review';
     protected $fillable = ['content','star','time','user_id','onsenName','tag_id','image','formatted_address','latitude','longitude'];
 
+
+
     public function scopeLatestOrder($query)
     {
         return $query->OrderBy('updated_at', 'DESC');
     }
+
+
 
     public function scopeMatchId($query, $id)
     {
         return $query->where('id', $id);
     }
 
+
+
     public static function scopeMatchReview($id)
     {
         $review = self::find($id);
+
         $review->tags = Tag::find($review->tag_id);
+
         $review->onsen = Onsen::where('name', $review->onsenName)->first();
+
         $review->userName = User::find($review->user_id);
 
         return $review;
     }
 
+
+
     public function isWrittenByUser(User $user): bool
     {
         return $this->user_id == $user->id;
     }
+
+
 
     public function geocodeAddress($address)
     {
@@ -44,6 +57,7 @@ class Review extends Model
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$apiKey}";
 
         $response = Http::get($url);
+
         $pdata = $response->json();
 
         if ($pdata['status'] === 'OK') {
@@ -57,6 +71,8 @@ class Review extends Model
             ];
         }
     }
+
+
 
     public static function createFromRequest(UserRequest $request)
     {
@@ -99,6 +115,8 @@ class Review extends Model
 
         return $review;
     }
+
+
 
     public static function updateFromRequest(UserRequest $request, $id)
     {
