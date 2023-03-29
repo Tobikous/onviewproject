@@ -31,7 +31,7 @@
 		</div>
 
 
-		<section class="text-gray-600 body-font">
+		<section class="text-gray-600 body-font mb-10">
 			<div class="container px-5 py-10 mx-auto">
 				<h1 class="title-font text-3xl  font-medium text-gray-900 mb-5">投稿レビュー一覧</h1>
 				<div class="flex flex-wrap -m-4">
