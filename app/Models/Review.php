@@ -86,32 +86,32 @@ class Review extends Model
             $data['image'] = 'null';
         }
 
-        $onsen = Onsen::firstOrCreate(
-            ['name' => $data['onsenName']],
-            ['area' => $data['area']]
-        );
+        // $onsen = Onsen::firstOrCreate(
+        //     ['name' => $data['onsenName']],
+        //     ['area' => $data['area']]
+        // );
 
-        $tag = Tag::firstOrCreate(
-            ['name' => $data['tag']],
-            ['user_id' => $data['user_id']]
-        );
+        // $tag = Tag::firstOrCreate(
+        //     ['name' => $data['tag']],
+        //     ['user_id' => $data['user_id']]
+        // );
 
-        $review = new Review();
+        // $review = new Review();
 
-        $geocodedData = $review->geocodeAddress($data['onsenName']);
+        // $geocodedData = $review->geocodeAddress($data['onsenName']);
 
-        $review->fill([
-            'content' => $data['content'],
-            'user_id' => $data['user_id'],
-            'star' => $data['star'],
-            'time' => $data['time'],
-            'image' => $data['image'],
-            'tag_id' => $tag->id,
-            'onsenName' => $data['onsenName'],
-            'formatted_address' => $geocodedData['formatted_address'],
-            'latitude' => $geocodedData['latitude'],
-            'longitude' => $geocodedData['longitude'],
-        ])->save();
+        // $review->fill([
+        //     'content' => $data['content'],
+        //     'user_id' => $data['user_id'],
+        //     'star' => $data['star'],
+        //     'time' => $data['time'],
+        //     'image' => $data['image'],
+        //     'tag_id' => $tag->id,
+        //     'onsenName' => $data['onsenName'],
+        //     'formatted_address' => $geocodedData['formatted_address'],
+        //     'latitude' => $geocodedData['latitude'],
+        //     'longitude' => $geocodedData['longitude'],
+        // ])->save();
 
         return $review;
     }
