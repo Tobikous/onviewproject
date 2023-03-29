@@ -30,13 +30,13 @@
 									class="mt-1 text-gray-500 text-sm">更新日：{{$review['updated_at']->format('Y年m月d日')}}</span>
 
 							</div>
-							<div class="md:flex-grow">
+							<div class="md:flex-grow mb:ml-0 ml-12">
 								<h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{$review['onsenName']}}
 								</h2>
 								<h2 class="text-yellow-500 tracking-widest text-s title-font font-medium mt-3">
 									{{$review['star']}}
 								</h2>
-								<p class="leading-relaxed line-clamp-3">{{$review['content']}}</p>
+								<p class="leading-relaxed line-clamp-">{{$review['content']}}</p>
 								<a class="text-yellow-500 inline-flex items-center mt-4"
 									href="/show/{{$review['id']}}">レビュー詳細
 									<svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
