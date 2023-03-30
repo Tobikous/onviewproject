@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 
-class EditReviewController extends Controller
+class ReviewController extends Controller
 {
     public function create()
     {
@@ -35,7 +35,7 @@ class EditReviewController extends Controller
 
         $review = Review::createFromRequest($request);
 
-        return redirect()->route('home')->with('success', 'レビューを投稿しました。');
+        return view('edit', compact('loggedInUser', 'review', 'allTags'));
     }
 
 

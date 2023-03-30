@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class Review extends Model
 {
@@ -51,10 +52,10 @@ class Review extends Model
 
 
 
-    public function geocodeAddress($address)
+    public function geocodeAddress($onsenName)
     {
         $apiKey = env('GOOGLE_MAPS_API_KEY');
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$apiKey}";
+        $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$onsenName}&key={$apiKey}";
 
         $response = Http::get($url);
 
@@ -62,12 +63,12 @@ class Review extends Model
 
         if ($pdata['status'] === 'OK') {
             $location = $pdata['results'][0]['geometry']['location'];
-            $formatted_address = $pdata['results'][0]['formatted_address'];
+            $formattedAddress = $pdata['results'][0]['formatted_address'];
 
             return [
                 'latitude' => $location['lat'],
                 'longitude' => $location['lng'],
-                'formatted_address' => $formatted_address,
+                'formatted_address' => $formattedAddress,
             ];
         }
     }
@@ -76,45 +77,48 @@ class Review extends Model
 
     public static function createFromRequest(UserRequest $request)
     {
-        $data = $request->all();
+        return DB::transaction(function () use ($request) {
+            $data = $request->all();
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $path = Storage::disk('s3')->putFile('/', $image, 'public');
-            $data['image'] = Storage::disk('s3')->url($path);
-        } else {
-            $data['image'] = 'null';
-        }
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $path = Storage::disk('s3')->putFile('/', $image, 'public');
+                $data['image'] = Storage::disk('s3')->url($path);
+            } else {
+                $data['image'] = 'null';
+            }
 
-        $onsen = Onsen::firstOrCreate(
-            ['name' => $data['onsenName']],
-            ['area' => $data['area']]
-        );
+            $onsen = Onsen::firstOrCreate(
+                ['name' => $data['onsenName']],
+                ['area' => $data['area']]
+            );
 
-        $tag = Tag::firstOrCreate(
-            ['name' => $data['tag']],
-            ['user_id' => $data['user_id']]
-        );
+            $tag = Tag::firstOrCreate(
+                ['name' => $data['tag']],
+                ['user_id' => $data['user_id']]
+            );
 
-        $review = new Review();
+            $review = new Review();
 
-        $geocodedData = $review->geocodeAddress($data['onsenName']);
+            $geocodedData = $review->geocodeAddress($data['onsenName']);
 
-        $review->fill([
-            'content' => $data['content'],
-            'user_id' => $data['user_id'],
-            'star' => $data['star'],
-            'time' => $data['time'],
-            'image' => $data['image'],
-            'tag_id' => $tag->id,
-            'onsenName' => $data['onsenName'],
-            'formatted_address' => $geocodedData['formatted_address'],
-            'latitude' => $geocodedData['latitude'],
-            'longitude' => $geocodedData['longitude'],
-        ])->save();
+            $review->fill([
+                'content' => $data['content'],
+                'user_id' => $data['user_id'],
+                'star' => $data['star'],
+                'time' => $data['time'],
+                'image' => $data['image'],
+                'tag_id' => $tag->id,
+                'onsenName' => $data['onsenName'],
+                'formatted_address' => $geocodedData['formatted_address'],
+                'latitude' => $geocodedData['latitude'],
+                'longitude' => $geocodedData['longitude'],
+            ])->save();
 
-        return $review;
+            return $review;
+        });
     }
+
 
 
 
