@@ -12,10 +12,24 @@ use App\Models\GeocodeCalculator;
 
 class Review extends Model
 {
+    use HasFactory;
     protected $table = 'review';
     protected $fillable = ['content','star','time','user_id','onsenName','tag_id','image','formatted_address','latitude','longitude'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class, 'tag_id');
+    }
+
+    public function onsen()
+    {
+        return $this->belongsTo(Onsen::class, 'onsenName', 'name');
+    }
 
     public function scopeLatestOrder($query)
     {

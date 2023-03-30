@@ -35,7 +35,7 @@ class ReviewController extends Controller
 
         $review = Review::createFromRequest($request);
 
-        return view('edit', compact('loggedInUser', 'review', 'allTags'));
+        return redirect()->route('home')->with('success', 'レビューを投稿しました。');
     }
 
 
@@ -44,7 +44,7 @@ class ReviewController extends Controller
     {
         $loggedInUser = \Auth::user();
 
-        $review = Review::scopeMatchReview($id);
+        $review = Review::with(['user', 'tag', 'onsen'])->find($id);
 
         if ($loggedInUser->id !== $review->user_id) {
             return redirect()->back()->with('error', 'このレビューを編集する権限はありません。');
@@ -52,8 +52,9 @@ class ReviewController extends Controller
 
         $allTags = Tag::get();
 
-        return view('edit', compact('loggedInUser', 'review', 'allTags', ));
+        return view('edit', compact('loggedInUser', 'review', 'allTags'));
     }
+
 
 
 
