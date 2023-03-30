@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\ReviewStoreRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Models\GeocodeCalculator;
@@ -52,7 +52,7 @@ class Review extends Model
 
 
 
-    public static function createFromRequest(UserRequest $request)
+    public static function createFromRequest(ReviewStoreRequest $request)
     {
         return DB::transaction(function () use ($request) {
             $data = $request->all();
@@ -96,7 +96,7 @@ class Review extends Model
 
 
 
-    public static function updateFromRequest(UserRequest $request, $id)
+    public static function updateFromRequest(ReviewStoreRequest $request, $id)
     {
         $data = $request->all();
 

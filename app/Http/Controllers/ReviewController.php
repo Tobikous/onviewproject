@@ -7,7 +7,7 @@ use App\Models\Review;
 use App\Models\Tag;
 use App\Models\Onsen;
 use App\Models\User;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\ReviewStoreRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +27,7 @@ class ReviewController extends Controller
 
 
 
-    public function store(UserRequest $request)
+    public function store(ReviewStoreRequest $request)
     {
         $review = Review::createFromRequest($request);
 
@@ -54,7 +54,7 @@ class ReviewController extends Controller
 
 
 
-    public function update(UserRequest $request, $id)
+    public function update(ReviewStoreRequest $request, $id)
     {
         $review = Review::updateFromRequest($request, $id);
 

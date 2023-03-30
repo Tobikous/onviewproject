@@ -7,7 +7,7 @@ use App\Models\Review;
 use App\Models\Tag;
 use App\Models\Onsen;
 use App\Models\User;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\ReviewStoreRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 
