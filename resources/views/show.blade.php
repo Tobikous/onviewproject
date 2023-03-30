@@ -25,7 +25,7 @@
 						<p class="leading-relaxed line-clamp-7 text-yellow-500">{{$review['star']}}</p>
 					</span>
 					<span class="ml-3 pl-3 py-1 border-l-2 border-gray-200 space-x-2s">
-						<p class="text-gray-900 text-base font-medium">投稿者：{{ $review->userName->name }}
+						<p class="text-gray-900 text-base font-medium">投稿者：{{ $review->user->name }}
 						</p>
 						<p class="text-sm">投稿日：{{$review['created_at']->format('Y年m月d日')}}</p>
 						<p class="text-sm">更新日：{{$review['updated_at']->format('Y年m月d日')}}</p>
@@ -37,7 +37,7 @@
 				<div class="flex mt-3 items-center pb-5 border-b-2 border-gray-100 mb-2">
 					<div class="flex"></div>
 				</div>
-				<span class="title-font">タグ：{{ $review->tags->name }}
+				<span class="title-font">タグ：{{ $review->tag->name }}
 				</span>
 				<span class="title-font">時間帯：{{$review['time']}}</span>
 				@auth

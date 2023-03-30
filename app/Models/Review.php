@@ -45,53 +45,9 @@ class Review extends Model
 
 
 
-    public static function scopeMatchReview($id)
-    {
-        $review = self::find($id);
-
-        $review->tags = Tag::find($review->tag_id);
-
-        $review->onsen = Onsen::where('name', $review->onsenName)->first();
-
-        $review->userName = User::find($review->user_id);
-
-        return $review;
-    }
-
-
-
     public function isWrittenByUser(User $user): bool
     {
         return $this->user_id == $user->id;
-    }
-
-
-
-    public function geocodeAddress($onsenName)
-    {
-        $apiKey = env('GOOGLE_MAPS_API_KEY');
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$onsenName}&key={$apiKey}";
-
-        $response = Http::get($url);
-
-        $pdata = $response->json();
-
-        if ($pdata['status'] === 'OK') {
-            $location = $pdata['results'][0]['geometry']['location'];
-            $formattedAddress = $pdata['results'][0]['formatted_address'];
-
-            return [
-                'latitude' => $location['lat'],
-                'longitude' => $location['lng'],
-                'formatted_address' => $formattedAddress,
-            ];
-        } else {
-            return [
-                'latitude' => null,
-                'longitude' => null,
-                'formatted_address' => null,
-            ];
-        }
     }
 
 

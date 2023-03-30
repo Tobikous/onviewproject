@@ -28,7 +28,7 @@ class ArticleController extends Controller
     {
         $loggedInUser = \Auth::user();
 
-        $review = Review::scopeMatchReview($id);
+        $review = Review::with(['user', 'tag', 'onsen'])->find($id);
 
         return view('show', compact('loggedInUser', 'review'));
     }
