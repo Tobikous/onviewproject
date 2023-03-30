@@ -29,10 +29,6 @@ class ReviewController extends Controller
 
     public function store(UserRequest $request)
     {
-        $request->validate([
-            'onsenName' => 'required',
-        ]);
-
         $review = Review::createFromRequest($request);
 
         return redirect()->route('home')->with('success', 'レビューを投稿しました。');

@@ -12,7 +12,7 @@ class UserRequest extends FormRequest
             'onsenName' => "required|min:2",
             'star' => "required",
             'time' => "required",
-            'content' => "required|min:2",
+            'content' => "required|min:2|max:800",
             'tag' => "required",
 
         ];
