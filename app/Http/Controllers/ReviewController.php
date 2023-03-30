@@ -67,7 +67,6 @@ class ReviewController extends Controller
 
 
 
-
     public function delete(Request $request, $id)
     {
         $inputs = $request->all();
