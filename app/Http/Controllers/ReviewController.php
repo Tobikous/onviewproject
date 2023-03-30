@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 
-class EditReviewController extends Controller
+class ReviewController extends Controller
 {
     public function create()
     {
@@ -44,7 +44,7 @@ class EditReviewController extends Controller
     {
         $loggedInUser = \Auth::user();
 
-        $review = Review::scopeMatchReview($id);
+        $review = Review::with(['user', 'tag', 'onsen'])->find($id);
 
         if ($loggedInUser->id !== $review->user_id) {
             return redirect()->back()->with('error', 'このレビューを編集する権限はありません。');
@@ -52,8 +52,9 @@ class EditReviewController extends Controller
 
         $allTags = Tag::get();
 
-        return view('edit', compact('loggedInUser', 'review', 'allTags', ));
+        return view('edit', compact('loggedInUser', 'review', 'allTags'));
     }
+
 
 
 
