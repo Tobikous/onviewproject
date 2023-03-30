@@ -99,6 +99,7 @@ class Review extends Model
 
 
 
+
     public static function updateFromRequest(UserRequest $request, $id)
     {
         $data = $request->all();
