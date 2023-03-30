@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\Models\GeocodeCalculator;
 
 class Review extends Model
 {
@@ -70,6 +71,12 @@ class Review extends Model
                 'longitude' => $location['lng'],
                 'formatted_address' => $formattedAddress,
             ];
+        } else {
+            return [
+                'latitude' => null,
+                'longitude' => null,
+                'formatted_address' => null,
+            ];
         }
     }
 
@@ -98,11 +105,9 @@ class Review extends Model
                 ['user_id' => $data['user_id']]
             );
 
-            $review = new Review();
+            $geocodedData = GeocodeCalculator::geocodeAddress($data['onsenName']);
 
-            $geocodedData = $review->geocodeAddress($data['onsenName']);
-
-            $review->fill([
+            $review = Review::create([
                 'content' => $data['content'],
                 'user_id' => $data['user_id'],
                 'star' => $data['star'],
@@ -113,7 +118,7 @@ class Review extends Model
                 'formatted_address' => $geocodedData['formatted_address'],
                 'latitude' => $geocodedData['latitude'],
                 'longitude' => $geocodedData['longitude'],
-            ])->save();
+            ]);
 
             return $review;
         });
