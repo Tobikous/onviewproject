@@ -3,7 +3,64 @@
 @section('content')
 
 <body>
-	<session class="text-gray-600 body-font overflow-hidden">
+	<session class="text-gray-600 body-font overflow-hidden max-w-screen-xl mx-auto">
+		<div class="mx-auto  px-4 py-12 sm:px-6 lg:px-36">
+			<div class="max-w-3xl">
+				<h2 class="text-sm title-font text-gray-500 tracking-widest">{{ $review->onsen->area }}
+				</h2>
+				<h1 class="text-gray-900 text-4xl sm:text-2xl title-font font-medium mb-1">{{ $review->onsen->name }}
+				</h1>
+
+				<div class="flex mb-4 border-b-2 py-2">
+					<span class="flex items-center">
+						<p class="leading-relaxed text-2xl text-yellow-500">{{$review['star']}}</p>
+					</span>
+					<span class="ml-3 pl-3 py-1 border-l-2 border-gray-200 space-x-2s ">
+						<p class="text-gray-900 text-base font-medium">投稿者：{{ $review->user->name }}
+						</p>
+						<p class="text-sm">投稿日：{{$review['created_at']->format('Y年m月d日')}}</p>
+						<p class="text-sm">更新日：{{$review['updated_at']->format('Y年m月d日')}}</p>
+					</span>
+				</div>
+			</div>
+
+			<div class="mt-8 grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-2">
+				<div class="lg:py-2">
+					<article class="space-y-4 text-gray-600 text-center">
+						<p class="leading-relaxed text-gray-900">{{$review['content']}}</p>
+					</article>
+				</div>
+
+				<div class="relative h-32 overflow-hidden sm:h-80 lg:h-full">
+					<img alt="ecommerce"
+						class="w-full lg:h-auto w-full max-w-sm h-full object-cover object-center rounded"
+						src="{{$review['image']}}">
+				</div>
+				<div class="flex mt-3 items-center pb-5 border-b-2 border-gray-300 mb-2">
+					<div class="flex"></div>
+				</div>
+				<div></div>
+				<span class="title-font">タグ：{{ $review->tag->name }} <br>時間帯：{{$review['time']}}
+				</span>
+				@auth
+				<div class="flex mr-7">
+					@if($review->isWrittenByUser(auth()->user()))
+					<button
+						class="flex ml-auto text-white bg-orange-500 border-0 p-3 font-semibold  px-6 focus:outline-none hover:bg-orange-600 rounded"
+						type="button" onclick="location.href = '/edit/{{$review['id']}}'">レビューを編集する</button>
+					<form method='POST' action="/delete/{{$review['id']}}" id='delete-form'>
+						@csrf
+						<button type="submit"><i
+								class="fa fa-trash fa-2x border-0 py-2 px-6 text-gray-500 hover:text-gray-700"></i></button>
+					</form>
+					@endif
+				</div>
+				@endauth
+
+
+			</div>
+		</div>
+
 		<div class="container px-5 py-12 mx-auto lg:flex lg:flex-wrap">
 			<div class="lg:w-1/3 w-full lg:h-auto h-64 m-4 object-cover object-center rounded lg:order-1">
 				<img alt="ecommerce" class="w-full h-full object-cover object-center rounded"
