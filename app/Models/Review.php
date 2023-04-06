@@ -77,6 +77,12 @@ class Review extends Model
 
             $geocodedData = GeocodeCalculator::geocodeAddress($data['onsenName']);
 
+            if ($geocodedData === null) {
+                return redirect($request->redirect)
+                    ->withInput()
+                    ->with('error', '場所をGoogleMapで特定できなかった為、レビューは投稿されませんでした。');
+            }
+
             $review = Review::create([
                 'content' => $data['content'],
                 'user_id' => $data['user_id'],

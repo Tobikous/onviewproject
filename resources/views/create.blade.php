@@ -4,7 +4,17 @@
 
 <body>
 
+	<div class="flex container  w-full flex-col text-center my-10">
+		@if (session('error'))
+		<div class="mb-5 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
+			<p class="font-bold">{{ session('error') }}</p>
+		</div>
+		@endif
+	</div>
+
 	<div class="max-w-2xl mx-auto bg-white p-16">
+
+
 
 		<form method='POST' action="/store" enctype="multipart/form-data">
 			<input type='hidden' name='user_id' value="{{ $loggedInUser['id'] }}">

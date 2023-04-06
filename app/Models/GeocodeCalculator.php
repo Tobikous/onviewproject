@@ -11,7 +11,7 @@ class GeocodeCalculator
         $apiKey = env('GOOGLE_MAPS_API_KEY');
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$onsenName}&key={$apiKey}";
 
-        $response = Http::get($url);
+        $response = Http::retry(3, 100)->get($url);
 
         $pdata = $response->json();
 
@@ -23,12 +23,6 @@ class GeocodeCalculator
             'latitude' => $location['lat'],
             'longitude' => $location['lng'],
             'formatted_address' => $formattedAddress,
-            ];
-        } else {
-            return [
-            'latitude' => null,
-            'longitude' => null,
-            'formatted_address' => null,
             ];
         }
     }
