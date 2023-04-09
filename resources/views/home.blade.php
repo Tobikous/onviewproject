@@ -19,7 +19,7 @@
 			@auth
 			<button
 				class=" m-auto text-white bg-orange-500 border-0 py-8 px-20 focus:outline-none hover:bg-orange-600 rounded font-semibold text-4xl"
-				onclick="location.href='{{ route('create') }}'">レビューを投稿する</button>
+				onclick="location.href='{{ route('create') }}'">レビューを投稿する!!</button>
 			@endauth
 
 			@guest
