@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Review;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -42,14 +44,13 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current-password'],
-        ]);
-
         $user = $request->user();
 
         Auth::logout();
 
+        $reviews = $user->reviews;
+
+        $user->reviews()->delete();
         $user->delete();
 
         $request->session()->invalidate();

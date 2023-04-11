@@ -19,7 +19,7 @@
 			@auth
 			<button
 				class=" m-auto text-white bg-orange-500 border-0 py-8 px-20 focus:outline-none hover:bg-orange-600 rounded font-semibold text-4xl"
-				onclick="location.href='{{ route('create') }}'">レビューを投稿する!!</button>
+				onclick="location.href='{{ route('create') }}'">レビューを投稿する</button>
 			@endauth
 
 			@guest
@@ -39,8 +39,8 @@
 					<div class="p-4 lg:w-1/3">
 						<a href="/show/{{$review['id']}}" class="block">
 							<div class="h-full bg-yellow-100 bg-opacity-75 px-8 pt-8 pb-10 rounded-lg text-center">
-								<img alt="blog" class="lg:h-48 md:h-36 w-full object-cover object-center"
-									src="{{$review['image']}}">
+								<img alt="Onsen Image" class="lg:h-48 md:h-36 w-full object-cover object-center"
+									src="{{ asset($review->image) }}">
 								<h2 class="text-yellow-500 tracking-widest text-s title-font font-medium mt-3">
 									{{$review['star']}}</h2>
 								<h1

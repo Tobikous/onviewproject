@@ -26,15 +26,15 @@
 
 			<div class="mt-8 grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-2">
 				<div class="lg:py-2">
-					<article class="space-y-4 text-gray-600 text-center">
+					<article class="space-y-4 text-gray-600">
 						<p class="leading-relaxed text-gray-900">{{$review['content']}}</p>
 					</article>
 				</div>
 
 				<div class="relative h-32 overflow-hidden sm:h-80 lg:h-full">
-					<img alt="ecommerce"
+					<img alt="Onsen Image"
 						class="w-full lg:h-auto w-full max-w-sm h-full object-cover object-center rounded"
-						src="{{$review['image']}}">
+						src="{{ asset($review->image) }}">
 				</div>
 				<div class="flex mt-3 items-center pb-5 border-b-2 border-gray-300 mb-2">
 					<div class="flex"></div>
@@ -64,7 +64,7 @@
 		<div class="container px-5 py-12 mx-auto lg:flex lg:flex-wrap">
 			<div class="lg:w-1/3 w-full lg:h-auto h-64 m-4 object-cover object-center rounded lg:order-1">
 				<img alt="ecommerce" class="w-full h-full object-cover object-center rounded"
-					src="{{$review['image']}}">
+					src="{{ asset($review->image) }}">
 			</div>
 
 			<div class="lg:w-1/3 lg:h-auto h-96 m-4 w-full object-cover z-0 lg:order-2">

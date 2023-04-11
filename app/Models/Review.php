@@ -31,6 +31,8 @@ class Review extends Model
         return $this->belongsTo(Onsen::class, 'onsenName', 'name');
     }
 
+
+
     public function scopeLatestOrder($query)
     {
         return $query->OrderBy('updated_at', 'DESC');
