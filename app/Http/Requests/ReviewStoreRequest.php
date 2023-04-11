@@ -29,4 +29,6 @@ class ReviewStoreRequest extends FormRequest
             'onsenName' => "温泉名",
         ];
     }
+
+    protected $redirect = '/review/create';
 }
