@@ -42,6 +42,14 @@ class ReviewSeeder extends Seeder
             foreach ($tags as $tag) {
                 $onsen = $onsens->random();
                 $geocodedData = GeocodeCalculator::geocodeAddress($onsen->name);
+                if ($geocodedData === null) {
+                    $geocodedData = [
+                        'latitude' => 35.681236,
+                        'longitude' => 139.767125,
+                        'formatted_address' => '〒100-0005 Tokyo, Chiyoda City, Marunouchi, 1 Chome-9-1 東京駅',
+                    ];
+                }
+
                 $randomImagePath = $imagePaths[array_rand($imagePaths)];
                 Review::factory()->create([
                     'user_id' => $user->id,
