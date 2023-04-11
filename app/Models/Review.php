@@ -54,17 +54,17 @@ class Review extends Model
 
     public static function createFromRequest(ReviewStoreRequest $request)
     {
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = Storage::disk('s3')->putFile('/', $image, 'public');
+            $data['image'] = Storage::disk('s3')->url($path);
+        } else {
+            $data['image'] = 'null';
+        }
+
         return DB::transaction(function () use ($request) {
-            $data = $request->all();
-
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $path = Storage::disk('s3')->putFile('/', $image, 'public');
-                $data['image'] = Storage::disk('s3')->url($path);
-            } else {
-                $data['image'] = 'null';
-            }
-
             $onsen = Onsen::firstOrCreate(
                 ['name' => $data['onsenName']],
                 ['area' => $data['area']]
@@ -76,6 +76,12 @@ class Review extends Model
             );
 
             $geocodedData = GeocodeCalculator::geocodeAddress($data['onsenName']);
+
+            if ($geocodedData === null) {
+                return redirect($request->redirect)
+                    ->withInput()
+                    ->with('error', '場所をGoogleMapで特定できなかった為、レビューは投稿されませんでした。');
+            }
 
             $review = Review::create([
                 'content' => $data['content'],
@@ -89,9 +95,9 @@ class Review extends Model
                 'latitude' => $geocodedData['latitude'],
                 'longitude' => $geocodedData['longitude'],
             ]);
-
-            return $review;
         });
+
+        return $review;
     }
 
 
