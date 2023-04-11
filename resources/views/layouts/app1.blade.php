@@ -17,7 +17,7 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
 
-	<link rel="stylesheet" href="{{ vite_asset('resources/css/app.css') }}">
+	<!-- <link rel="stylesheet" href="{{ vite_asset('resources/css/app.css') }}"> -->
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
