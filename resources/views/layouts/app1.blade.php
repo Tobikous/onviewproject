@@ -18,6 +18,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
 
 
+	@vite('resources/css/app.css')
+
+
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
 	<link rel="stylesheet" href="{{ asset('build/assets/app-5005f49e.css') }}">
