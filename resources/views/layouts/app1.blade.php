@@ -23,10 +23,10 @@
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
-	<link rel="stylesheet" href="{{ asset('build/assets/app-5005f49e.css') }}">
-	<script src="{{ asset('build/assets/app-95b87cd7.js') }}"></script>
+	<!-- <link rel="stylesheet" href="{{ asset('build/assets/app-5005f49e.css') }}">
+	<script src="{{ asset('build/assets/app-95b87cd7.js') }}"></script> -->
 
-	<script src="{{ asset('js/app.js') }}" defer></script>
+	<script src="{{ asset('resources/js/app.js') }}" defer></script>
 
 
 </head>
