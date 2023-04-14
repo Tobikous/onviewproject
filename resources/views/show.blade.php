@@ -3,116 +3,64 @@
 @section('content')
 
 <body>
-	<session class="text-gray-600 body-font overflow-hidden max-w-screen-xl mx-auto">
-		<div class="mx-auto  px-4 py-12 sm:px-6 lg:px-36">
-			<div class="max-w-3xl">
-				<h2 class="text-sm title-font text-gray-500 tracking-widest">{{ $review->onsen->area }}
-				</h2>
-				<h1 class="text-gray-900 text-4xl sm:text-2xl title-font font-medium mb-1">{{ $review->onsen->name }}
-				</h1>
 
-				<div class="flex mb-4 border-b-2 py-2">
-					<span class="flex items-center">
-						<p class="leading-relaxed text-2xl text-yellow-500">{{$review['star']}}</p>
-					</span>
-					<span class="ml-3 pl-3 py-1 border-l-2 border-gray-200 space-x-2s ">
-						<p class="text-gray-900 text-base font-medium">投稿者：{{ $review->user->name }}
-						</p>
-						<p class="text-sm">投稿日：{{$review['created_at']->format('Y年m月d日')}}</p>
-						<p class="text-sm">更新日：{{$review['updated_at']->format('Y年m月d日')}}</p>
-					</span>
+
+	<div
+		class="items-center w-full px-0 py-10 sm:py-12 md:py-16 mx-auto md:px-12 lg:px-16 xl:px-32 max-w-7xl relative tails-selected-element">
+		<div
+			class="grid items-start grid-cols-1 mt-10 lg:mt-12 gap-16 lg:gap-8 md:grid-cols-2 bg-neutral-50 md:rounded-2xl lg:rounded-[4rem] p-10 lg:p-20">
+			<div class="relative">
+				<h3 class="text-3xl font-extrabold text-black lg:text-5xl tracking-tighter">{{ $review->onsen->name }}
+				</h3>
+				<div class="relative">
+
+
+					<ul class="list-none mt-6 space-y-4" role="list">
+						<li>
+							<div class="relative flex items-start">
+
+								<p class="text-neutral-500 text-sm leading-6 ml-2"><strong
+										class="font-semibold text-neutral-900">Streamline Your Coding
+										Experience</strong> — Our SaaS programming product offers a wide range of
+									features to meet the needs of every developer.</p>
+							</div>
+						</li>
+						<li>
+							<div class="relative flex items-start">
+								<svg class="text-blue-500 h-5 w-5 translate-y-0.5 shrink-0" fill="none"
+									viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"
+									stroke-width="1.5">
+									<path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+										stroke-linecap="round" stroke-linejoin="round"></path>
+								</svg>
+								<p class="text-neutral-500 text-sm leading-6 ml-2"><strong
+										class="font-semibold text-neutral-900">Protecting Your Data</strong> — Our
+									SaaS programming product is designed with the modern developer in mind.</p>
+							</div>
+						</li>
+
+					</ul>
 				</div>
+				<p class="text-neutral-500 text-lg max-w-2xl mt-4">レビューの内容</p>
+
 			</div>
+			<div class="relative">
+				<div class="h-full md:max-w-full max-w-sm mx-auto lg:flex lg:flex-col">
+					<div class="w-full aspect-w-16 aspect-h-9 relative mb-8">
+						<img alt="Onsen Image" class="w-full h-full object-cover absolute z-20"
+							src="{{ asset($review->image) }}">
+					</div>
 
-			<div class="mt-8 grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-2">
-				<div class="lg:py-2">
-					<article class="space-y-4 text-gray-600">
-						<p class="leading-relaxed text-gray-900">{{$review['content']}}</p>
-					</article>
+					<div class="w-full aspect-w-16 aspect-h-9 relative">
+						<div id="map" class="w-full h-full absolute"></div>
+					</div>
 				</div>
-
-				<div class="relative h-32 overflow-hidden sm:h-80 lg:h-full">
-					<img alt="Onsen Image"
-						class="w-full lg:h-auto w-full max-w-sm h-full object-cover object-center rounded"
-						src="{{ asset($review->image) }}">
-				</div>
-				<div class="flex mt-3 items-center pb-5 border-b-2 border-gray-300 mb-2">
-					<div class="flex"></div>
-				</div>
-				<div></div>
-				<span class="title-font">タグ：{{ $review->tag->name }} <br>時間帯：{{$review['time']}}
-				</span>
-				@auth
-				<div class="flex mr-7">
-					@if($review->isWrittenByUser(auth()->user()))
-					<button
-						class="flex ml-auto text-white bg-orange-500 border-0 p-3 font-semibold  px-6 focus:outline-none hover:bg-orange-600 rounded"
-						type="button" onclick="location.href = '/edit/{{$review['id']}}'">レビューを編集する</button>
-					<form method='POST' action="/delete/{{$review['id']}}" id='delete-form'>
-						@csrf
-						<button type="submit"><i
-								class="fa fa-trash fa-2x border-0 py-2 px-6 text-gray-500 hover:text-gray-700"></i></button>
-					</form>
-					@endif
-				</div>
-				@endauth
-
 
 			</div>
 		</div>
 
-		<div class="container px-5 py-12 mx-auto lg:flex lg:flex-wrap">
-			<div class="lg:w-1/3 w-full lg:h-auto h-64 m-4 object-cover object-center rounded lg:order-1">
-				<img alt="ecommerce" class="w-full h-full object-cover object-center rounded"
-					src="{{ asset($review->image) }}">
-			</div>
 
-			<div class="lg:w-1/3 lg:h-auto h-96 m-4 w-full object-cover z-0 lg:order-2">
-				<div id="map" class="h-full"></div>
-			</div>
 
-			<div class="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 lg:order-3">
-				<h2 class="text-sm title-font text-gray-500 tracking-widest">{{ $review->onsen->area }}
-				</h2>
-				<h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $review->onsen->name }}
-				</h1>
-
-				<div class="flex mb-4">
-					<span class="flex items-center">
-						<p class="leading-relaxed line-clamp-7 text-yellow-500">{{$review['star']}}</p>
-					</span>
-					<span class="ml-3 pl-3 py-1 border-l-2 border-gray-200 space-x-2s">
-						<p class="text-gray-900 text-base font-medium">投稿者：{{ $review->user->name }}
-						</p>
-						<p class="text-sm">投稿日：{{$review['created_at']->format('Y年m月d日')}}</p>
-						<p class="text-sm">更新日：{{$review['updated_at']->format('Y年m月d日')}}</p>
-					</span>
-				</div>
-
-				<p class="leading-relaxed text-gray-900">{{$review['content']}}</p>
-
-				<div class="flex mt-3 items-center pb-5 border-b-2 border-gray-100 mb-2">
-					<div class="flex"></div>
-				</div>
-				<span class="title-font">タグ：{{ $review->tag->name }}
-				</span>
-				<span class="title-font">時間帯：{{$review['time']}}</span>
-				@auth
-				<div class="flex mt-7">
-					@if($review->isWrittenByUser(auth()->user()))
-					<button
-						class="flex ml-auto text-white bg-orange-500 border-0 p-3 font-semibold  px-6 focus:outline-none hover:bg-orange-600 rounded"
-						type="button" onclick="location.href = '/edit/{{$review['id']}}'">レビューを編集する</button>
-					<form method='POST' action="/delete/{{$review['id']}}" id='delete-form'>
-						@csrf
-						<button type="submit"><i
-								class="fa fa-trash fa-2x border-0 py-2 px-6 text-gray-500 hover:text-gray-700"></i></button>
-					</form>
-					@endif
-				</div>
-				@endauth
-			</div>
-		</div>
 
 
 
@@ -164,9 +112,8 @@
 		<script async defer
 			src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
 		</script>
-		</div>
+	</div>
 
 
-	</session>
 </body>
 @endsection

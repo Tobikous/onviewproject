@@ -66,7 +66,7 @@ class Review extends Model
             $data['image'] = 'null';
         }
 
-        return DB::transaction(function () use ($request) {
+        return DB::transaction(function () use ($data) {
             $onsen = Onsen::firstOrCreate(
                 ['name' => $data['onsenName']],
                 ['area' => $data['area']]
@@ -79,11 +79,21 @@ class Review extends Model
 
             $geocodedData = GeocodeCalculator::geocodeAddress($data['onsenName']);
 
+            // if ($geocodedData === null) {
+            //     return redirect($data->redirect)
+            //         ->withInput()
+            //         ->with('error', '場所をGoogleMapで特定できなかった為、レビューは投稿されませんでした。');
+            // }
+
             if ($geocodedData === null) {
-                return redirect($request->redirect)
-                    ->withInput()
-                    ->with('error', '場所をGoogleMapで特定できなかった為、レビューは投稿されませんでした。');
+                $geocodedData = [
+                    'latitude' => 35.681236,
+                    'longitude' => 139.767125,
+                    'formatted_address' => '〒100-0005 Tokyo, Chiyoda City, Marunouchi, 1 Chome-9-1 東京駅',
+                ];
             }
+
+
 
             $review = Review::create([
                 'content' => $data['content'],

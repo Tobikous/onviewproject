@@ -20,6 +20,12 @@
 
 	@vite('resources/css/app.css')
 
+	@vite('js/app.js')
+
+	<!-- Alpine.js -->
+	<script src="//unpkg.com/alpinejs@latest/dist/alpine.min.js" defer></script>
+
+
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 

@@ -26,16 +26,16 @@ class ReviewSeeder extends Seeder
         $onsens = Onsen::all()->random(5);
 
         $imagePaths = [
-            'images/onsenimage01.jpg',
-            'images/onsenimage02.jpg',
-            'images/onsenimage03.jpg',
-            'images/onsenimage04.jpg',
-            'images/onsenimage05.jpg',
-            'images/onsenimage06.jpg',
-            'images/onsenimage07.jpg',
-            'images/onsenimage08.jpg',
-            'images/onsenimage09.jpg',
-            'images/onsenimage10.jpg',
+            'onsenimage01.jpg',
+            'onsenimage02.jpg',
+            'onsenimage03.jpg',
+            'onsenimage04.jpg',
+            'onsenimage05.jpg',
+            'onsenimage06.jpg',
+            'onsenimage07.jpg',
+            'onsenimage08.jpg',
+            'onsenimage09.jpg',
+            'onsenimage10.jpg',
         ];
 
         foreach ($users as $user) {
@@ -50,7 +50,8 @@ class ReviewSeeder extends Seeder
                     ];
                 }
 
-                $randomImagePath = $imagePaths[array_rand($imagePaths)];
+                $randomImagePath = 'images/' . $imagePaths[array_rand($imagePaths)];
+
                 Review::factory()->create([
                     'user_id' => $user->id,
                     'tag_id' => $tag->id,

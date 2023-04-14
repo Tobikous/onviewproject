@@ -17,7 +17,7 @@ class ArticleController extends Controller
     {
         $loggedInUser = \Auth::user();
 
-        $reviews = Review::latestOrder()->paginate(5);
+        $reviews = Review::latestOrder()->paginate(7);
 
         return view('article', compact('loggedInUser', 'reviews'));
     }
