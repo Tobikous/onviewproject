@@ -20,10 +20,7 @@
 
 	@vite('resources/css/app.css')
 
-	@vite('js/app.js')
 
-	<!-- Alpine.js -->
-	<script src="//unpkg.com/alpinejs@latest/dist/alpine.min.js" defer></script>
 
 
 

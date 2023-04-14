@@ -81,7 +81,8 @@
 						</div>
 						<h2 class="text-3xl font-bold sm:text-xl md:text-2xl"><a
 								href="/show/{{$review['id']}}">{{$review['onsenName']}}</a></h2>
-						<p class="text-sm text-gray-500 line-clamp-3 overflow-hidden">{{$review['content']}}</p>
+						<p class="text-sm text-gray-500 line-clamp-3 overflow-hidden">{{$review['content']}}
+						</p>
 						<p class="pt-2 text-xs font-medium"><a href="/show/{{$review['id']}}"
 								class="mr-1 underline">投稿日</a> ： <span
 								class="mx-1">{{$review['updated_at']->format('Y年m月d日')}}</span> · <span

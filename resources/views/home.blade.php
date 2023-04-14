@@ -7,7 +7,11 @@
 
 	<div class="container">
 
-
+		@if (session('success'))
+		<div class="mb-5 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
+			<p class="font-bold">{{ session('success') }}</p>
+		</div>
+		@endif
 
 		<!-- <div class="flex container  w-full flex-col text-center my-10">
 			@if (session('success'))
@@ -141,7 +145,7 @@
 					<a href="/show/{{$review['id']}}"
 						class="block text-2xl font-medium leading-tight text-gray-700 hover:text-gray-900">{{$review['onsenName']}}</a>
 
-					<p class="leading-relaxed  truncate overflow-hidden">{{$review['content']}}</p>
+					<p class="leading-relaxed truncate overflow-hidden">{{$review['content']}}</p>
 					<span
 						class="text-gray-400 items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm border-gray-200">
 						<svg class="w-4 h-4"></svg>更新日：{{$review['updated_at']->format('Y年m月d日')}}
