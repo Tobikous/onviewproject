@@ -29,22 +29,20 @@
 						</li>
 						<li>
 							<div class="relative flex items-start">
-								<svg class="text-blue-500 h-5 w-5 translate-y-0.5 shrink-0" fill="none"
-									viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"
-									stroke-width="1.5">
-									<path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-										stroke-linecap="round" stroke-linejoin="round"></path>
-								</svg>
-								<p class="text-neutral-500 text-sm leading-6 ml-2"><strong
-										class="font-semibold text-neutral-900">Protecting Your Data</strong> — Our
-									SaaS programming product is designed with the modern developer in mind.</p>
+								<p class="text-xl leading-relaxed line-clamp-7 text-yellow-500">{{$review['star']}}</p>
 							</div>
 						</li>
 
 					</ul>
 				</div>
 				<p class="text-neutral-900 text-lg max-w-2xl mt-4">レビュー内容：</p>
-				<p class="text-neutral-800 text-lg max-w-2xl mt-4">{{$review['content']}}</p>
+				<p class="text-neutral-800 text-lg max-w-2xl mt-3">{{$review['content']}}</p>
+				<div class="flex mt-3 items-center pb-5 border-b-2 border-gray-100 mb-2">
+					<div class="flex"></div>
+				</div>
+				<span class="title-font">タグ：{{ $review->tag->name }}
+				</span>
+
 
 			</div>
 			<div class="relative">
@@ -58,7 +56,20 @@
 						<div id="map" class="w-full h-full absolute"></div>
 					</div>
 				</div>
-
+				@auth
+				<div class="flex mt-7">
+					@if($review->isWrittenByUser(auth()->user()))
+					<button
+						class="flex ml-auto text-white bg-orange-500 border-0 p-3 font-semibold  px-6 focus:outline-none hover:bg-orange-600 rounded"
+						type="button" onclick="location.href = '/edit/{{$review['id']}}'">レビューを編集する</button>
+					<form method='POST' action="/delete/{{$review['id']}}" id='delete-form'>
+						@csrf
+						<button type="submit"><i
+								class="fa fa-trash fa-2x border-0 py-2 px-6 text-gray-500 hover:text-gray-700"></i></button>
+					</form>
+					@endif
+				</div>
+				@endauth
 			</div>
 		</div>
 

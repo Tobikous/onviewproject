@@ -7,9 +7,13 @@
 
 	<div class="container">
 
+
+
 		@if (session('success'))
-		<div class="mb-5 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
-			<p class="font-bold">{{ session('success') }}</p>
+		<div class="flex container  w-full flex-col text-center my-10">
+			<div class="mb-5 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
+				<p class="font-bold">{{ session('success') }}</p>
+			</div>
 		</div>
 		@endif
 
@@ -117,7 +121,11 @@
 			</div>
 		</section>
 
+		<div x-data="{ count: 0 }">
+			<button x-on:click="count++">Increment</button>
 
+			<span x-text="count"></span>
+		</div>
 
 		<div class="px-10 mx-auto max-w-7xl tails-selected-element">
 			<div class="flex items-center justify-between w-full pb-5 mb-8 border-b border-gray-200">

@@ -38,7 +38,7 @@
 					<div class="w-full md:w-1/2">
 						<a href="/show/{{$review['id']}}" class="block">
 							<img alt="Onsen Image" src="{{$review['image']}}"
-								class="object-cover w-full h-full rounded-lg max-h-64 sm:max-h-96">
+								class="object-cover w-full h-full rounded-lg max-h-64 md:max-h-96">
 						</a>
 					</div>
 
@@ -73,7 +73,7 @@
 					<div class="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
 						<a href="/show/{{$review['id']}}" class="block">
 							<img alt="Onsen Image" src="{{$review['image']}}"
-								class="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-56">
+								class="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-64 sm:max-h-56">
 						</a>
 						<div
 							class="bg-purple-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-medium uppercase text-white inline-block">
