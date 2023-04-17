@@ -20,5 +20,6 @@ use App\Http\Controllers\ArticleController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/show/{id}', [ArticleController::class, 'show'])->name('show');
 Route::get('/article', [ArticleController::class, 'article'])->name('article');
+Route::get('/search', [ArticleController::class, 'search'])->name('search');
 
 require __DIR__.'/auth.php';

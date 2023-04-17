@@ -10,6 +10,9 @@ use App\Models\User;
 use App\Http\Requests\ReviewStoreRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\SearchReviewRequest;
 
 class ArticleController extends Controller
 {
@@ -31,5 +34,14 @@ class ArticleController extends Controller
         $review = Review::with(['user', 'tag', 'onsen'])->find($id);
 
         return view('show', compact('loggedInUser', 'review'));
+    }
+
+    public function search(SearchReviewRequest $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $reviews = Review::where('onsenName', 'LIKE', "%{$keyword}%")->paginate(9);
+
+        return view('search_result', compact('reviews', 'keyword'));
     }
 }
