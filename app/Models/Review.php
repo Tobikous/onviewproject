@@ -52,6 +52,10 @@ class Review extends Model
         return $this->user_id == $user->id;
     }
 
+    public static function searchByOnsenName($keyword)
+    {
+        return self::where('onsenName', 'LIKE', "%{$keyword}%");
+    }
 
 
     public static function createFromRequest(ReviewStoreRequest $request)

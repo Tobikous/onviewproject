@@ -8,7 +8,7 @@
 	<div
 		class="items-center w-full px-0 py-10 sm:py-12 md:py-16 mx-auto md:px-12 lg:px-16 xl:px-32 max-w-7xl relative tails-selected-element">
 		<div
-			class="grid items-start grid-cols-1 mt-10 lg:mt-1 gap-16 lg:gap-8 md:grid-cols-2 bg-neutral-50 md:rounded-2xl lg:rounded-[4rem] p-10 lg:p-20">
+			class="grid items-start grid-cols-1 mt-10 lg:mt-1 gap-16 lg:gap-8 md:grid-cols-2 bg-gray-100 md:rounded-2xl lg:rounded-[4rem] p-10 lg:p-20">
 			<div class="relative">
 				<h3 class="text-3xl font-extrabold text-black lg:text-5xl tracking-tighter">{{ $review->onsen->name }}
 				</h3>

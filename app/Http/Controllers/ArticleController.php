@@ -39,8 +39,7 @@ class ArticleController extends Controller
     public function search(SearchReviewRequest $request)
     {
         $keyword = $request->input('keyword');
-
-        $reviews = Review::where('onsenName', 'LIKE', "%{$keyword}%")->paginate(9);
+        $reviews = Review::searchByOnsenName($keyword)->paginate(9);
 
         return view('search_result', compact('reviews', 'keyword'));
     }
