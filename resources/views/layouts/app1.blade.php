@@ -106,7 +106,7 @@
 					</span>
 				</a>
 
-				<a href="{{ route('article') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+				<a href="{{ route('articles') }}" x-data="{ hover: false }" @mouseenter="hover = true"
 					@mouseleave="hover = false"
 					class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
 					<span class="block">レビュー一覧</span>
@@ -136,7 +136,7 @@
 							data-primary="orange-600" style="display: none;"></span>
 					</span>
 				</a>
-				<a href="/user/profile" x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false"
+				<a href="profile" x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false"
 					class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
 					<span class="block">各種変更</span>
 					<span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
@@ -173,24 +173,24 @@
 					</span>
 				</a>
 
-				<a href="{{ route('register') }}"
-					class="inline-flex items-center justify-center px-4 py-2 text-base font-medium tracking-normal text-white transition duration-150 bg-green-400 rounded hover:bg-green-500 ease tails-selected-element"
-					data-rounded="rounded-md" data-primary="orange-600">
-					<svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-						xmlns="http://www.w3.org/2000/svg">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-							d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-							class=""></path>
+				<a href="{{ route('register') }}" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium tracking-normal transition duration-150 rounded text-orange-500 bg-orange-50 border-orange-200 hover:bg-orange-100 active:bg-orange-200 focus:ring-orange-300
+					ease tails-selected-element" data-rounded="rounded-md" data-primary="orange-600">
+					<svg class="w-6 h-6 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor"
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 					</svg>
 					会員登録
 				</a>
+
 				@endguest
 
 				@auth
 				<a data-rounded="rounded-md" data-primary="orange-600" href="{{ route('logout') }}" onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();"
-					class="inline-flex items-center justify-center px-4 py-2 text-base font-medium tracking-normal text-white transition duration-150 bg-green-400 rounded hover:bg-green-500 ease tails-selected-element"
-					data-rounded="rounded-md" data-primary="orange-600">
+            document.getElementById('logout-form').submit();" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium tracking-normal transition duration-150 rounded text-orange-500 bg-orange-50 border-orange-200 hover:bg-orange-100 active:bg-orange-200 focus:ring-orange-300
+					ease tails-selected-element" data-rounded="rounded-md" data-primary="orange-600">
 					<svg class="h-6 w-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
 						xmlns="http://www.w3.org/2000/svg">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -254,7 +254,7 @@
 							<path stroke-linecap="round" stroke-linejoin="round"
 								d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
 						</svg>ホーム</a>
-					<a href="{{ route('article') }}"
+					<a href="{{ route('articles') }}"
 						class="flex items-center space-x-2 transition hover:text-orange-600">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
 							stroke="currentColor" class="w-4 h-4 mr-1">
@@ -276,7 +276,7 @@
 							</g>
 						</svg>
 						ビューを投稿する</a>
-					<a href="/user/profile" class="flex items-center space-x-2 transition hover:text-orange-600"><svg
+					<a href="profile" class="flex items-center space-x-2 transition hover:text-orange-600"><svg
 							xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
 							stroke="currentColor" class="h-4 w-4 mr-1">
 							<path stroke-linecap="round" stroke-linejoin="round"

@@ -27,7 +27,7 @@ class ArticleController extends Controller
 
 
 
-    public function show($id)
+    public function reviewContent($id)
     {
         $loggedInUser = \Auth::user();
 
@@ -41,6 +41,6 @@ class ArticleController extends Controller
         $keyword = $request->input('keyword');
         $reviews = Review::searchByOnsenName($keyword)->paginate(9);
 
-        return view('search_result', compact('reviews', 'keyword'));
+        return view('search-result', compact('reviews', 'keyword'));
     }
 }

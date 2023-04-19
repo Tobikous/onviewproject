@@ -62,11 +62,31 @@
 					<button
 						class="flex ml-auto text-white bg-orange-500 border-0 p-3 font-semibold  px-6 focus:outline-none hover:bg-orange-600 rounded"
 						type="button" onclick="location.href = '/edit/{{$review['id']}}'">レビューを編集する</button>
-					<form method='POST' action="/delete/{{$review['id']}}" id='delete-form'>
-						@csrf
-						<button type="submit"><i
-								class="fa fa-trash fa-2x border-0 py-2 px-6 text-gray-500 hover:text-gray-700"></i></button>
-					</form>
+
+					<button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"><i
+							class="fa fa-trash fa-2x border-0 py-2 px-6 text-gray-500 hover:text-gray-700"></i></button>
+
+					<x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable x-cloak>
+						<form method='POST' action="/delete/{{$review['id']}}" class="p-6">
+							@csrf
+
+							<h2 class="text-lg font-medium text-gray-900">
+								{{ __('本当にレビューを削除しますか？') }}
+							</h2>
+							<p class="mt-1 text-sm text-gray-600">
+								{{ __('レビューは一度消すと、復元できません') }}
+							</p>
+							<div class="mt-6 flex justify-end">
+								<x-secondary-button x-on:click="$dispatch('close')">
+									{{ __('キャンセル') }}
+								</x-secondary-button>
+								<x-danger-button class="ml-3">
+									{{ __('削除する') }}
+								</x-danger-button>
+							</div>
+						</form>
+					</x-modal>
+
 					@endif
 				</div>
 				@endauth

@@ -5,8 +5,6 @@
 <body>
 	<div class="container">
 
-
-
 		<div class="card-body">
 			@if (session('status'))
 			<div class="alert alert-success" role="alert">
@@ -36,7 +34,7 @@
 
 				<div class="flex flex-col items-center sm:px-5 md:flex-row tails-selected-element">
 					<div class="w-full md:w-1/2">
-						<a href="/show/{{$review['id']}}" class="block">
+						<a href="/review/{{$review['id']}}" class="block">
 							<img alt="Onsen Image" src="{{$review['image']}}"
 								class="object-cover w-full h-full rounded-lg max-h-64 md:max-h-96">
 						</a>
@@ -48,15 +46,16 @@
 							<div
 								class="flex items-center leading-none rounded-full text-xs font-medium uppercase text-white inline-block">
 								<h2 class="text-yellow-500 tracking-widest  title-font font-medium text-lg">
-								{{$review['star']}} 
+									{{$review['star']}}
 							</div>
-							<h1 class="text-3xl font-bold leading-none lg:text-5xl"><a href="/show/{{$review['id']}}"
+							<h1 class="text-3xl font-bold leading-none lg:text-5xl"><a href="/review/{{$review['id']}}"
 									class="">{{$review['onsenName']}}</a></h1>
-									<p class="text-sm text-gray-500 line-clamp-3 overflow-hidden">{{$review['content']}}
-							<p class="pt-2 text-sm font-medium"><a href="/show/{{$review['id']}}"
+							<p class="text-sm text-gray-500 line-clamp-3 overflow-hidden">{{$review['content']}}
+							<p class="pt-2 text-sm font-medium"><a href="/review/{{$review['id']}}"
 									class="underline"></a>
-									<span class="">投稿日</span>:<span
-									class="mx-1 text-gray-600">{{$review['updated_at']->format('Y年m月d日')}}</span></p>
+								<span class="">投稿日</span>:<span
+									class="mx-1 text-gray-600">{{$review['updated_at']->format('Y年m月d日')}}</span>
+							</p>
 						</div>
 					</div>
 				</div>
@@ -68,21 +67,20 @@
 					@foreach($reviews as $review)
 					@if(!$loop->first)
 					<div class="flex flex-col items-start col-span-12 space-y-2 sm:col-span-6 xl:col-span-4">
-						<a href="/show/{{$review['id']}}" class="block">
+						<a href="/review/{{$review['id']}}" class="block">
 							<img alt="Onsen Image" src="{{$review['image']}}"
 								class="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-64 sm:max-h-56">
 						</a>
 						<div
-								class="flex items-center leading-none rounded-full text-xs font-medium uppercase text-white inline-block">
-								<h2 class="text-yellow-500 tracking-widest  title-font font-medium text-base">
-							{{$review['star']}} 
-							</div>
+							class="flex items-center leading-none rounded-full text-xs font-medium uppercase text-white inline-block">
+							<h2 class="text-yellow-500 tracking-widest  title-font font-medium text-base">
+								{{$review['star']}}
+						</div>
 						<h2 class="text-3xl font-bold sm:text-xl md:text-2xl"><a
-								href="/show/{{$review['id']}}">{{$review['onsenName']}}</a></h2>
+								href="/review/{{$review['id']}}">{{$review['onsenName']}}</a></h2>
 						<p class="text-sm text-gray-500 line-clamp-3 overflow-hidden">{{$review['content']}}
 						</p>
-						<p class="pt-2 text-xs font-medium"><a href="/show/{{$review['id']}}"
-								class="">投稿日</a>:<span
+						<p class="pt-2 text-xs font-medium"><a href="/review/{{$review['id']}}" class="">投稿日</a>:<span
 								class="">{{$review['updated_at']->format('Y年m月d日')}}</span><span
 								class="mx-1 text-gray-600"></span>
 						</p>
@@ -101,37 +99,6 @@
 	</div>
 
 
-
-
-	<!-- <section class="text-gray-600 body-font overflow-hidden">
-		<div class="container px-10 md:px-40 mx-auto">
-			<div class="divide-y-2 divide-gray-100">
-				@foreach($reviews AS $review)
-				<div class="py-8 flex flex-wrap md:flex-nowrap">
-					<div class="w-20 h-20 md:h-64 md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-						<img alt="Onsen Image" class="w-full object-cover object-center"
-							src="{{ asset($review->image) }}">
-					</div>
-					<div class="md:flex-grow mb:ml-0 ml-12">
-						<h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{$review['onsenName']}}
-						</h2>
-						<h2 class="text-yellow-500 tracking-widest text-s title-font font-medium mt-3">
-							{{$review['star']}}
-						</h2>
-						<p class="leading-relaxed line-clamp-3">{{$review['content']}}</p>
-						<a class="text-yellow-500 inline-flex items-center mt-4" href="/show/{{$review['id']}}">レビュー詳細
-							<svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-								fill="none" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M5 12h14"></path>
-								<path d="M12 5l7 7-7 7"></path>
-							</svg>
-						</a>
-					</div>
-				</div>
-				@endforeach
-			</div>
-		</div> -->
-
 	<div class="flex flex-row-reverse ">
 		<p class="ml-5">{{ $reviews->links() }}</p>
 
@@ -148,15 +115,6 @@
 			<span class="font-medium">{{ $reviews->total() }}</span>
 			件
 		</p>
-
-	</div>
-
-
-	</section>
-
-
-
-	</div>
 
 	</div>
 

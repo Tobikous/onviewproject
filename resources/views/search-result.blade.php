@@ -30,20 +30,20 @@
 
 			@foreach($reviews as $review)
 			<div class="flex flex-col items-start col-span-12 space-y-2 sm:col-span-6 xl:col-span-4">
-				<a href="/show/{{$review['id']}}" class="block">
+				<a href="/review/{{$review['id']}}" class="block">
 					<img alt="Onsen Image" src="{{$review['image']}}"
 						class="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-64 sm:max-h-56">
 				</a>
 				<div
-								class="flex items-center leading-none rounded-full text-xs font-medium uppercase text-white inline-block">
-								<h2 class="text-yellow-500 tracking-widest  title-font font-medium text-base">
-							{{$review['star']}} 
-							</div>
+					class="flex items-center leading-none rounded-full text-xs font-medium uppercase text-white inline-block">
+					<h2 class="text-yellow-500 tracking-widest  title-font font-medium text-base">
+						{{$review['star']}}
+				</div>
 				<h2 class="text-3xl font-bold sm:text-xl md:text-2xl"><a
-						href="/show/{{$review['id']}}">{{$review['onsenName']}}</a></h2>
+						href="/review/{{$review['id']}}">{{$review['onsenName']}}</a></h2>
 				<p class="text-sm text-gray-500 line-clamp-3 overflow-hidden">{{$review['content']}}
 				</p>
-				<p class="pt-2 text-xs font-medium"><a href="/show/{{$review['id']}}" class="mr-1 underline">投稿日</a>
+				<p class="pt-2 text-xs font-medium"><a href="/review/{{$review['id']}}" class="mr-1 underline">投稿日</a>
 					:<span class="mx-1">{{$review['updated_at']->format('Y年m月d日')}}</span> · <span
 						class="mx-1 text-gray-600"></span>
 				</p>

@@ -46,20 +46,25 @@
 
 		<script>
 			var cont = 0;
-			var sliderCount = {{$reviews->count()}};
+			var sliderCount = {
+				{
+					$reviews - > count()
+				}
+			};
+
 			var xx;
 
 			function loopSlider() {
-			xx = setInterval(function() {
-				cont = (cont + 1) % sliderCount;
-				updateSlider();
-			}, 8000);
-			}	
+				xx = setInterval(function() {
+					cont = (cont + 1) % sliderCount;
+					updateSlider();
+				}, 8000);
+			}
 
 			function sliderButton(count) {
-			cont = parseInt(count) - 1;
-			updateSlider();
-			reinitLoop(4000);
+				cont = parseInt(count) - 1;
+				updateSlider();
+				reinitLoop(4000);
 			}
 
 			function updateSlider() {
@@ -72,21 +77,19 @@
 						$("#sButton" + i).removeClass("bg-orange-800");
 					}
 				}
-				}
-
-				$(window).ready(function() {
+			}
+			$(window).ready(function() {
 				for (var i = 2; i <= sliderCount; i++) {
 					$("#slider-" + i).hide();
 				}
 				$("#sButton1").addClass("bg-purple-800");
-
 				loopSlider();
-				});
+			});
 
-				function reinitLoop(time) {
+			function reinitLoop(time) {
 				clearInterval(xx);
 				setTimeout(loopSlider, time);
-				}
+			}
 		</script>
 		@endauth
 
@@ -97,14 +100,14 @@
 				class="flex flex-col items-center justify-center mx-auto sm:p-6 xl:p-8 lg:flex-row lg:max-w-6xl lg:p-0">
 				<div
 					class="container relative z-20 flex flex-col w-full px-5 pb-1 pr-12 mb-16 text-2xl text-gray-700 lg:w-1/2 sm:pr-0 md:pr-6 md:pl-0 lg:pl-5 xl:pr-10 sm:items-center lg:items-start lg:mb-0">
+					<h1 class="relative z-20 text-4xl font-extrabold leading-none text-orange-500 xl:text-4xl sm:text-center lg:text-left"
+						data-primary="purple-500">おんびゅ～へようこそ！</h1>
 					<h1 class="relative z-20 text-4xl font-extrabold leading-none text-orange-500 xl:text-5xl sm:text-center lg:text-left"
-						data-primary="purple-500">温泉レビューサイトおんびゅ～</h1>
-					<h1 class="relative z-20 text-4xl font-extrabold leading-none text-orange-500 xl:text-5xl sm:text-center lg:text-left"
-						data-primary="purple-500">heyoukoso</h1>
+						data-primary="purple-500"></h1>
 					<p class="relative z-20 block mt-6 text-base text-gray-500 xl:text-xl sm:text-center lg:text-left">
-						レビューの投稿、閲覧ができます</p>
+						温泉レビューサイトおんびゅ～では、温泉、サウナのレビューの投稿や閲覧ができます。皆さんでより良い温泉ライフを一緒に開拓していきましょう！</p>
 					<div class="relative flex mt-4">
-						<a href="#_"
+						<a href="{{ route('register') }}"
 							class="flex items-center self-start justify-center px-5 py-2 mt-5 text-base font-medium leading-tight text-white transition duration-150 ease-in-out bg-orange-500 border border-transparent rounded-full shadow lg:py-4 hover:bg-orange-600 focus:outline-none focus:border-orange-600 focus:shadow-outline-orange md:text-lg xl:text-xl md:px-5 xl:px-10"
 							data-primary="purple-500" data-rounded="rounded-full">
 							<svg class="w-6 h-6 mr-1" viewBox="0 0 24 24" fill="none"
@@ -117,7 +120,7 @@
 									stroke="currentColor" stroke-width="2" stroke-linecap="round"
 									stroke-linejoin="round" />
 							</svg>会員登録</a>
-						<a href="#_"
+						<a href="{{ route('login') }}"
 							class="relative flex items-center self-start justify-center py-2 pl-10 pr-5 mt-5 ml-5 text-base font-medium leading-tight text-orange-500 transition duration-150 ease-in-out bg-gray-200 hover:bg-orange-500 border-transparent rounded-full shadow-sm lg:py-4 md:pl-16 md:pr-5 xl:pr-10 hover:text-white focus:outline-none md:text-lg xl:text-xl"
 							data-primary="orange-500" data-rounded="rounded-full">
 							<svg class="absolute left-0 w-6 h-6 ml-4 md:w-10 md:h-10" fill="none" stroke="currentColor"
@@ -156,7 +159,7 @@
 				<div class="ml-2 mr-2 md:mr-4">
 					<div class="flex items-center justify-between w-full pb-5 mb-8 border-b border-gray-200">
 						<h2 class="text-3xl font-bold text-gray-800">投稿レビュー一覧</h2>
-						<a href="article"
+						<a href="articles"
 							class="flex items-center text-base font-semibold text-blue-400 hover:text-blue-500 group">
 							<span class="">すべてのレビューを見る</span>
 							<svg class="w-4 h-4 mt-0.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -170,13 +173,14 @@
 					<div class="pb-12">
 						@foreach($reviews as $review)
 						@if($loop->first)
-						<a href="/show/{{$review['id']}}" class="relative block w-full overflow-hidden h-80 rounded-xl">
+						<a href="/review/{{$review['id']}}"
+							class="relative block w-full overflow-hidden h-80 rounded-xl">
 							<img class="object-cover object-top w-full h-full transition duration-300 ease-out transform scale-100 hover:scale-105"
 								src="{{ asset($review->image) }}" alt="onsenImage">
 						</a>
 						<a
 							class="relative block mt-3 mb-1 text-xs font-medium tracking-wide text-gray-500 uppercase"></a>
-						<a href="/show/{{$review['id']}}"
+						<a href="/review/{{$review['id']}}"
 							class="block text-2xl font-medium leading-tight text-gray-700 hover:text-gray-900">{{$review['onsenName']}}</a>
 
 
@@ -189,7 +193,8 @@
 						<p class="leading-relaxed truncate overflow-hidden">{{$review['content']}}</p>
 
 						<p class="text-gray-500">
-							<a href="/show/{{$review['id']}}" class="inline-flex items-center inline text-sm underline">
+							<a href="/review/{{$review['id']}}"
+								class="inline-flex items-center inline text-sm underline">
 								<span class="">続きを読む</span>
 								<svg class="w-3 h-3 ml-1 transform -rotate-45" fill="none" stroke="currentColor"
 									viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -206,13 +211,13 @@
 						@foreach($reviews as $review)
 						@if(!$loop->first)
 						<div class="col-span-12 md:col-span-6">
-							<a href="/show/{{$review['id']}}" class=" block h-48 mb-3 overflow-hidden rounded-lg">
+							<a href="/review/{{$review['id']}}" class=" block h-48 mb-3 overflow-hidden rounded-lg">
 								<img class="object-cover object-center w-full h-full transition duration-300 ease-out transform scale-100 hover:scale-105"
 									src="{{ asset($review->image) }}" alt="onsenImage">
 							</a>
 							<a
 								class="relative block mt-3 mb-1 text-xs font-medium tracking-wide text-gray-500 uppercase"></a>
-							<a href="/show/{{$review['id']}}"
+							<a href="/review/{{$review['id']}}"
 								class="block text-2xl font-medium leading-tight text-gray-700 hover:text-gray-900">{{$review['onsenName']}}</a>
 
 
@@ -225,7 +230,7 @@
 							<p class="leading-relaxed truncate overflow-hidden">{{$review['content']}}</p>
 
 							<p class="text-gray-500">
-								<a href="/show/{{$review['id']}}"
+								<a href="/review/{{$review['id']}}"
 									class="inline-flex items-center inline text-sm underline">
 									<span class="">続きを読む</span>
 									<svg class="w-3 h-3 ml-1 transform -rotate-45" fill="none" stroke="currentColor"
@@ -244,9 +249,9 @@
 				</div>
 
 				<div class="mt-16 text-center mb-10">
-					<a href="{{ route('article') }}"
-						class="px-5 py-3 text-sm font-medium tracking-widest text-white uppercase bg-gray-800 hover:bg-gray-900 rounded-lg">
-						全てのレビューを見る</a>
+					<a href="{{ route('articles') }}"
+						class="px-5 py-3 text-sm font-medium tracking-widest text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
+						すべてのレビューを見る</a>
 				</div>
 
 			</div>
@@ -267,10 +272,10 @@
 								</div>
 
 								<button type="submit"
-									class="flex items-center justify-center w-full py-3 mt-5 text-sm font-medium tracking-widest text-white uppercase bg-gray-900 rounded-lg">
+									class="flex items-center justify-center w-full py-3 mt-5 text-sm font-medium tracking-widest text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
 									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
 										stroke-width="1.5" stroke="currentColor"
-										class="w-5 h-5 text-gray-400 dark:text-gray-600">
+										class="w-5 h-5 text-white dark:text-gray-600 mr-1">
 										<path stroke-linecap="round" stroke-linejoin="round"
 											d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
 									</svg>
@@ -310,13 +315,13 @@
 							@foreach($reviews AS $review)
 							@if($review->isWrittenByUser(auth()->user()))
 							<li class="mb-5">
-								<a href="/show/{{$review['id']}}" class="flex">
+								<a href="/review/{{$review['id']}}" class="flex">
 									<div class="w-1/3 overflow-hidden rounded">
 										<img class="object-cover object-center w-full h-full transition duration-300 ease-out transform scale-100 rounded hover:scale-105"
 											src="{{ asset($review->image) }}" alt="onsenImage">
 									</div>
 									<div class="flex flex-col items-start justify-center w-2/3 p-2">
-										<h3 href="/show/{{$review['id']}}"
+										<h3 href="/review/{{$review['id']}}"
 											class="font-medium leading-tight text-gray-700 hover:text-gray-900 ext-gray-900">
 											{{$review['onsenName']}}
 										</h3>
