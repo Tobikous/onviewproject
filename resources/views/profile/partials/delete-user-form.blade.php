@@ -13,7 +13,7 @@
 	<button class='m-1 text-white bg-red-600 border-0 py-3 px-5 focus:outline-none hover:bg-red-700 rounded text-xl'
 		x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">{{ __('アカウントを削除する') }}</button>
 	<x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable x-cloak>
-		<form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+		<form method="post" action="{{ route('profile.destroy') }}" class="p-10">
 			@csrf
 			@method('delete')
 			<h2 class="text-lg font-medium text-gray-900">

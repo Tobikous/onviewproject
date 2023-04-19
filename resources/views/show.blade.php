@@ -67,7 +67,7 @@
 							class="fa fa-trash fa-2x border-0 py-2 px-6 text-gray-500 hover:text-gray-700"></i></button>
 
 					<x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable x-cloak>
-						<form method='POST' action="/delete/{{$review['id']}}" class="p-6">
+						<form method='POST' action="/delete/{{$review['id']}}" class="p-10">
 							@csrf
 
 							<h2 class="text-lg font-medium text-gray-900">
