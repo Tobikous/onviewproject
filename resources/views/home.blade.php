@@ -20,14 +20,13 @@
 			<div class="sliderAx h-auto">
 				@foreach($reviews as $count =>$review)
 				<div id="slider-{{$count+1}}" class="container mx-auto">
-					<div class="bg-cover bg-center  h-auto text-white py-24 px-10 object-fill"
-						style="background-image: url({{$review['image']}})">
-						<div class="md:w-1/2">
+					<div class="relative bg-cover bg-center h-auto text-white py-24 px-10 object-fill" style="background-image: url({{$review['image']}})">
+						<div class="absolute inset-0 bg-black opacity-30"></div>
+						<div class="relative md:w-1/2">
 							<p class="font-bold text-sm uppercase">{{$review['updated_at']->format('Y年m月d日')}}</p>
 							<p class="text-3xl font-bold">{{$review['onsenName']}}</p>
 							<p class="text-2xl mb-10 leading-none"></p>
-							<a href="/review/{{$review['id']}}"
-								class="bg-orange-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-orange-600">レビューを見る</a>
+							<a href="/review/{{$review['id']}}" class="bg-orange-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-orange-600">レビューを見る</a>
 						</div>
 					</div>
 					<br>
@@ -77,7 +76,6 @@
 				for (var i = 2; i <= sliderCount; i++) {
 					$("#slider-" + i).hide();
 				}
-				$("#sButton1").addClass("bg-purple-800");
 				loopSlider();
 			});
 
