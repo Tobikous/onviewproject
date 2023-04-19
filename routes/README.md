@@ -59,8 +59,8 @@
 
 ## スクリーンショット
 
-![スクリーンショット](public/images/screenshot01.png)
-![スクリーンショット](public/images/screenshot02.png)
-![スクリーンショット](public/images/screenshot03.png)
-![スクリーンショット](public/images/screenshot04.png)
-![スクリーンショット](public/images/screenshot05.png)
+![スクリーンショット1](screenshot/screenshot.png)
+![スクリーンショット2](screenshot/screenshot02.png)
+![スクリーンショット3](screenshot/screenshot03.png)
+![スクリーンショット4](screenshot/screenshot04.png)
+![スクリーンショット5](screenshot/screenshot05.png)
