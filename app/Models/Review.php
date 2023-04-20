@@ -91,9 +91,9 @@ class Review extends Model
 
             if ($geocodedData === null) {
                 $geocodedData = [
-                    'latitude' => 35.681236,
-                    'longitude' => 139.767125,
-                    'formatted_address' => '〒100-0005 Tokyo, Chiyoda City, Marunouchi, 1 Chome-9-1 東京駅',
+                    'latitude' => null,
+                    'longitude' => null,
+                    'formatted_address' => null,
                 ];
             }
 
