@@ -67,7 +67,7 @@ class Review extends Model
             $path = Storage::disk('s3')->putFile('/', $image, 'public');
             $data['image'] = Storage::disk('s3')->url($path);
         } else {
-            $data['image'] = 'null';
+            $data['image'] = 'images/onsennoimage.jpg';
         }
 
         return DB::transaction(function () use ($data) {
@@ -131,6 +131,8 @@ class Review extends Model
             $image = $request->file('image');
             $path = Storage::disk('s3')->putFile('/', $image, 'public');
             $data['image'] = Storage::disk('s3')->url($path);
+        } else {
+            $data['image'] = 'images/onsennoimage.jpg';
         }
 
         $review = Review::findOrFail($id);
