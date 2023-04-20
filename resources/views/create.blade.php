@@ -182,7 +182,7 @@
 			</div>
 
 			<button type="button" onclick="openModal()"
-				class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">レビューを投稿する</button>
+				class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">レビューを投稿する</button>
 
 		</form>
 
@@ -195,7 +195,7 @@
 						</div>
 						<div class="mt-6 flex justify-between">
 							<button type="button" onclick="submitReview();"
-								class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">提出</button>
+								class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">投稿する</button>
 							<button type="button" onclick="closeModal();"
 								class="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-400 dark:hover:bg-gray-500 dark:focus:ring-gray-600">キャンセル</button>
 						</div>
@@ -204,36 +204,6 @@
 			</div>
 		</div>
 
-		<script>
-			function openModal() {
-
-				const onsenName = document.querySelector("input[name='onsenName']").value;
-				const area = document.querySelector("select[name='area']").value;
-				const star = document.querySelector("select[name='star']").value;
-				const time = document.querySelector("select[name='time']").value;
-				const content = document.querySelector("textarea[name='content']").value;
-
-				const modalContent = document.getElementById("modalContent");
-				modalContent.innerHTML = `
-				<p><strong>温泉名:</strong> ${onsenName}</p>
-				<p><strong>都道府県:</strong> ${area}</p>
-				<p><strong>レビュー点数:</strong> ${star}</p>
-				<p><strong>時間帯:</strong> ${time}</p>
-				<p><strong>レビュー詳細:</strong> ${content}</p>
-				`;
-
-				document.getElementById("modal").classList.remove("hidden");
-			}
-
-			function closeModal() {
-				document.getElementById("modal").classList.add("hidden");
-			}
-
-			function submitReview() {
-				document.getElementById("modal").classList.add("hidden");
-				document.getElementById("review-form").submit();
-			}
-		</script>
 	</div>
 </body>
 

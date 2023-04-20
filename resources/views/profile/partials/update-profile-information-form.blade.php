@@ -54,8 +54,10 @@
 
 		<div class="flex items-center gap-4">
 			<button
-				class='m-1 text-white bg-orange-500 border-0 py-1 px-7 focus:outline-none hover:bg-orange-600 rounded text-xl'>{{
-				__('変更') }}</button>
+				class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">{{
+				__('プロフィールを変更する') }}</button>
+
+
 
 			@if (session('status') === 'profile-updated')
 			<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"

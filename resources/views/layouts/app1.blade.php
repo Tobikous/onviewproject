@@ -21,7 +21,11 @@
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
 
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-	<!-- <script src="{{ asset('js/slider.js') }}"></script> -->
+	<script src="{{ asset('js/reviewPostMordal.js') }}"></script>
+
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
+	</script>
 
 </head>
 
@@ -136,7 +140,8 @@
 							data-primary="orange-600" style="display: none;"></span>
 					</span>
 				</a>
-				<a href="{{ route('profile.edit') }}" x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false"
+				<a href="{{ route('profile.edit') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+					@mouseleave="hover = false"
 					class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
 					<span class="block">各種変更</span>
 					<span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
@@ -276,7 +281,8 @@
 							</g>
 						</svg>
 						ビューを投稿する</a>
-					<a href="{{ route('profile.edit') }}" class="flex items-center space-x-2 transition hover:text-orange-600"><svg
+					<a href="{{ route('profile.edit') }}"
+						class="flex items-center space-x-2 transition hover:text-orange-600"><svg
 							xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
 							stroke="currentColor" class="h-4 w-4 mr-1">
 							<path stroke-linecap="round" stroke-linejoin="round"

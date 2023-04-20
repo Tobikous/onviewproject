@@ -6,7 +6,8 @@
 
 	<div class="max-w-2xl mx-auto bg-white p-16">
 
-		<form method='POST' action="{{ route('update', [ 'id' =>$review['id'] ]) }}" enctype="multipart/form-data">
+		<form id="review-form" method='POST' action="{{ route('update', [ 'id' =>$review['id'] ]) }}"
+			enctype="multipart/form-data">
 			<input type='hidden' name='user_id' value="{{$loggedInUser['id']}}">
 			<input type='hidden' name='onsenName' value="{{$review['onsenName']}}">
 			@csrf
@@ -101,16 +102,32 @@
 				</div>
 			</div>
 
-			<div class="mb-6">
-				<button type="submit"
-					class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">更新する</button>
-			</div>
-			<div>
+			<button type="button" onclick="openEditModal()"
+				class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">更新する</button>
+			<div class="mt-5">
 				<button type="button"
-					class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
+					class="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-400 dark:hover:bg-gray-500 dark:focus:ring-gray-600"
 					onclick="location.href = '/review/{{$review['id']}}'">更新をやめる</button>
 			</div>
 		</form>
+
+		<div id="modal" class="fixed insert-0 z-50 overflow-auto bg-black bg-opacity-50 inset-0 overflow-y-auto hidden">
+			<div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20">
+				<div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+					<div class="p-6">
+						<h2 class="text-xl font-bold mb-4">レビュー内容確認</h2>
+						<div id="modalContent">
+						</div>
+						<div class="mt-6 flex justify-between">
+							<button type="button" onclick="submitReview();"
+								class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">更新する</button>
+							<button type="button" onclick="closeModal();"
+								class="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-400 dark:hover:bg-gray-500 dark:focus:ring-gray-600">キャンセル</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
 </body>

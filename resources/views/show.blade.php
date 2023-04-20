@@ -35,9 +35,9 @@
 
 					</ul>
 				</div>
-				<p class="text-neutral-900 text-lg max-w-2xl mt-4">レビュー内容：</p>
-				<p class="text-neutral-800 text-lg max-w-2xl mt-3">{{$review['content']}}</p>
-				<div class="flex mt-3 items-center pb-5 border-b-2 border-gray-100 mb-2">
+				<p class="text-neutral-900 text-lg max-w-2xl mt-2">レビュー内容：</p>
+				<p class="text-neutral-800 text-lg max-w-2xl">{{$review['content']}}</p>
+				<div class="flex mt-3 items-center pb-5 border-b-2 border-gray-200 mb-2">
 					<div class="flex"></div>
 				</div>
 				<span class="title-font">タグ：{{ $review->tag->name }}
@@ -93,14 +93,8 @@
 			</div>
 		</div>
 
-
-
-
-
-
 		<script>
 			var data = @json($review);
-			console.log(data);
 			var latData = data['latitude'];
 			var lngData = data['longitude'];
 			var adress = data['formatted_address'];
@@ -108,7 +102,7 @@
 
 			function createInfoWindowContent(address, area) {
 				return `<div> <h1>${address}</h1>
-	  <p>${area}</p></div>`;
+	   			<p>${area}</p></div>`;
 			}
 
 			function initMap() {
@@ -143,9 +137,7 @@
 
 			window.initMap = initMap;
 		</script>
-		<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
-		</script>
+
 	</div>
 
 
