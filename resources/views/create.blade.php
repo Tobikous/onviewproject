@@ -16,7 +16,7 @@
 
 
 
-		<form method='POST' action="/store" enctype="multipart/form-data">
+		<form id="review-form" method="POST" action="/store" enctype="multipart/form-data">
 			<input type='hidden' name='user_id' value="{{ $loggedInUser['id'] }}">
 			@csrf
 
@@ -181,17 +181,59 @@
 				</div>
 			</div>
 
-			<div class="mb-6">
-				<button type="submit"
-					class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">レビューを投稿する</button>
-			</div>
-			<div>
-				<button type="button"
-					class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
-					onclick="location.href  =  '/home'">投稿をやめる</button>
-			</div>
+			<button type="button" onclick="openModal()"
+				class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">レビューを投稿する</button>
+
 		</form>
 
+		<div id="modal" class="fixed insert-0 z-50 overflow-auto bg-black bg-opacity-50 inset-0 overflow-y-auto hidden">
+			<div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20">
+				<div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+					<div class="p-6">
+						<h2 class="text-xl font-bold mb-4">レビュー内容確認</h2>
+						<div id="modalContent">
+						</div>
+						<div class="mt-6 flex justify-between">
+							<button type="button" onclick="submitReview();"
+								class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">提出</button>
+							<button type="button" onclick="closeModal();"
+								class="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-400 dark:hover:bg-gray-500 dark:focus:ring-gray-600">キャンセル</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			function openModal() {
+
+				const onsenName = document.querySelector("input[name='onsenName']").value;
+				const area = document.querySelector("select[name='area']").value;
+				const star = document.querySelector("select[name='star']").value;
+				const time = document.querySelector("select[name='time']").value;
+				const content = document.querySelector("textarea[name='content']").value;
+
+				const modalContent = document.getElementById("modalContent");
+				modalContent.innerHTML = `
+				<p><strong>温泉名:</strong> ${onsenName}</p>
+				<p><strong>都道府県:</strong> ${area}</p>
+				<p><strong>レビュー点数:</strong> ${star}</p>
+				<p><strong>時間帯:</strong> ${time}</p>
+				<p><strong>レビュー詳細:</strong> ${content}</p>
+				`;
+
+				document.getElementById("modal").classList.remove("hidden");
+			}
+
+			function closeModal() {
+				document.getElementById("modal").classList.add("hidden");
+			}
+
+			function submitReview() {
+				document.getElementById("modal").classList.add("hidden");
+				document.getElementById("review-form").submit();
+			}
+		</script>
 	</div>
 </body>
 
