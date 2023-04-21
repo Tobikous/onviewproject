@@ -47,20 +47,17 @@
 			var cont = 0;
 			var sliderCount = {{$reviews -> count()}};
 			var xx;
-
 			function loopSlider() {
 				xx = setInterval(function() {
 					cont = (cont + 1) % sliderCount;
 					updateSlider();
 				}, 8000);
 			}
-
 			function sliderButton(count) {
 				cont = parseInt(count) - 1;
 				updateSlider();
 				reinitLoop(4000);
 			}
-
 			function updateSlider() {
 				for (var i = 1; i <= sliderCount; i++) {
 					if (i === cont + 1) {
@@ -78,7 +75,6 @@
 				}
 				loopSlider();
 			});
-
 			function reinitLoop(time) {
 				clearInterval(xx);
 				setTimeout(loopSlider, time);
@@ -135,16 +131,67 @@
 								transform="translate(100 100)" class=""></path>
 						</svg>
 					</div>
-					<div class="relative overflow-hidden rounded-md shadow-2xl cursor-pointer group"
-						data-rounded="rounded-md" data-rounded-max="rounded-full">
+					<div id="default-carousel" class="relative z-10 object-cover w-full h-full" data-carousel="static">
+						<div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
+							<div class="hidden duration-700 ease-in-out" data-carousel-item>
+								<span
+									class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First
+									Slide</span>
+								<img src='images/onsenback03.jpg'
+									class="object-cover w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+									alt="onsenslider">
+							</div>
+							<div class="hidden duration-700 ease-in-out" data-carousel-item>
+								<img src='images/onsenback02.jpg'
+									class="object-cover w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+									alt="onsenslider">
+							</div>
+							<div class="hidden duration-700 ease-in-out" data-carousel-item>
+								<img src='images/onsenback01.jpg'
+									class="object-cover w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+									alt="onsenslider">
+							</div>
 
-						<img src='images/onsenback03.jpg' class="z-10 object-cover w-full h-full">
+						</div>
+						<div class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
+							<button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 1"
+								data-carousel-slide-to="0"></button>
+							<button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+								data-carousel-slide-to="1"></button>
+							<button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+								data-carousel-slide-to="2"></button>
+						</div>
+						<button type="button"
+							class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+							data-carousel-prev>
+							<span
+								class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/40 dark:bg-gray-800/30 hover:bg-white/60 group-focus:outline-none">
+								<svg class="w-5 h-5 text-gray-200 sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
+									stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+										d="M15 19l-7-7 7-7"></path>
+								</svg>
+								<span class="hidden">Previous</span>
+							</span>
+						</button>
+						<button type="button"
+							class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+							data-carousel-next>
+							<span
+								class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/40 dark:bg-gray-800/30 hover:bg-white/60 group-focus:outline-none">
+								<svg class="w-5 h-5 text-gray-200 sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
+									stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+										d="M9 5l7 7-7 7"></path>
+								</svg>
+								<span class="hidden">Next</span>
+							</span>
+						</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		@endguest
-
 
 
 		<section class="flex flex-wrap mt-14 overflow-hidden">
@@ -249,7 +296,6 @@
 
 			</div>
 
-			<!-- Begining of Sidebar -->
 			<div class="w-full mt-12 overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 md:mt-0 md:px-5">
 				<div class="ml-2 mr-2 md:ml-4">
 					<div class="rounded-lg bg-gray-100 p-7">
@@ -278,29 +324,6 @@
 							</form>
 						</div>
 					</div>
-					<!-- <div class="mt-10">
-						<h2 class="mb-5 text-lg font-medium text-gray-900">Categories</h2>
-						<ul>
-							<li class="flex"><a href="#_"
-									class="flex-1 block py-2 font-serif text-lg font-thin text-gray-900">Lifestyle</a><span
-									class="p-2 text-lg font-thin text-gray-700">32</span></li>
-							<li class="flex"><a href="#_"
-									class="flex-1 block py-2 font-serif text-lg font-thin text-gray-900">Health</a><span
-									class="p-2 text-lg font-thin text-gray-700">41</span></li>
-							<li class="flex"><a href="#_"
-									class="flex-1 block py-2 font-serif text-lg font-thin text-gray-900">Gaming</a><span
-									class="p-2 text-lg font-thin text-gray-700">27</span></li>
-							<li class="flex"><a href="#_"
-									class="flex-1 block py-2 font-serif text-lg font-thin text-gray-900">Travel</a><span
-									class="p-2 text-lg font-thin text-gray-700">21</span></li>
-							<li class="flex"><a href="#_"
-									class="flex-1 block py-2 font-serif text-lg font-thin text-gray-900">Food</a><span
-									class="p-2 text-lg font-thin text-gray-700">15</span></li>
-							<li class="flex"><a href="#_"
-									class="flex-1 block py-2 font-serif text-lg font-thin text-gray-900">Business</a><span
-									class="p-2 text-lg font-thin text-gray-700">28</span></li>
-						</ul>
-					</div> -->
 					<div class="mt-12">
 						@auth
 						<h2 class="mb-5 text-lg font-medium text-gray-900">自分が投稿したレビュー</h2>

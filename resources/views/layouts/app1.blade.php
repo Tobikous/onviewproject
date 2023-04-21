@@ -21,6 +21,7 @@
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
 
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+	<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 	<script src="{{ asset('js/reviewPostMordal.js') }}"></script>
 
 	<script async defer
