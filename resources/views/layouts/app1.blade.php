@@ -22,7 +22,7 @@
 
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 	<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
-	<script src="{{ asset('js/mordal.js') }}"></script>
+	<script src="{{ asset('js/modal.js') }}"></script>
 
 </head>
 
@@ -207,7 +207,7 @@
 
 			</nav>
 
-			@include('partials.header-mordal')
+			@include('partials.header-modal')
 
 		</div>
 	</header>
