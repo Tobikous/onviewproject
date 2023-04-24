@@ -9,11 +9,11 @@ function openCreateModal() {
 
     const modalContent = document.getElementById("modalContent");
     modalContent.innerHTML = `
-    <p><strong>温泉名:</strong> ${onsenName}</p>
-    <p><strong>都道府県:</strong> ${area}</p>
-    <p><strong>レビュー点数:</strong> ${star}</p>
-    <p><strong>時間帯:</strong> ${time}</p>
-    <p><strong>レビュー詳細:</strong> ${content}</p>
+    <p class="mb-2"><strong>温泉名:</strong> ${onsenName}</p>
+    <p class="mb-2"><strong>都道府県:</strong> ${area}</p>
+    <p class="mb-2"><strong>レビュー点数:</strong> ${star}</p>
+    <p class="mb-2"><strong>時間帯:</strong> ${time}</p>
+    <p class="mb-2"><strong>レビュー詳細:</strong> ${content}</p>
     `;
 
     document.getElementById("modal").classList.remove("hidden");
@@ -28,20 +28,34 @@ function openEditModal() {
 
     const modalContent = document.getElementById("modalContent");
     modalContent.innerHTML = `
-    <p><strong>温泉名:</strong> ${onsenName}</p>
-    <p><strong>レビュー点数:</strong> ${star}</p>
-    <p><strong>時間帯:</strong> ${time}</p>
-    <p><strong>レビュー詳細:</strong> ${content}</p>
+    <p class="mb-2"><strong>温泉名:</strong> ${onsenName}</p>
+    <p class="mb-2"><strong>レビュー点数:</strong> ${star}</p>
+    <p class="mb-2"><strong>時間帯:</strong> ${time}</p>
+    <p class="mb-2"><strong>レビュー詳細:</strong> ${content}</p>
     `;
 
     document.getElementById("modal").classList.remove("hidden");
 }
 
-function closeModal() {
-    document.getElementById("modal").classList.add("hidden");
-}
 
 function submitReview() {
     document.getElementById("modal").classList.add("hidden");
     document.getElementById("review-form").submit();
+}
+
+function cancelModal() {
+    document.getElementById("modal").classList.add("hidden");
+}
+
+function openModal() {
+    var modal = document.getElementById("modal");
+    modal.classList.remove("hidden");
+}
+
+function closeModal(event) {
+    var modal = document.getElementById("modal");
+    var modalContent = document.getElementById("modalContent");
+    if (event.target !== modalContent && !modalContent.contains(event.target)) {
+        modal.classList.add("hidden");
+    }
 }

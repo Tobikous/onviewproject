@@ -22,11 +22,7 @@
 
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 	<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
-	<script src="{{ asset('js/reviewPostMordal.js') }}"></script>
-
-	<script async defer
-		src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
-	</script>
+	<script src="{{ asset('js/mordal.js') }}"></script>
 
 </head>
 
@@ -114,7 +110,7 @@
 				<a href="{{ route('articles') }}" x-data="{ hover: false }" @mouseenter="hover = true"
 					@mouseleave="hover = false"
 					class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
-					<span class="block">レビュー一覧1</span>
+					<span class="block">レビュー一覧</span>
 					<span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
 						<span x-show="hover"
 							class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-orange-200"
@@ -211,7 +207,7 @@
 
 			</nav>
 
-			@include('partials.rayout-mordal')
+			@include('partials.header-mordal')
 
 		</div>
 	</header>
@@ -277,7 +273,14 @@
 				<a rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@Tobikous</a>
 			</p>
 			<span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-
+				<a href="https://twitter.com/tobikouov" class="ml-3 text-gray-500">
+					<svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+						class="w-5 h-5" viewBox="0 0 24 24">
+						<path
+							d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+						</path>
+					</svg>
+				</a>
 				<a href="https://www.linkedin.com/in/tobiyama-a40369271" class="ml-3 text-gray-500">
 					<svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
 						stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">

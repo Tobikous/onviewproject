@@ -73,7 +73,7 @@
 							<h2 class="text-lg font-medium text-gray-900">
 								{{ __('本当にレビューを削除しますか？') }}
 							</h2>
-							<p class="mt-1 text-sm text-gray-600">
+							<p class="mt-1 text-sm text-red-600">
 								{{ __('レビューは一度消すと、復元できません') }}
 							</p>
 							<div class="mt-6 flex justify-end">
@@ -136,6 +136,10 @@
 			}
 
 			window.initMap = initMap;
+		</script>
+
+		<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
 		</script>
 
 	</div>

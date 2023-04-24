@@ -21,10 +21,14 @@ class Review extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+
+
     public function tag()
     {
         return $this->belongsTo(Tag::class, 'tag_id');
     }
+
+
 
     public function onsen()
     {
@@ -82,12 +86,6 @@ class Review extends Model
             );
 
             $geocodedData = GeocodeCalculator::geocodeAddress($data['onsenName']);
-
-            // if ($geocodedData === null) {
-            //     return redirect($data->redirect)
-            //         ->withInput()
-            //         ->with('error', '場所をGoogleMapで特定できなかった為、レビューは投稿されませんでした。');
-            // }
 
             if ($geocodedData === null) {
                 $geocodedData = [

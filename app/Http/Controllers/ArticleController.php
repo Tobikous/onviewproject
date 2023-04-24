@@ -39,8 +39,20 @@ class ArticleController extends Controller
     public function search(SearchReviewRequest $request)
     {
         $keyword = $request->input('keyword');
+
         $reviews = Review::searchByOnsenName($keyword)->paginate(9);
 
         return view('search-result', compact('reviews', 'keyword'));
+    }
+
+
+
+    public function tagSearch($id)
+    {
+        $tag = Tag::findOrFail($id);
+        $tagName = $tag->name;
+        $reviews = $tag->searchReviews()->paginate(9);
+
+        return view('search-result', compact('tagName', 'reviews'));
     }
 }

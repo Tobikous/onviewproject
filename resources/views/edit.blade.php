@@ -111,17 +111,20 @@
 			</div>
 		</form>
 
-		<div id="modal" class="fixed insert-0 z-50 overflow-auto bg-black bg-opacity-50 inset-0 overflow-y-auto hidden">
+		<div id="modal" onclick="closeModal(event)"
+			class="fixed insert-0 z-50 overflow-auto bg-black bg-opacity-50 inset-0 overflow-y-auto hidden">
 			<div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20">
 				<div class="bg-white rounded-lg shadow-xl w-full max-w-md">
 					<div class="p-6">
-						<h2 class="text-xl font-bold mb-4">レビュー内容確認</h2>
+						<div class="flex items-center justify-between w-full pb-2 mb-6 border-b border-gray-200">
+							<h2 class="text-xl font-bold">レビュー内容確認</h2>
+						</div>
 						<div id="modalContent">
 						</div>
-						<div class="mt-6 flex justify-between">
+						<div class="mt-10 flex justify-between">
 							<button type="button" onclick="submitReview();"
 								class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">更新する</button>
-							<button type="button" onclick="closeModal();"
+							<button type="button" onclick="cancelModal();"
 								class="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-400 dark:hover:bg-gray-500 dark:focus:ring-gray-600">キャンセル</button>
 						</div>
 					</div>

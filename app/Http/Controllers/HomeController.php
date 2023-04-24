@@ -19,6 +19,8 @@ class HomeController extends Controller
 
         $reviews = Review::latestOrder()->paginate(3);
 
-        return view('home', compact('loggedInUser', 'reviews'));
+        $allTags = Tag::get();
+
+        return view('home', compact('loggedInUser', 'reviews', 'allTags'));
     }
 }

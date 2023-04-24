@@ -10,16 +10,20 @@
 
 	<section class="h-auto bg-white md:py-20 py-10">
 		<div class="md:text-center max-w-7xl mx-auto xl:px-0 px-5">
-
+			@if (isset($tagName))
+			<h1 class="text-4xl font-extrabold tracking-normal text-gray-900 sm:text-4xl lg:text-5xl md:leading-none">
+				「{{$tagName}}」タグのレビュー一覧</h1>
+			@endif
+			@if (isset($keyword))
 			<h1 class="text-4xl font-extrabold tracking-normal text-gray-900 sm:text-4xl lg:text-5xl md:leading-none">
 				「{{$keyword}}」での検索結果</h1>
+			@endif
 			<p
 				class="max-w-none mx-auto mt-3 text-xl font-normal text-gray-500 sm:mt-5 sm:text-xl md:mt-5 lg:text-2xl md:max-w-4xl">
-
-
 				<span class="font-medium">{{ $reviews->total() }}</span>件のレビューが見つかりました
 			</p>
 		</div>
+
 	</section>
 
 
@@ -31,7 +35,7 @@
 			@foreach($reviews as $review)
 			<div class="flex flex-col items-start col-span-12 space-y-2 sm:col-span-6 xl:col-span-4">
 				<a href="/review/{{$review['id']}}" class="block">
-					<img alt="Onsen Image" src="{{$review['image']}}"
+					<img alt="Onsen Image" src="{{ asset($review->image) }}"
 						class="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-64 sm:max-h-56">
 				</a>
 				<div

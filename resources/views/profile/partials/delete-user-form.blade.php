@@ -19,7 +19,7 @@
 			<h2 class="text-lg font-medium text-gray-900">
 				{{ __('本当にアカウントを削除しますか？') }}
 			</h2>
-			<p class="mt-1 text-sm text-gray-600">
+			<p class="mt-1 text-sm text-red-600">
 				{{ __('アカウントが削除されると、すべてのデータが完全に削除されます。それでも良ければアカウントを削除してください。') }}
 			</p>
 			<div class="mt-6 flex justify-end">
