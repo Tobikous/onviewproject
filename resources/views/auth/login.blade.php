@@ -118,11 +118,6 @@
 						</span>
 					</a>
 
-
-
-					<div class="w-0 h-5 border border-r border-white" data-primary="blue-800"></div>
-
-
 					<a href="{{ route('register') }}" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium tracking-normal transition duration-150 rounded text-orange-500 bg-orange-50 border-orange-200 hover:bg-orange-100 active:bg-orange-200 focus:ring-orange-300
 					ease tails-selected-element" data-rounded=" rounded-md" data-primary="blue-600">
 						<svg class="w-6 h-6 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

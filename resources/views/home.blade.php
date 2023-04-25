@@ -1,5 +1,9 @@
 @extends('layouts.app1')
 
+@section('home-link')
+@endsection
+
+
 @section('content')
 
 <body>
@@ -12,87 +16,7 @@
 	</div>
 	@endif
 
-
-	<main class="max-w-5xl px-5 py-10 mx-auto xl:px-0 tails-selected-element">
-
-		@auth
-		<div>
-			<div class="sliderAx h-auto">
-				@foreach($reviews as $count =>$review)
-				<div id="slider-{{$count+1}}" class="container mx-auto">
-					<div class="relative bg-cover bg-center h-auto text-white py-24 px-10 object-fill"
-						style="background-image: url({{$review['image']}})">
-						<div class="absolute inset-0 bg-black opacity-30"></div>
-						<div class="relative md:w-1/2">
-							<p class="font-bold text-sm uppercase">{{$review['updated_at']->format('Y年m月d日')}}</p>
-							<p class="text-3xl font-bold">{{$review['onsenName']}}</p>
-							<p class="text-2xl mb-10 leading-none"></p>
-							<a href="/review/{{$review['id']}}"
-								class="bg-orange-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-orange-600">レビューを見る</a>
-						</div>
-					</div>
-					<br>
-				</div>
-				@endforeach
-			</div>
-			<div class="flex justify-between w-12 mx-auto pb-2">
-				@foreach($reviews as $count =>$review)
-				<button id="sButton{{$count+1}}" onclick="sliderButton({{$count+1}})"
-					class="bg-orange-400 hover:bg-orange-500 rounded-full w-5 pb-2 mr-2"></button>
-				@endforeach
-			</div>
-
-		</div>
-
-
-		<script>
-			var cont = 0;
-			var sliderCount = {
-				{
-					$reviews - > count()
-				}
-			};
-			var xx;
-
-			function loopSlider() {
-				xx = setInterval(function() {
-					cont = (cont + 1) % sliderCount;
-					updateSlider();
-				}, 8000);
-			}
-
-			function sliderButton(count) {
-				cont = parseInt(count) - 1;
-				updateSlider();
-				reinitLoop(4000);
-			}
-
-			function updateSlider() {
-				for (var i = 1; i <= sliderCount; i++) {
-					if (i === cont + 1) {
-						$("#slider-" + i).stop(true, true).delay(400).fadeIn(400);
-						$("#sButton" + i).addClass("bg-orange-800");
-					} else {
-						$("#slider-" + i).stop(true, true).fadeOut(410);
-						$("#sButton" + i).removeClass("bg-orange-800");
-					}
-				}
-			}
-			$(window).ready(function() {
-				for (var i = 2; i <= sliderCount; i++) {
-					$("#slider-" + i).hide();
-				}
-				loopSlider();
-			});
-
-			function reinitLoop(time) {
-				clearInterval(xx);
-				setTimeout(loopSlider, time);
-			}
-		</script>
-		@endauth
-
-		@guest
+	@guest
 		<div
 			class="relative flex flex-col items-center justify-center w-full px-6 bg-white bg-cover lg:py-16 min-w-screen py-20 tails-selected-element">
 			<div
@@ -201,7 +125,81 @@
 				</div>
 			</div>
 		</div>
-		@endguest
+	@endguest
+
+	<main class="max-w-5xl px-5 py-10 mx-auto xl:px-0 tails-selected-element">
+
+		<div>
+			<div class="sliderAx h-auto">
+				@foreach($reviews as $count =>$review)
+				<div id="slider-{{$count+1}}" class="container mx-auto">
+					<div class="relative bg-cover bg-center h-auto text-white py-24 px-10 object-fill"
+						style="background-image: url({{$review['image']}})">
+						<div class="absolute inset-0 bg-black opacity-30"></div>
+						<div class="relative md:w-1/2">
+							<p class="font-bold text-sm uppercase">{{$review['updated_at']->format('Y年m月d日')}}</p>
+							<p class="text-3xl font-bold">{{$review['onsenName']}}</p>
+							<p class="text-2xl mb-10 leading-none"></p>
+							<a href="/review/{{$review['id']}}"
+								class="bg-orange-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-orange-600">レビューを見る</a>
+						</div>
+					</div>
+					<br>
+				</div>
+				@endforeach
+			</div>
+			<div class="flex justify-between w-12 mx-auto pb-2">
+				@foreach($reviews as $count =>$review)
+				<button id="sButton{{$count+1}}" onclick="sliderButton({{$count+1}})"
+					class="bg-orange-400 hover:bg-orange-500 rounded-full w-5 pb-2 mr-2"></button>
+				@endforeach
+			</div>
+
+		</div>
+
+
+		<script>
+			var cont = 0;
+			var sliderCount = {{$reviews -> count()}};
+			var xx;
+
+			function loopSlider() {
+				xx = setInterval(function() {
+					cont = (cont + 1) % sliderCount;
+					updateSlider();
+				}, 8000);
+			}
+
+			function sliderButton(count) {
+				cont = parseInt(count) - 1;
+				updateSlider();
+				reinitLoop(4000);
+			}
+
+			function updateSlider() {
+				for (var i = 1; i <= sliderCount; i++) {
+					if (i === cont + 1) {
+						$("#slider-" + i).stop(true, true).delay(400).fadeIn(400);
+						$("#sButton" + i).addClass("bg-orange-800");
+					} else {
+						$("#slider-" + i).stop(true, true).fadeOut(410);
+						$("#sButton" + i).removeClass("bg-orange-800");
+					}
+				}
+			}
+			$(window).ready(function() {
+				for (var i = 2; i <= sliderCount; i++) {
+					$("#slider-" + i).hide();
+				}
+				loopSlider();
+			});
+
+			function reinitLoop(time) {
+				clearInterval(xx);
+				setTimeout(loopSlider, time);
+			}
+		</script>
+
 
 
 		<section class="flex flex-wrap mt-14 overflow-hidden">
@@ -209,15 +207,6 @@
 				<div class="ml-2 mr-2 md:mr-4">
 					<div class="flex items-center justify-between w-full pb-5 mb-8 border-b border-gray-200">
 						<h2 class="text-3xl font-bold text-gray-800">投稿レビュー一覧</h2>
-						<a href="articles"
-							class="flex items-center text-base font-semibold text-blue-400 hover:text-blue-500 group">
-							<span class="">すべてのレビューを見る</span>
-							<svg class="w-4 h-4 mt-0.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-								xmlns="http://www.w3.org/2000/svg">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-								</path>
-							</svg>
-						</a>
 					</div>
 
 					<div class="pb-12">
@@ -300,7 +289,7 @@
 
 				<div class="mt-16 text-center mb-10">
 					<a href="{{ route('articles') }}"
-						class="px-5 py-3 text-sm font-medium tracking-widest text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
+						class="px-5 py-3 text-md font-semibold tracking-widest text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
 						すべてのレビューを見る</a>
 				</div>
 
@@ -308,10 +297,10 @@
 
 			<div class="w-full mt-12 overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 md:mt-0 md:px-5">
 				<div class="ml-2 mr-2 md:ml-4">
+							
 					<div class="rounded-lg bg-gray-100 p-7">
 						<div class="pb-6 text-left">
-							<h2 class="mb-1 text-lg font-medium text-gray-900">温泉名検索フォーム</h2>
-							<span class="block text-xs italic text-gray-500">こちらから、レビューを探せます</span>
+							<h2 class="mb-1 text-lg font-medium text-gray-900">温泉レビュー検索フォーム</h2>
 							<form action="/search" method="GET">
 								@csrf
 								<div class="mt-5 overflow-hidden bg-white border-none rounded-lg">
@@ -321,7 +310,7 @@
 								</div>
 
 								<button type="submit"
-									class="flex items-center justify-center w-full py-3 mt-5 text-sm font-medium tracking-widest text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
+									class="flex items-center justify-center w-full py-3 mt-5 text-md font-semibold tracking-widest text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
 									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
 										stroke-width="1.5" stroke="currentColor"
 										class="w-5 h-5 text-white dark:text-gray-600 mr-1">
@@ -372,9 +361,11 @@
 									</div>
 									<div class="px-6 pb-6">
 										@foreach($allTags AS $tag)
-										<li class="flex"><a href="/tag/{{$tag['id']}}"
-												class="mb-2 flex-1 block text-lg text-gray-800 hover:text-orange-500 focus:text-orange-700">‣
-												{{$tag['name']}}</a><span class="text-lg text-gray-700"></span></li>
+										<a href="/tag/{{$tag['id']}}"
+											class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-base font-medium leading-6 text-white bg-orange-400 border border-transparent rounded-lg md:w-auto hover:bg-orange-500">
+											#
+											{{$tag['name']}}
+										</a>
 										@endforeach
 									</div>
 								</div>
@@ -385,9 +376,11 @@
 
 						<ul class="ml-1">
 							@foreach($allTags AS $tag)
-							@if ($loop->iteration <= 5) <li class="flex"><a href="/tag/{{$tag['id']}}"
-									class="mb-2 flex-1 block text-lg text-gray-800 hover:text-orange-500 focus:text-orange-700">‣
-									{{$tag['name']}}</a><span class="text-lg text-gray-700"></span></li>
+							@if ($loop->iteration <= 5) <a href="/tag/{{$tag['id']}}"
+								class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-base font-medium leading-6 text-white bg-orange-400 border border-transparent rounded-lg md:w-auto hover:bg-orange-500">
+								#
+								{{$tag['name']}}
+								</a>
 								@endif
 								@endforeach
 						</ul>

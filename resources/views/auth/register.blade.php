@@ -1,7 +1,12 @@
 @extends('layouts.app1')
 
-@section('content')
 
+@section('register-link')
+@endsection
+
+
+
+@section('content')
 
 <div class="h-screen md:flex">
 	<div class="absolute inset-0 z-(-1) bg-cover bg-center bg-no-repeat opacity-80 relative overflow-hidden md:flex w-1/2 justify-around items-center hidden"
@@ -23,7 +28,7 @@
 					autofocus class="pl-2 outline-none border-none focus:outline-none focus:border-none focus:ring-0"
 					maxlength="10" required aria-describedby="email-error" placeholder="名前" />
 				@error('name')
-				<span class="invalid-feedback hidden text-xs text-red-600 mt-2" id="email-error" role="alert">
+				<span class="invalid-feedback text-xs ml-1 text-red-600" id="email-error" role="alert">
 					<strong>{{ $message }}</strong>
 				</span>
 				@enderror
@@ -40,11 +45,14 @@
 					type="email" id="email" name="email" value="{{ old('email') }}" required autocomplete="email"
 					required aria-describedby="email-error" placeholder="メールアドレス" />
 				@error('email')
-				<span class="invalid-feedback" role="alert">
+				<a class="invalid-feedback text-xs ml-1 text-red-600" role="alert">
 					<strong>{{ $message }}</strong>
-				</span>
+				</a>
 				@enderror
 			</div>
+
+
+
 			<p class="hidden text-xs text-red-600 mt-2" id="email-error">Please include a valid
 				email address so we can get back to you</p>
 
@@ -59,11 +67,13 @@
 					type="password" id="password" name="password" required autocomplete="new-password" required
 					aria-describedby="password-error" placeholder="パスワード" />
 				@error('password')
-				<span class="invalid-feedback" role="alert">
+				<span class="invalid-feedback text-xs ml-1 text-red-600" role="alert">
 					<strong>{{ $message }}</strong>
 				</span>
 				@enderror
 			</div>
+
+
 			<p class="hidden text-xs text-red-600 mt-2" id="password-error">8+ characters required
 			</p>
 
@@ -80,7 +90,8 @@
 					aria-describedby="confirm-password-error" required aria-describedby="confirm-password-error"
 					placeholder="パスワードの確認" />
 			</div>
-			<p class="hidden text-xs text-red-600 mt-2" id="confirm-password-error">Password does not match the password
+			<p class="invalid-feedback text-xs ml-1 text-red-600" id="confirm-password-error">Password does not match
+				the password
 			</p>
 
 			<button type="submit"

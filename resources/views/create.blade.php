@@ -1,5 +1,8 @@
 @extends('layouts.app1')
 
+@section('review-create-link')
+@endsection
+
 @section('content')
 
 <body>
@@ -14,15 +17,11 @@
 
 	<div class="max-w-2xl mx-auto bg-white p-16">
 
-
-
 		<form id="review-form" method="POST" action="/store" enctype="multipart/form-data">
 			<input type='hidden' name='user_id' value="{{ $loggedInUser['id'] }}">
 			@csrf
 
-
 			<h1 class="block text-4xl font-bold text-gray-800 dark:text-white mb-11">レビューの投稿 </h1>
-
 
 			<div class="mb-8">
 				@if ($errors->any())

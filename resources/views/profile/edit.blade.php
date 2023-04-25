@@ -1,5 +1,8 @@
 @extends('layouts.app1')
 
+@section('profile-link')
+@endsection
+
 @section('content')
 
 <body>

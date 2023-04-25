@@ -1,5 +1,8 @@
 @extends('layouts.app1')
 
+@section('reviews-link')
+@endsection
+
 @section('content')
 
 <body>

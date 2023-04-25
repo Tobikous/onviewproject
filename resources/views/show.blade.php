@@ -12,7 +12,7 @@
 			<div class="relative">
 				<h3 class="text-3xl font-extrabold text-black lg:text-5xl tracking-tighter">{{ $review->onsen->name }}
 				</h3>
-				<div class="relative">
+				<div class="relative mb-8">
 
 
 					<ul class="list-none mt-6 space-y-4" role="list">
@@ -35,12 +35,13 @@
 
 					</ul>
 				</div>
-				<p class="text-neutral-900 text-lg max-w-2xl mt-2">レビュー内容：</p>
-				<p class="text-neutral-800 text-lg max-w-2xl">{{$review['content']}}</p>
-				<div class="flex mt-3 items-center pb-5 border-b-2 border-gray-200 mb-2">
-					<div class="flex"></div>
-				</div>
-				<span class="title-font">タグ：{{ $review->tag->name }}
+				<p class="text-neutral-800 text-lg max-w-2xl mb-10 font-semibold">{{$review['content']}}</p>
+
+				<span class="title-font"><a href="/tag/{{$review['tag_id']}}"
+						class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-base font-medium leading-6 text-white bg-orange-400 border border-transparent rounded-lg md:w-auto hover:bg-orange-500">
+						#
+						{{$review->tag->name}}
+					</a>
 				</span>
 
 
