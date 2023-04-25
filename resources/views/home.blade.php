@@ -17,114 +17,33 @@
 	@endif
 
 	@guest
-		<div
-			class="relative flex flex-col items-center justify-center w-full px-6 bg-white bg-cover lg:py-16 min-w-screen py-20 tails-selected-element">
-			<div
-				class="flex flex-col items-center justify-center mx-auto sm:p-6 xl:p-8 lg:flex-row lg:max-w-6xl lg:p-0">
-				<div
-					class="container relative z-20 flex flex-col w-full px-5 pb-1 pr-12 mb-16 text-2xl text-gray-700 lg:w-1/2 sm:pr-0 md:pr-6 md:pl-0 lg:pl-5 xl:pr-10 sm:items-center lg:items-start lg:mb-0">
-					<h1 class="relative z-20 text-4xl font-extrabold leading-none text-orange-500 xl:text-4xl sm:text-center lg:text-left"
-						data-primary="purple-500">おんびゅ～へようこそ！</h1>
-					<h1 class="relative z-20 text-4xl font-extrabold leading-none text-orange-500 xl:text-5xl sm:text-center lg:text-left"
-						data-primary="purple-500"></h1>
-					<p class="relative z-20 block mt-6 text-base text-gray-500 xl:text-xl sm:text-center lg:text-left">
-						温泉レビューサイトおんびゅ～では、温泉、サウナのレビューの投稿や閲覧ができます。皆さんでより良い温泉ライフを一緒に開拓していきましょう！</p>
-					<div class="relative flex mt-4">
-						<a href="{{ route('register') }}"
-							class="flex items-center self-start justify-center px-5 py-2 mt-5 text-base font-medium leading-tight text-white transition duration-150 ease-in-out bg-orange-500 border border-transparent rounded-full shadow lg:py-4 hover:bg-orange-600 focus:outline-none focus:border-orange-600 focus:shadow-outline-orange md:text-lg xl:text-xl md:px-5 xl:px-10"
-							data-primary="purple-500" data-rounded="rounded-full">
-							<svg class="w-6 h-6 mr-1" viewBox="0 0 24 24" fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<path
-									d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
-									stroke="currentColor" stroke-width="2" stroke-linecap="round"
-									stroke-linejoin="round" />
-								<path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
-									stroke="currentColor" stroke-width="2" stroke-linecap="round"
-									stroke-linejoin="round" />
-							</svg>会員登録</a>
-						<a href="{{ route('login') }}"
-							class="relative flex items-center self-start justify-center py-2 pl-10 pr-5 mt-5 ml-5 text-base font-medium leading-tight text-orange-500 transition duration-150 ease-in-out bg-gray-200 hover:bg-orange-500 border-transparent rounded-full shadow-sm lg:py-4 md:pl-16 md:pr-5 xl:pr-10 hover:text-white focus:outline-none md:text-lg xl:text-xl"
-							data-primary="orange-500" data-rounded="rounded-full">
-							<svg class="absolute left-0 w-6 h-6 ml-4 md:w-10 md:h-10" fill="none" stroke="currentColor"
-								viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-									d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-									class=""></path>
-							</svg>
-							<span data-primary="orange-600">ログイン</span>
-						</a>
+	<section class="px-2 bg-white md:px-0 pt-10 pb-12 tails-selected-element">
+		<div class="container items-center max-w-6xl px-8 mx-auto xl:px-5">
+			<div class="flex flex-wrap items-center sm:-mx-3">
+				<div class="relative flex items-center justify-center w-full">
+					<img src="{{ asset('svg/onsen_icon02.svg') }}" alt="customIcon" class="w-16 h-16 opacity-1 m-5">
+					<h2 class="text-4xl font-normal text-gray-800 tracking-widest">はじめに</h2>
+				</div>
+
+				<div class="w-full md:w-1/2 p-7">
+					<div class="w-full h-auto overflow-hidden shadow-xl rounded-sm">
+						<img src="images/onsenback03.jpg" class="w-full h-64 object-cover md:h-96">
 					</div>
 				</div>
-				<div class="relative w-full px-5 rounded-lg cursor-pointer lg:w-1/2 group xl:px-0">
-					<div class="absolute top-0 left-0 w-11/12 -mt-20 opacity-50">
-						<svg class="w-full h-full ml-4 text-purple-100" data-primary="purple-500" viewBox="0 0 200 200"
-							xmlns="http://www.w3.org/2000/svg">
-							<path fill="currentColor"
-								d="M45,-78C58.3,-70.3,69,-58.2,75.2,-44.4C81.3,-30.7,82.9,-15.3,83.5,0.4C84.2,16,83.8,32.1,76.5,43.9C69.2,55.7,55.1,63.3,41.2,69.4C27.3,75.4,13.6,80,-0.7,81.2C-15.1,82.5,-30.1,80.3,-41.2,72.6C-52.2,64.9,-59.2,51.6,-67.1,38.5C-75.1,25.5,-83.9,12.8,-83.8,0C-83.8,-12.7,-74.9,-25.4,-65.8,-36.4C-56.7,-47.4,-47.4,-56.7,-36.4,-65.7C-25.4,-74.7,-12.7,-83.5,1.6,-86.2C15.9,-89,31.8,-85.7,45,-78Z"
-								transform="translate(100 100)" class=""></path>
-						</svg>
-					</div>
-					<div id="default-carousel" class="relative z-10 object-cover w-full h-full" data-carousel="static">
-						<div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
-								<span
-									class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First
-									Slide</span>
-								<img src='images/onsenback03.jpg'
-									class="object-cover w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-									alt="onsenslider">
-							</div>
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
-								<img src='images/onsenback02.jpg'
-									class="object-cover w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-									alt="onsenslider">
-							</div>
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
-								<img src='images/onsenback01.jpg'
-									class="object-cover w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-									alt="onsenslider">
-							</div>
-
-						</div>
-						<div class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
-							<button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 1"
-								data-carousel-slide-to="0"></button>
-							<button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
-								data-carousel-slide-to="1"></button>
-							<button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
-								data-carousel-slide-to="2"></button>
-						</div>
-						<button type="button"
-							class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
-							data-carousel-prev>
-							<span
-								class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/40 dark:bg-gray-800/30 hover:bg-white/60 group-focus:outline-none">
-								<svg class="w-5 h-5 text-gray-200 sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
-									stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										d="M15 19l-7-7 7-7"></path>
-								</svg>
-								<span class="hidden">Previous</span>
-							</span>
-						</button>
-						<button type="button"
-							class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
-							data-carousel-next>
-							<span
-								class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/40 dark:bg-gray-800/30 hover:bg-white/60 group-focus:outline-none">
-								<svg class="w-5 h-5 text-gray-200 sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
-									stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										d="M9 5l7 7-7 7"></path>
-								</svg>
-								<span class="hidden">Next</span>
-							</span>
-						</button>
+				<div class="w-full md:w-1/2 px-7">
+					<div
+						class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
+						<p class="mx-auto text-gray-700 sm:max-w-md lg:text-lg md:max-w-2xl text-lg tracking-widest">
+							温泉レビューサイトおんびゅ～へようこそ！<br><br>当サイトは、普段の温泉ライフをより豊かにする為につくられた、温泉専用のレビューサイトです。
+							みなさまと共に全国の温泉をレビューして、より良い温泉ライフを楽しみましょう！<br><br>
+							会員登録することでレビューを投稿することが可能になります。宿泊案内や宿の予約等につながるようなサイトではないので悪しからずご了承くださいませ。
+							<br><br>さぁ、ひとっ風呂いきますか！
+						</p>
 					</div>
 				</div>
 			</div>
 		</div>
+	</section>
 	@endguest
 
 	<main class="max-w-5xl px-5 py-10 mx-auto xl:px-0 tails-selected-element">
@@ -133,9 +52,9 @@
 			<div class="sliderAx h-auto">
 				@foreach($reviews as $count =>$review)
 				<div id="slider-{{$count+1}}" class="container mx-auto">
-					<div class="relative bg-cover bg-center h-auto text-white py-24 px-10 object-fill"
+					<div class="relative bg-cover bg-center h-auto text-white py-24 px-10 object-fill rounded-md"
 						style="background-image: url({{$review['image']}})">
-						<div class="absolute inset-0 bg-black opacity-30"></div>
+						<div class="absolute inset-0 bg-black opacity-30 rounded-md"></div>
 						<div class="relative md:w-1/2">
 							<p class="font-bold text-sm uppercase">{{$review['updated_at']->format('Y年m月d日')}}</p>
 							<p class="text-3xl font-bold">{{$review['onsenName']}}</p>
@@ -297,7 +216,7 @@
 
 			<div class="w-full mt-12 overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 md:mt-0 md:px-5">
 				<div class="ml-2 mr-2 md:ml-4">
-							
+
 					<div class="rounded-lg bg-gray-100 p-7">
 						<div class="pb-6 text-left">
 							<h2 class="mb-1 text-lg font-medium text-gray-900">温泉レビュー検索フォーム</h2>
