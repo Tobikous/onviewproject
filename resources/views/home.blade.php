@@ -47,7 +47,11 @@
 
 		<script>
 			var cont = 0;
-			var sliderCount = {{$reviews -> count()}};
+			var sliderCount = {
+				{
+					$reviews - > count()
+				}
+			};
 			var xx;
 
 			function loopSlider() {

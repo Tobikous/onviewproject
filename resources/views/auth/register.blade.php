@@ -1,120 +1,97 @@
 @extends('layouts.app1')
 
 @section('content')
-<html class="h-full">
-<main class="w-full max-w-md mx-auto p-6">
-	<div class="mt-7 bg-gray-100 border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
-		<div class="p-4 sm:p-7">
-			<div class="text-center">
-				<h1 class="block text-2xl font-bold text-gray-800 dark:text-white">会員登録画面</h1>
-				<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-				</p>
-			</div>
-			<div class="mt-5">
-				<form method="POST" action="{{ route('register') }}">
-					@csrf
-					<div class="grid gap-y-4">
 
-						<div>
-							<label for="name" class="block text-sm mb-2 dark:text-white">名前</label>
-							<div>
-								<input id="name" type="text" name="name" value="{{ old('name') }}" required
-									autocomplete="name" autofocus
-									class="w-full bg-white rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-									maxlength="10" required aria-describedby="email-error">
-								@error('name')
-								<span class="invalid-feedback hidden text-xs text-red-600 mt-2" id="email-error"
-									role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
-						</div>
 
-						<div>
-							<label for="email" class="block text-sm mb-2 dark:text-white">メールアドレス</label>
-							<div>
-								<input type="email" id="email" name="email" value="{{ old('email') }}" required
-									autocomplete="email"
-									class="w-full bg-white rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-									required aria-describedby="email-error">
-								@error('email')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-								<div
-									class="hidden absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
-									<svg class="h-5 w-5 text-red-500" width="16" height="16" fill="currentColor"
-										viewBox="0 0 16 16" aria-hidden="true">
-										<path
-											d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-									</svg>
-								</div>
-							</div>
-							<p class="hidden text-xs text-red-600 mt-2" id="email-error">Please include a valid
-								email address so we can get back to you</p>
-						</div>
+<div class="h-screen md:flex">
+	<div class="absolute inset-0 z-(-1) bg-cover bg-center bg-no-repeat opacity-80 relative overflow-hidden md:flex w-1/2 justify-around items-center hidden"
+		style="background-image: url('images/onsenback04.jpg');">
 
-						<div>
-							<label for="password" class="block text-sm mb-2 dark:text-white">パスワード</label>
-							<div>
-								<input type="password" id="password" name="password" required
-									autocomplete="new-password"
-									class="w-full bg-white rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-									required aria-describedby="password-error">
-								<div
-									class="hidden absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
-									<svg class="h-5 w-5 text-red-500" width="16" height="16" fill="currentColor"
-										viewBox="0 0 16 16" aria-hidden="true">
-										<path
-											d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-									</svg>
-									@error('password')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
-							</div>
-							<p class="hidden text-xs text-red-600 mt-2" id="password-error">8+ characters required
-							</p>
-						</div>
-
-						<div>
-							<label for="confirm-password" class="block text-sm mb-2 dark:text-white">パスワードの確認</label>
-							<div>
-								<input type="password" id="confirm-password" name="password_confirmation" required
-									autocomplete="new-password"
-									class="w-full bg-white rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-									required aria-describedby="confirm-password-error">
-								<div
-									class="hidden absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
-									<svg class="h-5 w-5 text-red-500" width="16" height="16" fill="currentColor"
-										viewBox="0 0 16 16" aria-hidden="true">
-										<path
-											d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-									</svg>
-								</div>
-							</div>
-							<p class="hidden text-xs text-red-600 mt-2" id="confirm-password-error">Password does
-								not match the password</p>
-						</div>
-
-						<a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-							href="{{ route('login') }}">
-							{{ __('既に会員登録していますか?') }}
-						</a>
-
-						<button type="submit"
-							class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">会員登録</button>
-					</div>
-				</form>
-			</div>
-		</div>
 	</div>
-	</div>
-</main>
+	<div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
+		<form method="POST" action="{{ route('register') }}" class="bg-white">
+			@csrf
+			<h1 class="text-center mr-2 text-gray-800 font-bold text-2xl mb-6">会員登録</h1>
 
-</html>
+			<div class="flex items-center border-2 py-1 px-3 rounded-md mb-4">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+					fill="currentColor">
+					<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+						clip-rule="evenodd" />
+				</svg>
+				<input id="name" type="text" name="name" value="{{ old('name') }}" required autocomplete="name"
+					autofocus class="pl-2 outline-none border-none focus:outline-none focus:border-none focus:ring-0"
+					maxlength="10" required aria-describedby="email-error" placeholder="名前" />
+				@error('name')
+				<span class="invalid-feedback hidden text-xs text-red-600 mt-2" id="email-error" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+				@enderror
+			</div>
+
+
+			<div class="flex items-center border-2 py-1 px-3 rounded-md mb-4">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24"
+					stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+						d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+				</svg>
+				<input class="pl-2 outline-none border-none focus:outline-none focus:border-none focus:ring-0"
+					type="email" id="email" name="email" value="{{ old('email') }}" required autocomplete="email"
+					required aria-describedby="email-error" placeholder="メールアドレス" />
+				@error('email')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+				@enderror
+			</div>
+			<p class="hidden text-xs text-red-600 mt-2" id="email-error">Please include a valid
+				email address so we can get back to you</p>
+
+			<div class="flex items-center border-2 py-1 px-3 rounded-md mb-4">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+					fill="currentColor">
+					<path fill-rule="evenodd"
+						d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+						clip-rule="evenodd" />
+				</svg>
+				<input class="pl-2 outline-none border-none focus:outline-none focus:border-none focus:ring-0"
+					type="password" id="password" name="password" required autocomplete="new-password" required
+					aria-describedby="password-error" placeholder="パスワード" />
+				@error('password')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+				@enderror
+			</div>
+			<p class="hidden text-xs text-red-600 mt-2" id="password-error">8+ characters required
+			</p>
+
+			<div class="flex items-center border-2 py-1 px-3 rounded-md">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+					fill="currentColor">
+					<path fill-rule="evenodd"
+						d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+						clip-rule="evenodd" />
+				</svg>
+				<input type="password" id="confirm-password" name="password_confirmation" required
+					autocomplete="new-password"
+					class="pl-2 outline-none border-none focus:outline-none focus:border-none focus:ring-0" required
+					aria-describedby="confirm-password-error" required aria-describedby="confirm-password-error"
+					placeholder="パスワードの確認" />
+			</div>
+			<p class="hidden text-xs text-red-600 mt-2" id="confirm-password-error">Password does not match the password
+			</p>
+
+			<button type="submit"
+				class="block w-full mt-7 py-3 rounded-md bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 font-semibold mb-2">会員登録</button>
+			<a href="{{ route('login') }}"
+				class="underline text-sm text-blue-600 hover:text-blue-800 ml-1 cursor-pointer">既に会員登録していますか?</a>
+		</form>
+	</div>
+</div>
+
+
+
+
 @endsection

@@ -17,19 +17,11 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
 
-
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
-
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
-
-
-
 </head>
-
-
-
 
 
 <body class="relative">
@@ -222,11 +214,6 @@
 		</header>
 
 
-
-
-
-
-
 		<main class="text-gray-600 body-font">
 			<form name="loginForm" method="POST" action="{{ route('login') }}">
 				@csrf
@@ -245,11 +232,17 @@
 							</p>
 						</div>
 
-						<div class="mb-4">
-							<label for="email" class="leading-7 text-sm text-gray-600">メールアドレス</label>
-							<input type="email" id="email" name="email" value="{{ old('email') }}" required
-								autocomplete="email" autofocus
-								class="w-full bg-white rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out form-control @error('email') is-invalid @enderror">
+
+						<div class="flex items-center border-2 py-1 px-3 rounded-md mt-3 mb-4 bg-white">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
+								viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+									d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+							</svg>
+							<input
+								class="pl-2 outline-none border-none focus:outline-none focus:border-none focus:ring-0"
+								type="email" id="email" name="email" value="{{ old('email') }}" required
+								autocomplete="email" required aria-describedby="email-error" placeholder="メールアドレス" />
 							@error('email')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -257,19 +250,27 @@
 							@enderror
 						</div>
 
-						<div class="mb-4">
-							<label for="password" class="leading-7 text-sm text-gray-600">パスワード</label>
-							<input id="password" type="password" name="password" required
-								autocomplete="current-password"
-								class="w-full bg-white rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out form-control @error('password') is-invalid @enderror">
+						<div class="flex items-center border-2 py-1 px-3 rounded-md mt-3 mb-4 bg-white">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+								fill="currentColor">
+								<path fill-rule="evenodd"
+									d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+									clip-rule="evenodd" />
+							</svg>
+							<input
+								class="pl-2 outline-none border-none focus:outline-none focus:border-none focus:ring-0"
+								type="password" id="password" name="password" required autocomplete="new-password"
+								required aria-describedby="password-error" placeholder="パスワード" />
 							@error('password')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
 							@enderror
 						</div>
+						<p class="hidden text-xs text-red-600 mt-2" id="password-error">8+ characters required
+						</p>
 
-						<div class="mb-3 text-gray-900">
+						<div class="ml-2 m-3 text-gray-900">
 							<input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
 							<label for="remember">
@@ -280,7 +281,7 @@
 						<button
 							class="m-1 text-white bg-orange-500 border-0 py-2 px-8 focus:outline-none hover:bg-orange-600 rounded text-lg">ログイン</button>
 
-						<div class="mt-4 text-blue-600">
+						<div class="underline mt-4 text-blue-600 hover:text-blue-800">
 							@if (Route::has('password.request'))
 							<a href="{{ route('password.request') }}">
 								パスワードを忘れた場合
@@ -288,7 +289,7 @@
 							@endif
 						</div>
 
-						<div class="mt-4 text-blue-600">
+						<div class="underline mt-2 text-blue-600 hover:text-blue-800">
 							<a href="{{ route('register') }}">
 								会員登録はこちらから
 							</a>
