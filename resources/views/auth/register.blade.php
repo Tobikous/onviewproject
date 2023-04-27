@@ -73,7 +73,6 @@
 				@enderror
 			</div>
 
-
 			<p class="hidden text-xs text-red-600 mt-2" id="password-error">8+ characters required
 			</p>
 
@@ -89,10 +88,12 @@
 					class="pl-2 outline-none border-none focus:outline-none focus:border-none focus:ring-0" required
 					aria-describedby="confirm-password-error" required aria-describedby="confirm-password-error"
 					placeholder="パスワードの確認" />
+				@error('confirm-password')
+				<p class="invalid-feedback text-xs ml-1 text-red-600" id="confirm-password-error">Password does not
+					match the password
+				</p>
+				@enderror
 			</div>
-			<p class="invalid-feedback text-xs ml-1 text-red-600" id="confirm-password-error">Password does not match
-				the password
-			</p>
 
 			<button type="submit"
 				class="block w-full mt-7 py-3 rounded-md bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 font-semibold mb-2">会員登録</button>
