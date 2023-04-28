@@ -28,7 +28,7 @@
 			<div class="mb-8">
 				<label for="onsenmei"
 					class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">温泉名:</label>
-				{{ $review->onsen->name }}
+				{{$review['onsenName']}}
 			</div>
 
 			<div class="mb-8">

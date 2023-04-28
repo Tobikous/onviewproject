@@ -21,7 +21,7 @@
 		<div class="container items-center max-w-6xl px-8 mx-auto xl:px-5">
 			<div class="flex flex-wrap items-center sm:-mx-3">
 				<div class="relative flex items-center justify-center w-full">
-					<img src="{{ asset('svg/onsen_icon02.svg') }}" alt="customIcon" class="w-16 h-16 opacity-1 m-5">
+					<img src="{{ asset('svg/onsen_icon02.svg') }}" alt="customIcon" class="w-16 h-16 opacity-1 m-4">
 					<h2 class="text-4xl font-normal text-gray-800 tracking-widest">はじめに</h2>
 				</div>
 
@@ -30,7 +30,7 @@
 						<img src="images/onsenback03.jpg" class="w-full h-64 object-cover md:h-96">
 					</div>
 				</div>
-				<div class="w-full md:w-1/2 px-7">
+				<div class="w-full md:w-1/2  px-4 md:px-7">
 					<div
 						class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
 						<p class="mx-auto text-gray-700 sm:max-w-md lg:text-lg md:max-w-2xl text-lg tracking-widest">
@@ -79,7 +79,11 @@
 
 		<script>
 			var cont = 0;
-			var sliderCount = {{$reviews -> count()}};
+			var sliderCount = {
+				{
+					$reviews - > count()
+				}
+			};
 			var xx;
 
 			function loopSlider() {

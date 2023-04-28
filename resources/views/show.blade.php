@@ -10,9 +10,11 @@
 		<div
 			class="grid items-start grid-cols-1 mt-10 lg:mt-1 gap-16 lg:gap-8 md:grid-cols-2 bg-gray-100 md:rounded-2xl lg:rounded-[4rem] p-10 lg:p-20">
 			<div class="relative">
-				<a href="{{ route('search', ['keyword' => $review->onsen->name]) }}" class="text-3xl font-extrabold text-gray-900 lg:text-5xl tracking-tighter hover:text-black">{{ $review->onsen->name }}
+				<a href="{{ route('search', ['keyword' => $review['onsenName']]) }}"
+					class="text-3xl font-extrabold text-gray-900 lg:text-5xl tracking-tighter hover:text-black">{{
+					$review['onsenName'] }}
 				</a>
-				
+
 				<div class="relative mb-8">
 
 

@@ -40,7 +40,7 @@ class ReviewController extends Controller
     {
         $loggedInUser = \Auth::user();
 
-        $review = Review::with(['user', 'tag', 'onsen'])->find($id);
+        $review = Review::with('tag')->find($id);
 
         if ($loggedInUser->id !== $review->user_id) {
             return redirect()->back()->with('error', 'このレビューを編集する権限はありません。');
