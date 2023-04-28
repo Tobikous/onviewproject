@@ -13,7 +13,6 @@ class ArticleControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    // article アクションのテスト
     public function test_article()
     {
         $user = User::factory()->create();
@@ -26,7 +25,6 @@ class ArticleControllerTest extends TestCase
         $response->assertViewHasAll(['loggedInUser', 'reviews']);
     }
 
-    // reviewContent アクションのテスト
     public function test_reviewContent()
     {
         $user = User::factory()->create();
@@ -43,7 +41,6 @@ class ArticleControllerTest extends TestCase
         $response->assertViewHasAll(['loggedInUser', 'review']);
     }
 
-    // search アクションのテスト
     public function test_search()
     {
         $user = User::factory()->create();
@@ -57,7 +54,6 @@ class ArticleControllerTest extends TestCase
         $response->assertViewHasAll(['reviews', 'keyword']);
     }
 
-    // tagSearch アクションのテスト
     public function test_tagSearch()
     {
         $user = User::factory()->create();

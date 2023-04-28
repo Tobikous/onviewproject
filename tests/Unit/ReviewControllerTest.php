@@ -13,7 +13,6 @@ class ReviewControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    // create アクションのテスト
     public function test_create()
     {
         $user = User::factory()->create();
@@ -22,7 +21,6 @@ class ReviewControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    // store アクションのテスト
     public function test_store()
     {
         $user = User::factory()->create();
@@ -50,7 +48,6 @@ class ReviewControllerTest extends TestCase
         $response->assertSessionHas('success');
         $response->assertRedirect(route('home'));
 
-        // データが保存されたことを確認する
         $this->assertDatabaseHas('review', [
             'onsenName' => $onsen->name,
             'user_id' => $user->id,
@@ -61,7 +58,6 @@ class ReviewControllerTest extends TestCase
         ]);
     }
 
-    // edit アクションのテスト
     public function test_edit()
     {
         $review = Review::factory()->create();
@@ -70,7 +66,6 @@ class ReviewControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    // update アクションのテスト
     public function test_update()
     {
         $review = Review::factory()->create();
@@ -99,7 +94,6 @@ class ReviewControllerTest extends TestCase
         $response->assertSessionHas('success');
         $response->assertRedirect(route('home'));
 
-        // データが更新されたことを確認する
         $this->assertDatabaseHas('review', [
             'id' => $review->id,
             'content' => 'Updated content',
@@ -109,7 +103,6 @@ class ReviewControllerTest extends TestCase
         ]);
     }
 
-    // delete アクションのテスト
     public function test_delete()
     {
         $review = Review::factory()->create();
@@ -119,7 +112,6 @@ class ReviewControllerTest extends TestCase
         $response->assertSessionHas('success');
         $response->assertRedirect(route('home'));
 
-        // データが削除されたことを確認する
         $this->assertDatabaseMissing('review', ['id' => $review->id]);
     }
 }
