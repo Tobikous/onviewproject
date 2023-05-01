@@ -38,7 +38,7 @@
 
 					</ul>
 				</div>
-				<p class="text-neutral-800 text-lg max-w-2xl mb-10 font-semibold">{{$review['content']}}</p>
+				<p class="text-gray-900 text-lg max-w-2xl mb-10 font-semibold">{{$review['content']}}</p>
 
 				<span class="title-font"><a href="/tag/{{$review['tag_id']}}"
 						class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-base font-medium leading-6 text-white bg-orange-400 border border-transparent rounded-lg md:w-auto hover:bg-orange-500">

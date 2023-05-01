@@ -24,6 +24,9 @@
 	<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 	<script src="{{ asset('js/modal.js') }}"></script>
 
+	<link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
+
+
 </head>
 
 
@@ -41,7 +44,7 @@
 			<a class="relative z-10 flex items-center w-auto text-2xl font-extrabold leading-none text-white select-none"
 				href="{{ url('/') }}">
 				<img src="{{ asset('svg/onsen_icon01.svg') }}" alt="customIcon" class="w-12 h-12 opacity-1">
-				<span class="ml-3 font-extrabold text-2xl">{{ config('app.name', 'Laravel') }}</span>
+				<span class="ml-3 font-semibold text-2xl">{{ config('app.name', 'Laravel') }}</span>
 			</a>
 
 			<nav class="items-center justify-center hidden space-x-8 text-white md:flex">
@@ -205,11 +208,20 @@
 				<img src="{{ asset('svg/onsen_icon01.svg') }}" alt="customIcon" class="w-12 h-12 opacity-1">
 				<span class="ml-3 text-lg">{{ config('app.name', 'Laravel') }}</span>
 			</a>
-			<p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2022 Tobiyama Kosuke —
+			<p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2023 Tobiyama Kosuke —
 				<a rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@Tobikous</a>
 			</p>
 			<span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-				<a href="https://twitter.com/tobikouov" class="ml-3 text-gray-500">
+
+				<a href="{{ route('team_of_service') }}"
+					class="ml-3 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-700"
+					aria-label="Reddit"> 会員規約 </a>
+
+				<a href="{{ route('privacy_policy') }}"
+					class="ml-3 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-700"
+					aria-label="Reddit"> プライバシーポリシー </a>
+
+				<a href="https://twitter.com/tobikouov" class="ml-5 text-gray-500 hover:text-gray-700">
 					<svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 						class="w-5 h-5" viewBox="0 0 24 24">
 						<path
@@ -217,7 +229,7 @@
 						</path>
 					</svg>
 				</a>
-				<a href="https://www.linkedin.com/in/tobiyama-a40369271" class="ml-3 text-gray-500">
+				<a href="https://www.linkedin.com/in/tobiyama-a40369271" class="ml-3 text-gray-500 hover:text-gray-700">
 					<svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
 						stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
 						<path stroke="none"
@@ -231,5 +243,3 @@
 
 
 	</footer>
-
-</body>

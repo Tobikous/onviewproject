@@ -13,6 +13,9 @@ module.exports = {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            fontFamily: {
+                'yusei-magic': ['Yusei Magic'],
+            },
         },
     },
 

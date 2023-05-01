@@ -23,4 +23,18 @@ class HomeController extends Controller
 
         return view('home', compact('loggedInUser', 'reviews', 'allTags'));
     }
+
+    public function teamOfService()
+    {
+        $loggedInUser = \Auth::user();
+
+        return view('team-of-service', compact('loggedInUser'));
+    }
+
+    public function privacyPolicy()
+    {
+        $loggedInUser = \Auth::user();
+
+        return view('privacy-policy', compact('loggedInUser'));
+    }
 }

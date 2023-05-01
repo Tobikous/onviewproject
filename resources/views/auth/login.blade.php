@@ -20,6 +20,8 @@
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+	<link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
+
 
 </head>
 

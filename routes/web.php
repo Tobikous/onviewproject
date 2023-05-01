@@ -22,5 +22,8 @@ Route::get('/review/{id}', [ArticleController::class, 'reviewContent'])->name('r
 Route::get('/articles', [ArticleController::class, 'article'])->name('articles');
 Route::get('/search', [ArticleController::class, 'search'])->name('search');
 Route::get('/tag/{id}', [ArticleController::class, 'tagSearch'])->name('tag');
+Route::get('/team_of_service', [HomeController::class, 'teamOfService'])->name('team_of_service');
+Route::get('/privacy_policy', [HomeController::class, 'privacyPolicy'])->name('privacy_policy');
+
 
 require __DIR__.'/auth.php';
