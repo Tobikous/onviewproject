@@ -216,11 +216,12 @@
 				<a href="{{ route('team_of_service') }}"
 					class="ml-3 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-700"
 					aria-label="Reddit"> 会員規約 </a>
-
 				<a href="{{ route('privacy_policy') }}"
 					class="ml-3 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-700"
 					aria-label="Reddit"> プライバシーポリシー </a>
-
+				<a href="https://docs.google.com/forms/d/e/1FAIpQLSdL40esRd1466UnATVxCDCBZ84YBGL4JyOfOJIpATUcCRyJNA/viewform?usp=sf_link"
+					class="ml-3 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-700"
+					aria-label="Reddit"> お問い合わせ </a>
 				<a href="https://twitter.com/tobikouov" class="ml-5 text-gray-500 hover:text-gray-700">
 					<svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 						class="w-5 h-5" viewBox="0 0 24 24">
