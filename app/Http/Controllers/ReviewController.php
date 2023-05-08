@@ -29,9 +29,12 @@ class ReviewController extends Controller
 
     public function store(ReviewStoreRequest $request)
     {
-        $review = Review::createFromRequest($request);
-
-        return redirect()->route('home')->with('success', 'レビューを投稿しました。');
+        try {
+            $review = Review::createFromRequest($request);
+            return redirect()->route('home')->with('success', 'レビューを投稿しました。');
+        } catch (Exception $e) {
+            return redirect()->route('home')->with('error', $e->getMessage());
+        }
     }
 
 

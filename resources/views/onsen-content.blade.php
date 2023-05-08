@@ -161,8 +161,16 @@
 							{{$review['star']}} </h2>
 						<div class="text-gray-600 inline-flex items-center inline text-sm py-2">
 							更新日:{{$review['updated_at']->format('Y年m月d日')}}</div>
-
-						<div class="text-gray-900 text-base my-2">{{$review['content']}}</div>
+						<div class="text-gray-900 text-base my-2">{{$review['content']}}<a
+								href="/review/{{$review['id']}}"
+								class="text-gray-500 inline-flex items-center inline text-sm underline ml-1.5">
+								<span class="">続きを読む</span>
+								<svg class="w-3 h-3 ml-1 transform -rotate-45" fill="none" stroke="currentColor"
+									viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+										d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+								</svg>
+							</a></div>
 						<div class="w-1/3 overflow-hidden mt-5 mb-3">
 							<img class="object-cover object-center w-full h-full" src="{{ asset($review->image) }}"
 								alt="onsenImage">
