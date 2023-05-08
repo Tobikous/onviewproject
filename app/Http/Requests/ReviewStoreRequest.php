@@ -3,13 +3,14 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\MaxReviewsPerOnsen;
 
 class ReviewStoreRequest extends FormRequest
 {
     public function rules()
     {
         return [
-            'onsenName' => "required|min:2",
+            'onsenName' =>  ["required", "min:2", "max:20", new MaxReviewsPerOnsen()],
             'star' => "required",
             'time' => "required",
             'content' => "required|min:2|max:800",

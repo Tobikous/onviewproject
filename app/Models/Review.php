@@ -75,15 +75,6 @@ class Review extends Model
     {
         $data = $request->all();
 
-        $userId = $data['user_id'];
-        $onsenName = $data['onsenName'];
-
-        $userReviews = Review::where('user_id', $userId)->where('onsenName', $onsenName)->count();
-
-        if ($userReviews >= 3) {
-            throw new Exception('同じ温泉の投稿は3件までしかできません。');
-        }
-
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $path = Storage::disk('s3')->putFile('/', $image, 'public');
