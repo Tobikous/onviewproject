@@ -28,6 +28,11 @@ class Onsen extends Model
         return $reviews;
     }
 
+    public static function searchByOnsenName($keyword)
+    {
+        return self::where('name', 'LIKE', "%{$keyword}%");
+    }
+
     public function reviews()
     {
         return $this->hasMany(Review::class, 'onsenName', 'name');

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +20,13 @@ use App\Http\Controllers\ArticleController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/review/{id}', [ArticleController::class, 'reviewContent'])->name('review');
-Route::get('/onsen/{id}', [ArticleController::class, 'onsenContent'])->name('onsenContent');
+Route::get('/onsen/{id}', [ArticleController::class, 'onsenContent'])->name('onsen_content');
 Route::get('/onsen_filter', [ArticleController::class, 'filterByArea'])->name('onsen.filter');
 Route::get('/review_lists', [ArticleController::class, 'reviewLists'])->name('review_lists');
 Route::get('/onsen_lists', [ArticleController::class, 'onsenLists'])->name('onsen_lists');
-Route::get('/search', [ArticleController::class, 'search'])->name('search');
-Route::get('/tag/{id}', [ArticleController::class, 'tagSearch'])->name('tag');
+Route::get('/review_search', [SearchController::class, 'reviewSearch'])->name('review_search');
+Route::get('/onsen_search', [SearchController::class, 'onsenSearch'])->name('onsen_search');
+Route::get('/tag/{id}', [SearchController::class, 'tagSearch'])->name('tag_search');
 Route::get('/team_of_service', [HomeController::class, 'teamOfService'])->name('team_of_service');
 Route::get('/privacy_policy', [HomeController::class, 'privacyPolicy'])->name('privacy_policy');
 

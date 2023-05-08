@@ -18,7 +18,7 @@
 
 	@guest
 	<section class="px-2 bg-white md:px-0 pt-10 pb-12 tails-selected-element">
-		<div class="container items-center max-w-6xl px-8 mx-auto xl:px-20">
+		<div class="container items-center max-w-6xl px-8 mx-auto">
 			<div class="flex flex-wrap items-center sm:-mx-3">
 				<div class="relative flex items-center justify-center w-full">
 					<img src="{{ asset('svg/onsen_icon02.svg') }}" alt="customIcon" class="w-16 h-16 opacity-1 m-4">
@@ -79,11 +79,7 @@
 
 		<script>
 			var cont = 0;
-			var sliderCount = {
-				{
-					$reviews - > count()
-				}
-			};
+			var sliderCount = @json(count($onsens));
 			var xx;
 
 			function loopSlider() {
@@ -151,25 +147,24 @@
 							class="block text-2xl font-medium leading-tight text-gray-700 hover:text-gray-900">{{$review['onsenName']}}</a>
 
 
-						<h2 class="text-yellow-500 tracking-widest  title-font font-medium text-lg">
+						<h2 class="text-orange-500 tracking-widest  title-font font-medium text-lg mb-2">
 							{{$review['star']}} <span
 								class="text-gray-500 inline-flex items-center inline text-sm ml-4 font-base">
 								更新日:{{$review['updated_at']->format('Y年m月d日')}}</span></h2>
 
 
-						<p class="leading-relaxed truncate overflow-hidden">{{$review['content']}}</p>
-
-						<p class="text-gray-500">
+						<div class="p-1 rounded bg-gray-100">
+							<p class="leading-relaxed truncate overflow-hidden">{{$review['content']}}</p>
 							<a href="/review/{{$review['id']}}"
-								class="inline-flex items-center inline text-sm underline">
-								<span class="">続きを読む</span>
+								class="inline-flex items-center inline text-sm underline  text-gray-500">
+								<span>続きを読む</span>
 								<svg class="w-3 h-3 ml-1 transform -rotate-45" fill="none" stroke="currentColor"
 									viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 										d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
 								</svg>
 							</a>
-						</p>
+						</div>
 						@endif
 						@endforeach
 					</div>
@@ -188,18 +183,19 @@
 								class="block text-2xl font-medium leading-tight text-gray-700 hover:text-gray-900">{{$review['onsenName']}}</a>
 
 
-							<h2 class="text-yellow-500 tracking-widest  title-font font-medium text-lg md:text-base">
+							<h2
+								class="text-orange-500 tracking-widest  title-font font-medium text-lg md:text-base mb-2">
 								{{$review['star']}} <span
 									class="text-gray-500 inline-flex items-center inline text-sm ml-4 md:text-xs md:hidden">
 									更新日:{{$review['updated_at']->format('Y年m月d日')}}</span>
 							</h2>
 
-							<p class="leading-relaxed truncate overflow-hidden">{{$review['content']}}</p>
-
-							<p class="text-gray-500">
+							<div class="p-1 rounded bg-gray-100">
+								<p class="leading-relaxed truncate overflow-hidden text-gray-800">{{$review['content']}}
+								</p>
 								<a href="/review/{{$review['id']}}"
-									class="inline-flex items-center inline text-sm underline">
-									<span class="">続きを読む</span>
+									class="inline-flex items-center inline text-sm underline text-gray-500">
+									<span>続きを読む</span>
 									<svg class="w-3 h-3 ml-1 transform -rotate-45" fill="none" stroke="currentColor"
 										viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -208,7 +204,7 @@
 								</a>
 
 
-							</p>
+							</div>
 						</div>
 						@endif
 						@endforeach
@@ -229,7 +225,7 @@
 					<div class="rounded-lg bg-gray-100 p-7">
 						<div class="pb-6 text-left">
 							<h2 class="mb-1 text-lg font-medium text-gray-900">レビュー検索</h2>
-							<form action="/search" method="GET">
+							<form action="/review_search" method="GET">
 								@csrf
 								<div class="mt-5 overflow-hidden bg-white border-none rounded-lg">
 									<input

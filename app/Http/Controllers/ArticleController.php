@@ -7,11 +7,10 @@ use App\Models\Review;
 use App\Models\Tag;
 use App\Models\Onsen;
 use App\Models\User;
-use App\Http\Requests\ReviewStoreRequest;
+use App\Http\Requests\SearchRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\UserRequest;
 use App\Http\Requests\SearchReviewRequest;
 
 class ArticleController extends Controller
@@ -39,6 +38,7 @@ class ArticleController extends Controller
     public function filterByArea(Request $request)
     {
         $loggedInUser = \Auth::user();
+
         $selectedArea = $request->input('area');
 
         $onsens = Onsen::where('area', $selectedArea)->latestOrder()->paginate(10);
@@ -63,30 +63,9 @@ class ArticleController extends Controller
         $loggedInUser = \Auth::user();
 
         $onsen = Onsen::find($id);
+
         $reviews = $onsen->reviewsWithRelations()->paginate(10);
 
         return view('onsen-content', compact('loggedInUser', 'onsen', 'reviews'));
-    }
-
-
-
-    public function search(SearchReviewRequest $request)
-    {
-        $keyword = $request->input('keyword');
-
-        $reviews = Review::searchByOnsenName($keyword)->paginate(9);
-
-        return view('search-result', compact('reviews', 'keyword'));
-    }
-
-
-
-    public function tagSearch($id)
-    {
-        $tag = Tag::findOrFail($id);
-        $tagName = $tag->name;
-        $reviews = $tag->searchReviews()->paginate(9);
-
-        return view('search-result', compact('tagName', 'reviews'));
     }
 }

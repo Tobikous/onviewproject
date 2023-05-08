@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Tag;
 use App\Models\Onsen;
-use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;

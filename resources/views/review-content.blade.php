@@ -4,149 +4,196 @@
 
 <body>
 
+	<main class="max-w-5xl px-5 py-5 md:py-10 mx-auto xl:px-0 tails-selected-element">
 
-	<div
-		class="items-center w-full px-0 py-10 sm:py-12 md:py-16 mx-auto md:px-12 lg:px-16 xl:px-32 max-w-7xl relative tails-selected-element">
-		<div
-			class="grid items-start grid-cols-1 mt-10 lg:mt-1 gap-16 lg:gap-8 md:grid-cols-2 bg-gray-100 md:rounded-2xl lg:rounded-[4rem] p-10 lg:p-20">
-			<div class="relative">
-				<a href="{{ route('search', ['keyword' => $review['onsenName']]) }}"
-					class="text-3xl font-extrabold text-gray-900 lg:text-5xl tracking-tighter hover:text-black">{{
-					$review['onsenName'] }}
-				</a>
-
-				<div class="relative mb-8">
-
-
-					<ul class="list-none mt-6 space-y-4" role="list">
-						<li>
-							<div class="relative flex items-start">
-
-								<p class="text-neutral-500 text-sm leading-6 ml-2"><strong
-										class="font-semibold text-neutral-900">投稿者：</strong>{{ $review->user->name }}
-								</p>
-								<p class="text-neutral-500 text-sm leading-6 ml-5"><strong
-										class="font-semibold text-neutral-900">更新日：</strong>{{$review['updated_at']->format('Y年m月d日')}}
-								</p>
-							</div>
-						</li>
-						<li>
-							<div class="relative flex items-start">
-								<p class="text-xl leading-relaxed line-clamp-7 text-yellow-500">{{$review['star']}}</p>
-							</div>
-						</li>
-
-					</ul>
-				</div>
-				<p class="text-gray-900 text-lg max-w-2xl mb-10 font-semibold">{{$review['content']}}</p>
-
-				<span class="title-font"><a href="/tag/{{$review['tag_id']}}"
-						class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-base font-medium leading-6 text-white bg-orange-400 border border-transparent rounded-lg md:w-auto hover:bg-orange-500">
-						#
-						{{$review->tag->name}}
-					</a>
-				</span>
-
-
-			</div>
-			<div class="relative">
-				<div class="h-full md:max-w-full max-w-sm mx-auto lg:flex lg:flex-col">
-					<div class="w-full aspect-w-4 aspect-h-3 relative mb-8">
-						<img alt="Onsen Image" class="w-full h-full object-cover absolute z-20"
-							src="{{ asset($review->image) }}">
+		<div class="mx-7 mb-5">
+			<div class="flex flex-wrap md:flex-nowrap">
+				<div class="w-full overflow-hidden md:w-4/6">
+					<div class="pt-4 pb-2.5 px-0.5">
+						<a href="/onsen/{{$review->onsen->id}}" class="underline pt-2 font-bold text-2xl">
+							{{$review->onsen->name}}
+						</a>
+						<div class="mt-1.5"><span class="text-orange-500 text-2xl">★★★☆☆</span><span
+								class="ml-1">3.0</span></div>
 					</div>
-
-					<div class="w-full aspect-w-4 aspect-h-3 relative">
-						<div id="map" class="w-full h-full absolute"></div>
+					<div class="text-xs my-0.5"><span class="font-bold">都道府県 :</span><span
+							class="ml-1.5">{{$review->onsen->area}}<span class="ml-4 font-bold">最寄り駅 :</span><span
+								class="ml-1.5">{{$review->onsen->nearest_station}}</div>
+					<div class="text-xs my-1"><span class="font-bold">営業日 :</span><span
+							class="ml-1.5">{{$review->onsen->opening_hours}}</span>
+						<div class="md:p-3"></div>
 					</div>
 				</div>
 				@auth
-				<div class="flex mt-7">
-					@if($review->isWrittenByUser(auth()->user()))
-					<button
-						class="flex ml-auto text-white bg-orange-500 border-0 p-3 font-semibold  px-6 focus:outline-none hover:bg-orange-600 rounded"
-						type="button" onclick="location.href = '/edit/{{$review['id']}}'">レビューを編集する</button>
+				<div class="w-full overflow-hidden md:w-2/6 pt-3 mb-5 md:mb-0 md:ml-6">
+					<div class="mt-2.5 px-3 py-2.5 md:bg-gray-200 flex justify-center">
 
-					<button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"><i
-							class="fa fa-trash fa-2x border-0 py-2 px-6 text-gray-500 hover:text-gray-700"></i></button>
+						@auth
+						@if($review->isWrittenByUser(auth()->user()))
+						<a href="/edit/{{$review['id']}}"
+							class="flex text-gray-600 border-0 py-1.5 px-2 mr-4 font-semibold focus:outline-none rounded hover:bg-white"><img
+								src="{{ asset('svg/edit_article.svg') }}" alt="customIcon"
+								class="w-6 h-6 opacity-1 mr-1">レビュー編集</a>
+						<button
+							class="flex text-gray-600 border-0 py-1.5 px-2 mr-4 font-semibold focus:outline-none rounded hover:bg-white"
+							x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"><img
+								src="{{ asset('svg/trashbox_icon.svg') }}" alt="customIcon"
+								class="w-6 h-6 opacity-1 mr-1">レビュー削除</button>
 
-					<x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable x-cloak>
-						<form method='POST' action="/delete/{{$review['id']}}" class="p-10">
-							@csrf
+						<x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable
+							x-cloak>
+							<form method='POST' action="/delete/{{$review['id']}}" class="p-10">
+								@csrf
 
-							<h2 class="text-lg font-medium text-gray-900">
-								{{ __('本当にレビューを削除しますか？') }}
-							</h2>
-							<p class="mt-1 text-sm text-red-600">
-								{{ __('レビューは一度消すと、復元できません') }}
-							</p>
-							<div class="mt-6 flex justify-end">
-								<x-secondary-button x-on:click="$dispatch('close')">
-									{{ __('キャンセル') }}
-								</x-secondary-button>
-								<x-danger-button class="ml-3">
-									{{ __('削除する') }}
-								</x-danger-button>
-							</div>
-						</form>
-					</x-modal>
-
-					@endif
+								<h2 class="text-lg font-medium text-gray-900">
+									{{ __('本当にレビューを削除しますか？') }}
+								</h2>
+								<p class="mt-1 text-sm text-red-600">
+									{{ __('レビューは一度消すと、復元できません') }}
+								</p>
+								<div class="mt-6 flex justify-end">
+									<x-secondary-button x-on:click="$dispatch('close')">
+										{{ __('キャンセル') }}
+									</x-secondary-button>
+									<x-danger-button class="ml-3">
+										{{ __('削除する') }}
+									</x-danger-button>
+								</div>
+							</form>
+						</x-modal>
+						@endif
+						@endauth
+					</div>
 				</div>
 				@endauth
 			</div>
 		</div>
 
-		<script>
-			var data = @json($review);
-			var latData = data['latitude'];
-			var lngData = data['longitude'];
-			var adress = data['formatted_address'];
-			var areaData = data['onsenName'];
+		<section class="flex flex-wrap overflow-hidden px-7 md:px-0">
 
-			function createInfoWindowContent(address, area) {
-				return `<div> <h1>${address}</h1>
-	   			<p>${area}</p></div>`;
-			}
 
-			function initMap() {
-				const center = {
-					lat: parseFloat(latData),
-					lng: parseFloat(lngData)
-				};
 
-				const map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 14,
-					center: center
-				});
+			<div id="reviewSection" class="w-full md:w-4/6 lg:w-4/6 xl:w-4/6 md:px-5">
+				<div class="md:ml-2 md:mr-4 pb-10 md:pb-5">
 
-				const marker = new google.maps.Marker({
-					position: {
-						lat: parseFloat(latData),
-						lng: parseFloat(lngData)
-					},
-					map: map
-				});
 
-				var infowindow = new google.maps.InfoWindow({
-					content: createInfoWindowContent(areaData, adress)
-				});
+					<div class="p-3 border border-gray-300 rounded">
+						<div class="pb-2 border-b border-gray-300"><span class="ml-2 text-gray-900 text-sm font-bold">{{
+								$review->user->name }}</span>
+						</div>
+						<h2 class="text-orange-500 tracking-widest text-xl py-2.5 border-b border-gray-300">
+							{{$review['star']}} </h2>
 
-				infowindow.open(map, marker);
+						<div class="text-gray-900 text-base my-2 p-2 bg-gray-200 rounded-sm">{{$review['content']}}
+						</div>
+						<div class="w-1/3 overflow-hidden mt-5 mb-3">
+							<img class="object-cover object-center w-full h-full" src="{{ asset($review->image) }}"
+								alt="onsenImage">
+						</div>
+						<div class="text-gray-600 items-center text-sm p-2.5 my-3 bg-gray-100 rounded-sm">
+							<div class="flex justify-between items-center">
+								<a href="/tag/{{$review['tag_id']}}"
+									class="mb-3 inline-flex items-center justify-center px-2 py-0.5 font-medium leading-6 text-white bg-orange-400 border border-transparent rounded md:w-auto hover:bg-orange-500">
+									#
+									{{$review->tag->name}}
+								</a>
 
-				marker.addListener('click', function() {
-					infowindow.open(map, marker);
-				});
-			}
+							</div>
+							<div>時間帯:{{$review['time']}}<br>更新日:{{$review['updated_at']->format('Y年m月d日')}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-			window.initMap = initMap;
-		</script>
+			<div id="mapSection" class="w-full overflow-hidden md:w-4/6 lg:w-4/6 xl:w-4/6 md:px-5 "
+				style="display:none;">
+				<div class="md:ml-3 md:pb-5">
+					<div class="w-full aspect-w-5 aspect-h-4 relative">
+						<div id="map" class="w-full h-full absolute"></div>
+					</div>
+					<div class="container mx-auto mt-8 border border-gray-300">
+						<div class="flex">
+							<div class="text-sm font-bold bg-orange-100 w-1/5 p-2.5 border-r border-b border-gray-300">
+								住所</div>
+							<div class="text-sm bg-white w-4/5 p-2.5 border-b border-gray-300">
+								{{$review->onsen->formatted_address}}</div>
+						</div>
+						<div class="flex">
+							<div class="text-sm font-bold bg-orange-100 w-1/5 p-2.5 border-r border-gray-300">最寄り駅
+							</div>
+							<div class="text-sm bg-white w-4/5 p-2.5">{{$review->onsen->nearest_station}}</div>
+						</div>
+					</div>
+				</div>
 
-		<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
-		</script>
 
-	</div>
+				<script>
+					var data = @json($review['onsen']);
+					var latData = data['latitude'];
+					var lngData = data['longitude'];
+					var adress = data['formatted_address'];
+					var areaData = data['name'];
+
+					function createInfoWindowContent(address, area) {
+						return `<div> <h1>${address}</h1>
+                    <p>${area}</p></div>`;
+					}
+
+					function initMap() {
+						const center = {
+							lat: parseFloat(latData),
+							lng: parseFloat(lngData)
+						};
+						const map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 14,
+							center: center
+						});
+						const marker = new google.maps.Marker({
+							position: {
+								lat: parseFloat(latData),
+								lng: parseFloat(lngData)
+							},
+							map: map
+						});
+						var infowindow = new google.maps.InfoWindow({
+							content: createInfoWindowContent(areaData, adress)
+						});
+						infowindow.open(map, marker);
+						marker.addListener('click', function() {
+							infowindow.open(map, marker);
+						});
+					}
+					window.initMap = initMap;
+				</script>
+				<script async defer
+					src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
+				</script>
+			</div>
+
+			<div class="w-full overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 mt-10 md:mt-0 md:pr-6">
+				<div class="mr-2 md:ml-2">
+
+					<div class="pr-1 flex items-center justify-between w-full py-3 mb-2 border-t border-gray-300">
+						<h2 class="text-2xl font-normal">{{$review->onsen->phone_number}}</h2>
+					</div>
+
+
+					<div class="mt-10">
+						<div class="pr-1 flex items-center justify-between w-full pb-2 mb-2 border-b border-gray-300">
+							<h2 class="text-base font-medium text-gray-900">周辺の温泉</h2>
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+
+
+		</section>
+
+	</main>
+
 
 
 </body>

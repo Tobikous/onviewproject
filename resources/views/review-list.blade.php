@@ -38,7 +38,8 @@
 			<div class="mb-3 border-t">
 				<div class="pt-5 flex flex-wrap">
 					<div class="w-full md:w-1/3">
-						<a href="/review/{{$review['id']}}" class="block h-48 mb-3 overflow-hidden rounded-lg">
+						<a href="/review/{{$review['id']}}"
+							class="block h-48 mb-3 overflow-hidden md:rounded-none rounded-lg">
 							<img class="object-cover object-center w-full h-full transition duration-300 ease-out transform scale-100 hover:scale-105"
 								src="{{ asset($review->image) }}" alt="onsenImage">
 						</a>

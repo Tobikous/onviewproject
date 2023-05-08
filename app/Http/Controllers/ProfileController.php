@@ -51,9 +51,11 @@ class ProfileController extends Controller
         $reviews = $user->reviews;
 
         $user->reviews()->delete();
+
         $user->delete();
 
         $request->session()->invalidate();
+
         $request->session()->regenerateToken();
 
         return Redirect::to('/')->with('success', 'アカウントを削除しました。');

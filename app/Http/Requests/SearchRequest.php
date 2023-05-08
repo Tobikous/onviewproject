@@ -4,12 +4,17 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SearchReviewRequest extends FormRequest
+class SearchRequest extends FormRequest
 {
+    public function authorize()
+    {
+        return true;
+    }
+
     public function rules()
     {
         return [
-            'keyword' => 'required',
+            'keyword' => 'required|string|max:255',
 
         ];
     }

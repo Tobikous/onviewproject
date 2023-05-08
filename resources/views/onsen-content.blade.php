@@ -1,8 +1,5 @@
 @extends('layouts.app1')
 
-@section('onsen-link')
-@endsection
-
 
 @section('content')
 
