@@ -134,3 +134,4 @@ function closeModal(event) {
         modal.classList.add("hidden");
     }
 }
+

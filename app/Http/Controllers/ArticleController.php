@@ -16,16 +16,37 @@ use App\Http\Requests\SearchReviewRequest;
 
 class ArticleController extends Controller
 {
-    public function article()
+    public function reviewLists()
     {
         $loggedInUser = \Auth::user();
 
-        $reviews = Review::latestOrder()->paginate(7);
+        $reviews = Review::withRelations()->latestOrder()->paginate(10);
 
-        return view('article', compact('loggedInUser', 'reviews'));
+        return view('review-list', compact('loggedInUser', 'reviews'));
     }
 
+    public function onsenLists()
+    {
+        $loggedInUser = \Auth::user();
 
+        $onsens = Onsen::latestOrder()->paginate(10);
+
+        $reviews = Review::withRelations()->whereIn('onsenName', $onsens->pluck('name'))->get();
+
+        return view('onsen-list', compact('loggedInUser', 'onsens', 'reviews'));
+    }
+
+    public function filterByArea(Request $request)
+    {
+        $loggedInUser = \Auth::user();
+        $selectedArea = $request->input('area');
+
+        $onsens = Onsen::where('area', $selectedArea)->latestOrder()->paginate(10);
+
+        $reviews = Review::withRelations()->whereIn('onsenName', $onsens->pluck('name'))->get();
+
+        return view('onsen-list', compact('loggedInUser', 'onsens', 'reviews', 'selectedArea'));
+    }
 
     public function reviewContent($id)
     {
@@ -33,8 +54,21 @@ class ArticleController extends Controller
 
         $review = Review::with(['user', 'tag', 'onsen'])->find($id);
 
-        return view('show', compact('loggedInUser', 'review'));
+        return view('review-content', compact('loggedInUser', 'review'));
     }
+
+
+    public function onsenContent($id)
+    {
+        $loggedInUser = \Auth::user();
+
+        $onsen = Onsen::find($id);
+        $reviews = $onsen->reviewsWithRelations()->paginate(10);
+
+        return view('onsen-content', compact('loggedInUser', 'onsen', 'reviews'));
+    }
+
+
 
     public function search(SearchReviewRequest $request)
     {

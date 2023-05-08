@@ -17,11 +17,17 @@ class HomeController extends Controller
     {
         $loggedInUser = \Auth::user();
 
+        $onsens = Onsen::latestOrder()->paginate(3);
+
+        $randomReviews = $onsens->map(function ($onsen) {
+            return $onsen->reviews->random();
+        });
+
         $reviews = Review::latestOrder()->paginate(3);
 
         $allTags = Tag::get();
 
-        return view('home', compact('loggedInUser', 'reviews', 'allTags'));
+        return view('home', compact('loggedInUser', 'randomReviews', 'onsens', 'reviews', 'allTags'));
     }
 
     public function teamOfService()

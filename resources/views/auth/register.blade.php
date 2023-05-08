@@ -4,7 +4,8 @@
 @section('register-link')
 @endsection
 
-
+@section('remove-in-register-link')
+@endsection
 
 @section('content')
 
@@ -16,7 +17,7 @@
 	<div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
 		<form method="POST" action="{{ route('register') }}" class="bg-white">
 			@csrf
-			<h1 class="text-center mr-2 text-gray-800 font-bold text-2xl mb-6">会員登録</h1>
+			<div class="text-center mr-2 text-gray-800 font-bold text-2xl mb-6 mt-20 md:mt-0">会員登録</div>
 
 			<div class="flex items-center border-2 py-1 px-3 rounded-md mb-4">
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"

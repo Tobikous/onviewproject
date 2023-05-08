@@ -14,7 +14,7 @@ class Review extends Model
 {
     use HasFactory;
     protected $table = 'review';
-    protected $fillable = ['content','star','time','user_id','onsenName','tag_id','image','formatted_address','latitude','longitude'];
+    protected $fillable = ['content','star','time','user_id','onsenName','tag_id','image'];
 
     public function user()
     {
@@ -30,10 +30,18 @@ class Review extends Model
 
 
 
+    public function scopeWithRelations($query)
+    {
+        return $query->with(['user', 'tag']);
+    }
+
+
+
     public function onsen()
     {
         return $this->belongsTo(Onsen::class, 'onsenName', 'name');
     }
+
 
 
 
@@ -56,6 +64,7 @@ class Review extends Model
         return $this->user_id == $user->id;
     }
 
+
     public static function searchByOnsenName($keyword)
     {
         return self::where('onsenName', 'LIKE', "%{$keyword}%");
@@ -75,17 +84,13 @@ class Review extends Model
         }
 
         return DB::transaction(function () use ($data) {
-            $onsen = Onsen::firstOrCreate(
-                ['name' => $data['onsenName']],
-                ['area' => $data['area']]
-            );
-
             $tag = Tag::firstOrCreate(
                 ['name' => $data['tag']],
                 ['user_id' => $data['user_id']]
             );
 
             $geocodedData = GeocodeCalculator::geocodeAddress($data['onsenName']);
+
 
             if ($geocodedData === null) {
                 $geocodedData = [
@@ -95,6 +100,20 @@ class Review extends Model
                 ];
             }
 
+            $onsen = Onsen::firstOrNew(['name' => $data['onsenName']]);
+
+            if (!$onsen->exists || ($onsen->exists && empty($onsen->formatted_address))) {
+                $onsen->area = $data['area'];
+                $onsen->latitude = $geocodedData['latitude'];
+                $onsen->longitude = $geocodedData['longitude'];
+                $onsen->formatted_address = $geocodedData['formatted_address'];
+                $onsen->phone_number = $geocodedData['formatted_phone_number'];
+                $onsen->URL = $geocodedData['website'];
+                $onsen->nearest_station = $geocodedData['nearest_station'];
+                $onsen->opening_hours = $geocodedData['holiday'];
+
+                $onsen->save();
+            }
 
 
             $review = Review::create([
@@ -104,10 +123,7 @@ class Review extends Model
                 'time' => $data['time'],
                 'image' => $data['image'],
                 'tag_id' => $tag->id,
-                'onsenName' => $data['onsenName'],
-                'formatted_address' => $geocodedData['formatted_address'],
-                'latitude' => $geocodedData['latitude'],
-                'longitude' => $geocodedData['longitude'],
+                'onsenName' => $data['onsenName']
             ]);
         });
 

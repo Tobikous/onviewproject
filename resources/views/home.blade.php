@@ -18,7 +18,7 @@
 
 	@guest
 	<section class="px-2 bg-white md:px-0 pt-10 pb-12 tails-selected-element">
-		<div class="container items-center max-w-6xl px-8 mx-auto xl:px-5">
+		<div class="container items-center max-w-6xl px-8 mx-auto xl:px-20">
 			<div class="flex flex-wrap items-center sm:-mx-3">
 				<div class="relative flex items-center justify-center w-full">
 					<img src="{{ asset('svg/onsen_icon02.svg') }}" alt="customIcon" class="w-16 h-16 opacity-1 m-4">
@@ -46,21 +46,21 @@
 	</section>
 	@endguest
 
-	<main class="max-w-5xl px-5 py-10 mx-auto xl:px-0 tails-selected-element">
+	<main class="px-5 py-10 mx-auto xl:px-20 tails-selected-element">
 
-		<div>
+		<div class="px-7">
 			<div class="sliderAx h-auto">
-				@foreach($reviews as $count =>$review)
+				@foreach($onsens as $count =>$onsen)
 				<div id="slider-{{$count+1}}" class="container mx-auto">
 					<div class="relative bg-cover bg-center h-auto text-white py-24 px-10 object-fill rounded-md"
-						style="background-image: url({{$review['image']}})">
+						style="background-image: url({{$randomReviews[$count]['image']}})">
 						<div class="absolute inset-0 bg-black opacity-30 rounded-md"></div>
 						<div class="relative md:w-1/2">
-							<p class="font-bold text-sm uppercase">{{$review['updated_at']->format('Y年m月d日')}}</p>
-							<p class="text-3xl font-bold">{{$review['onsenName']}}</p>
+							<p class="font-bold text-sm uppercase">{{$onsen['area']}}</p>
+							<p class="text-3xl font-bold">{{$onsen['name']}}</p>
 							<p class="text-2xl mb-10 leading-none"></p>
-							<a href="/review/{{$review['id']}}"
-								class="bg-orange-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-orange-600">レビューを見る</a>
+							<a href="/onsen/{{$onsen['id']}}"
+								class="bg-orange-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-orange-600">詳細</a>
 						</div>
 					</div>
 					<br>
@@ -68,7 +68,7 @@
 				@endforeach
 			</div>
 			<div class="flex justify-between w-12 mx-auto pb-2">
-				@foreach($reviews as $count =>$review)
+				@foreach($onsens as $count =>$onsen)
 				<button id="sButton{{$count+1}}" onclick="sliderButton({{$count+1}})"
 					class="bg-orange-400 hover:bg-orange-500 rounded-full w-5 pb-2 mr-2"></button>
 				@endforeach
@@ -79,7 +79,11 @@
 
 		<script>
 			var cont = 0;
-			var sliderCount = {{$reviews -> count()}};
+			var sliderCount = {
+				{
+					$reviews - > count()
+				}
+			};
 			var xx;
 
 			function loopSlider() {
@@ -121,14 +125,19 @@
 
 
 
-		<section class="flex flex-wrap mt-14 overflow-hidden">
-			<div class="w-full overflow-hidden md:w-4/6 lg:w-4/6 xl:w-4/6 md:px-5">
-				<div class="ml-2 mr-2 md:mr-4">
+
+
+
+
+
+		<section class="flex flex-wrap mt-14 overflow-hidden px-7 md:px-0">
+			<div class="w-full overflow-hidden md:w-4/6 md:px-5">
+				<div class="md:ml-2 md:mr-4">
 					<div class="flex items-center justify-between w-full pb-5 mb-8 border-b border-gray-200">
 						<h2 class="text-3xl font-bold text-gray-800">投稿レビュー一覧</h2>
 					</div>
 
-					<div class="pb-12">
+					<div class="pb-12 md:mr-5">
 						@foreach($reviews as $review)
 						@if($loop->first)
 						<a href="/review/{{$review['id']}}"
@@ -207,14 +216,14 @@
 				</div>
 
 				<div class="mt-16 text-center mb-10">
-					<a href="{{ route('articles') }}"
+					<a href="{{ route('review_lists') }}"
 						class="px-5 py-3 text-md font-semibold tracking-widest text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
 						すべてのレビューを見る</a>
 				</div>
 
 			</div>
 
-			<div class="w-full mt-12 overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 md:mt-0 md:px-5">
+			<div class="w-full mt-12 overflow-hidden md:w-2/6 md:mt-0 md:px-5">
 				<div class="ml-2 mr-2 md:ml-4">
 
 					<div class="rounded-lg bg-gray-100 p-7">
@@ -244,7 +253,8 @@
 					</div>
 
 					<div class="mt-10">
-						<div class="ml-1 flex items-center justify-between w-full pb-2 mb-2 border-b border-gray-200">
+						<div
+							class="ml-1 pr-1 flex items-center justify-between w-full pb-2 mb-2 border-b border-gray-200">
 							<h2 class="text-lg font-bold text-gray-900">タグ一覧</h2>
 							<button type="button" onclick="openModal()"
 								class="flex items-center text-sm font-semibold text-blue-400 hover:text-blue-500 group">

@@ -1,8 +1,13 @@
 @extends('layouts.app1')
 
+@section('register-link')
+@endsection
+
+@section('remove-in-register-link')
+@endsection
+
+
 @section('content')
-
-
 
 <div class="h-screen md:flex">
 	<div class="absolute inset-0 z-(-1) bg-cover bg-center bg-no-repeat opacity-80 relative overflow-hidden md:flex w-1/2 justify-around items-center hidden"
@@ -13,7 +18,7 @@
 		<form method="POST" action="{{ route('password.email') }}" class="bg-white">
 			@csrf
 			<div class="flex flex-col text-center w-full">
-				<h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">パスワードをお忘れですか？</h1>
+				<h1 class="sm:text-3xl text-2xl font-medium mb-2 text-gray-900 mt-20 md:mt-0">パスワードをお忘れですか？</h1>
 				<p class=" mx-auto leading-relaxed text-base text-gray-700">
 					お手数ですがこちらのフォームにメールアドレスを入力して下されば、
 				<p class=" mx-auto leading-relaxed text-base mb-12 text-gray-700">新しいパスワードを設定する為のリンクをメールでお送りします。

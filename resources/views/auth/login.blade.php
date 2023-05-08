@@ -39,7 +39,7 @@
 				<a class="relative z-10 flex items-center w-auto text-2xl font-extrabold leading-none text-white select-none"
 					href="{{ url('/') }}">
 					<img src="{{ asset('svg/onsen_icon01.svg') }}" alt="customIcon" class="w-12 h-12 opacity-1">
-					<span class="ml-3 font-extrabold text-2xl">{{ config('app.name', 'Laravel') }}</span>
+					<img src="{{ asset('header-icon.png') }}" alt="headerName" class="ml-3 opacity-1 md:w-full w-1/2">
 				</a>
 
 				<nav class="items-center justify-center hidden space-x-8 text-white md:flex">
@@ -59,20 +59,39 @@
 						</span>
 					</a>
 
-					<a href="{{ route('articles') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+					@section('onsens-link')
+					<a href="{{ route('onsen_lists') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+						@mouseleave="hover = false"
+						class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
+						<span class="block">温泉一覧</span>
+						<span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
+							<span x-show="hover"
+								class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-orange-200"
+								x-transition:enter="transition ease-out duration-300"
+								x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+								x-transition:leave="transition ease-out duration-300"
+								x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+								data-primary="orange-600" style="display: none;"></span>
+						</span>
+					</a>
+					@show
+
+					@section('reviews-link')
+					<a href="{{ route('review_lists') }}" x-data="{ hover: false }" @mouseenter="hover = true"
 						@mouseleave="hover = false"
 						class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
 						<span class="block">レビュー一覧</span>
 						<span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
 							<span x-show="hover"
-								class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-blue-200"
+								class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-orange-200"
 								x-transition:enter="transition ease-out duration-300"
 								x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
 								x-transition:leave="transition ease-out duration-300"
 								x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
-								data-primary="blue-600" style="display: none;"></span>
+								data-primary="orange-600" style="display: none;"></span>
 						</span>
 					</a>
+					@show
 
 					<a href="{{ route('register') }}" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium tracking-normal transition duration-150 rounded text-orange-500 bg-orange-50 border-orange-200 hover:bg-orange-100 active:bg-orange-200 focus:ring-orange-300
 					ease tails-selected-element" data-rounded=" rounded-md" data-primary="blue-600">
@@ -138,13 +157,22 @@
 							<path stroke-linecap="round" stroke-linejoin="round"
 								d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
 						</svg>ホーム</a>
-					<a href="{{ route('articles') }}"
+					<a href="{{ route('onsen_lists') }}"
 						class="flex items-center space-x-2 transition hover:text-orange-600">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
 							stroke="currentColor" class="w-4 h-4 mr-1">
 							<path stroke-linecap="round" stroke-linejoin="round"
 								d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-						</svg>レビュー一覧</a>
+						</svg>温泉一覧
+					</a>
+					<a href="{{ route('review_lists') }}"
+						class="flex items-center space-x-2 transition hover:text-orange-600">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+							stroke="currentColor" class="w-4 h-4 mr-1">
+							<path stroke-linecap="round" stroke-linejoin="round"
+								d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+						</svg>レビュー一覧
+					</a>
 				</div>
 
 				<div class="p-2">
@@ -255,8 +283,8 @@
 		<footer class="bg-gray-100">
 			<div class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
 				<a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-					<img src="{{ asset('svg/onsen_icon01.svg') }}" alt="customIcon" class="w-12 h-12 opacity-1">
-					<span class="ml-3 text-lg">{{ config('app.name', 'Laravel') }}</span>
+					<img src="{{ asset('svg/onsen_icon01.svg') }}" alt="customIcon" class="w-9 h-9 opacity-1">
+					<img src="{{ asset('footer-icon.png') }}" alt="footerName" class="ml-1 mt-2 opacity-1">
 				</a>
 				<p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2022 Tobiyama Kosuke —
 					<a href=# rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@Tobikous</a>

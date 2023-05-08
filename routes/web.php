@@ -19,7 +19,10 @@ use App\Http\Controllers\ArticleController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/review/{id}', [ArticleController::class, 'reviewContent'])->name('review');
-Route::get('/articles', [ArticleController::class, 'article'])->name('articles');
+Route::get('/onsen/{id}', [ArticleController::class, 'onsenContent'])->name('onsenContent');
+Route::get('/onsen_filter', [ArticleController::class, 'filterByArea'])->name('onsen.filter');
+Route::get('/review_lists', [ArticleController::class, 'reviewLists'])->name('review_lists');
+Route::get('/onsen_lists', [ArticleController::class, 'onsenLists'])->name('onsen_lists');
 Route::get('/search', [ArticleController::class, 'search'])->name('search');
 Route::get('/tag/{id}', [ArticleController::class, 'tagSearch'])->name('tag');
 Route::get('/team_of_service', [HomeController::class, 'teamOfService'])->name('team_of_service');

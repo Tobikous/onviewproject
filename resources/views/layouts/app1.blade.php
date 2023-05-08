@@ -25,7 +25,7 @@
 	<script src="{{ asset('js/modal.js') }}"></script>
 
 	<link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
-
+	header-icon.png
 
 </head>
 
@@ -44,7 +44,7 @@
 			<a class="relative z-10 flex items-center w-auto text-2xl font-extrabold leading-none text-white select-none"
 				href="{{ url('/') }}">
 				<img src="{{ asset('svg/onsen_icon01.svg') }}" alt="customIcon" class="w-12 h-12 opacity-1">
-				<span class="ml-3 font-semibold text-2xl">{{ config('app.name', 'Laravel') }}</span>
+				<img src="{{ asset('header-icon.png') }}" alt="headerName" class="ml-3 opacity-1 md:w-full w-1/2">
 			</a>
 
 			<nav class="items-center justify-center hidden space-x-8 text-white md:flex">
@@ -65,8 +65,25 @@
 				</a>
 				@show
 
+				@section('onsens-link')
+				<a href="{{ route('onsen_lists') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+					@mouseleave="hover = false"
+					class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
+					<span class="block">温泉一覧</span>
+					<span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
+						<span x-show="hover"
+							class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-orange-200"
+							x-transition:enter="transition ease-out duration-300"
+							x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+							x-transition:leave="transition ease-out duration-300"
+							x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+							data-primary="orange-600" style="display: none;"></span>
+					</span>
+				</a>
+				@show
+
 				@section('reviews-link')
-				<a href="{{ route('articles') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+				<a href="{{ route('review_lists') }}" x-data="{ hover: false }" @mouseenter="hover = true"
 					@mouseleave="hover = false"
 					class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
 					<span class="block">レビュー一覧</span>
@@ -198,15 +215,17 @@
 		</div>
 	</header>
 
+	@section('remove-in-register-link')
 	<div class="mt-24"></div>
+	@show
 
 	@yield('content')
 
 	<footer class="bg-gray-100">
 		<div class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
 			<a href="{{ url('/') }}" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-				<img src="{{ asset('svg/onsen_icon01.svg') }}" alt="customIcon" class="w-12 h-12 opacity-1">
-				<span class="ml-3 text-lg">{{ config('app.name', 'Laravel') }}</span>
+				<img src="{{ asset('svg/onsen_icon01.svg') }}" alt="customIcon" class="w-9 h-9 opacity-1">
+				<img src="{{ asset('footer-icon.png') }}" alt="footerName" class="ml-1 mt-2 opacity-1">
 			</a>
 			<p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2023 Tobiyama Kosuke —
 				<a rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@Tobikous</a>
