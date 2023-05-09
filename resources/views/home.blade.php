@@ -321,8 +321,10 @@
 
 					<div class="mt-12">
 						@auth
-						<h2 class="ml-1 mb-5 text-lg font-medium text-gray-900">自分が投稿したレビュー</h2>
-						<ul class="">
+						<h2 class="ml-1 pb-2 mb-2 text-lg font-medium text-gray-900 border-b border-gray-200">
+							自分が投稿したレビュー
+						</h2>
+						<ul class="ml-1.5">
 							@foreach($reviews AS $review)
 							@if($review->isWrittenByUser(auth()->user()))
 							<li class="mb-5">
@@ -336,7 +338,7 @@
 											class="font-medium leading-tight text-gray-700 hover:text-gray-900 ext-gray-900">
 											{{$review['onsenName']}}
 										</h3>
-										<h2 class="text-yellow-500 tracking-widest  title-font font-base text-sm">
+										<h2 class="text-orange-500 tracking-widest  title-font font-base text-sm">
 											{{$review['star']}}</h2>
 										<span
 											class="block text-xs text-gray-500">更新日：{{$review['updated_at']->format('Y年m月d日')}}</span>
