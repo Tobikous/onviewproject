@@ -16,6 +16,14 @@
 	</div>
 	@endif
 
+	@if (session('error'))
+	<div class="flex container  w-full flex-col text-center my-10">
+		<div class="mt-20 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
+			<p class="font-bold">{{ session('error') }}</p>
+		</div>
+	</div>
+	@endif
+
 	@guest
 	<section class="px-2 bg-white md:px-0 pt-10 pb-12 tails-selected-element">
 		<div class="container items-center max-w-6xl px-8 mx-auto">

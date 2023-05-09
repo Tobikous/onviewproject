@@ -31,6 +31,8 @@ class ReviewController extends Controller
     {
         $review = Review::createFromRequest($request);
 
+        Onsen::updateOnsenEvaluation($review->onsenName);
+
         return redirect()->route('home')->with('success', 'レビューを投稿しました。');
     }
 
@@ -57,6 +59,8 @@ class ReviewController extends Controller
     public function update(ReviewStoreRequest $request, $id)
     {
         $review = Review::updateFromRequest($request, $id);
+
+        Onsen::updateOnsenEvaluation($review->onsenName);
 
         return redirect()->route('home')->with('success', 'レビューを更新しました。');
     }

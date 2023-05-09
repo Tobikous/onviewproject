@@ -14,6 +14,7 @@ return new class () extends Migration {
             $table->bigIncrements('id');
             $table->string('name', 100);
             $table->string('area');
+            $table->string('evaluation')->nullable();
             $table->string('formatted_address')->nullable();
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();

@@ -7,28 +7,28 @@ use Illuminate\Contracts\Validation\Rule;
 
 class MaxReviewsPerOnsen implements Rule
 {
-    /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
-     */
+    protected $update;
+
+    public function __construct($update)
+    {
+        $this->update = $update;
+    }
+
     public function passes($attribute, $value)
     {
-        $userId = auth()->id();
+        if ($this->update) {
+            return true;
+        }
+
+        $user_id = request()->input('user_id');
         $onsenName = $value;
 
-        $userReviews = Review::where('user_id', $userId)->where('onsenName', $onsenName)->count();
+        $userReviews = Review::where('user_id', $user_id)->where('onsenName', $onsenName)->count();
 
         return $userReviews < 3;
     }
 
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
+
     public function message()
     {
         return '同じ温泉の投稿は3件までしかできません。';

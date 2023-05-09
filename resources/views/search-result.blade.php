@@ -145,8 +145,9 @@
 								<div class="pb-2.5 px-0.5">
 									<div class=""><span class="font-bold text-2xl">{{$onsen['name']}}</span>
 									</div>
-									<div class="mt-1.5"><span class="text-orange-500 text-2xl">★★★☆☆</span><span
-											class="ml-1">3.0</span></div>
+									<div class="mt-1.5"><span class="text-orange-500 text-2xl">{{ str_replace(['(',
+											')'], '', star_rating($onsen->evaluation)) }}</span><span
+											class="ml-1">{{$onsen->evaluation}}</span></div>
 								</div>
 								<div class="text-xs my-0.5"><span class="font-bold">所在地 :</span><span
 										class="ml-1.5">{{$onsen['area']}}</div>

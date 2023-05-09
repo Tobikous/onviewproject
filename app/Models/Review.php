@@ -65,10 +65,12 @@ class Review extends Model
     }
 
 
+
     public static function searchByOnsenName($keyword)
     {
         return self::where('onsenName', 'LIKE', "%{$keyword}%");
     }
+
 
 
     public static function createFromRequest(ReviewStoreRequest $request)
@@ -125,9 +127,9 @@ class Review extends Model
                 'tag_id' => $tag->id,
                 'onsenName' => $data['onsenName']
             ]);
-        });
 
-        return $review;
+            return $review;
+        });
     }
 
 

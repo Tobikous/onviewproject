@@ -13,8 +13,9 @@
 						<a href="/onsen/{{$review->onsen->id}}" class="underline pt-2 font-bold text-2xl">
 							{{$review->onsen->name}}
 						</a>
-						<div class="mt-1.5"><span class="text-orange-500 text-2xl">★★★☆☆</span><span
-								class="ml-1">3.0</span></div>
+						<div class="mt-1.5"><span class="text-orange-500 text-2xl">{{ str_replace(['(',
+								')'], '', star_rating($onsen->evaluation)) }}</span><span
+								class="ml-1">{{$onsen->evaluation}}</span></div>
 					</div>
 					<div class="text-xs my-0.5"><span class="font-bold">都道府県 :</span><span
 							class="ml-1.5">{{$review->onsen->area}}<span class="ml-4 font-bold">最寄り駅 :</span><span
