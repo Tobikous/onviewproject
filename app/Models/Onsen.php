@@ -13,7 +13,7 @@ use App\Models\GeocodeCalculator;
 class Onsen extends Model
 {
     protected $table = 'onsenAreaData';
-    protected $fillable = ['name','area','evaluation','formatted_address','latitude','longitude','phone_number','URL','nearest_station','opening_hours'];
+    protected $fillable = ['name','area','evaluation','formatted_address','latitude','longitude','phone_number','URL','nearest_station','regular_holiday'];
 
 
     public function reviews()

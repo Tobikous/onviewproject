@@ -29,8 +29,8 @@
 					<div class="text-xs my-0.5"><span class="font-bold">都道府県 :</span><span
 							class="ml-1.5">{{$onsen['area']}}<span class="ml-4 font-bold">最寄り駅 :</span><span
 								class="ml-1.5">{{$onsen['nearest_station']}}</div>
-					<div class="text-xs my-1"><span class="font-bold">営業日 :</span><span
-							class="ml-1.5">{{$onsen['opening_hours']}}</span>
+					<div class="text-xs my-1"><span class="font-bold">定休日 :</span><span
+							class="ml-1.5">{{$onsen['regular_holiday']}}</span>
 						<div class="md:p-3"></div>
 					</div>
 				</div>

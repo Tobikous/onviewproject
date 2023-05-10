@@ -21,7 +21,7 @@ return new class () extends Migration {
             $table->string('phone_number')->nullable();
             $table->string('URL')->nullable();
             $table->string('nearest_station')->nullable();
-            $table->text('opening_hours')->nullable();
+            $table->text('regular_holiday')->nullable();
             $table->timestamps();
         });
     }

@@ -24,10 +24,10 @@ class GeocodeCalculator
             $placeDetailsUrl = "https://maps.googleapis.com/maps/api/place/details/json?place_id={$placeId}&fields=formatted_phone_number,website,opening_hours&key={$apiKey}&language={$language}";
             $placeDetailsResponse = Http::retry(3, 100)->get($placeDetailsUrl);
             $placeDetailsData = $placeDetailsResponse->json();
-
             $formattedPhoneNumber = $placeDetailsData['result']['formatted_phone_number'] ?? null;
             $website = $placeDetailsData['result']['website'] ?? null;
             $openingHours = $placeDetailsData['result']['opening_hours'] ?? null;
+
 
             if ($formattedPhoneNumber !== null) {
                 $formattedPhoneNumber = preg_replace('/^\+81/', '0', $formattedPhoneNumber);
@@ -50,16 +50,22 @@ class GeocodeCalculator
                 $nearestStationName = $nearestStation['name'];
             }
 
-            $holidayText = '定休日なし';
+            $holidayText = '定休日情報なし';
+            $closedDays = [];
             if ($openingHours !== null) {
                 $weekdayText = $openingHours['weekday_text'];
 
-                // 定休日が見つかったらholidayTextに設定します
-                foreach ($weekdayText as $text) {
-                    if (strpos($text, '休') !== false) {
-                        $holidayText = $text;
-                        break;
+                $daysOfWeek = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日','日曜日'];
+
+                // 定休日が見つかったらclosedDays配列に追加
+                foreach ($weekdayText as $day => $text) {
+                    if (strpos($text, '定休日') !== false) {
+                        $closedDays[] = $daysOfWeek[$day];
                     }
+                }
+
+                if (!empty($closedDays)) {
+                    $holidayText = implode(', ', $closedDays);
                 }
             }
 
@@ -70,7 +76,7 @@ class GeocodeCalculator
                 'formatted_phone_number' => $formattedPhoneNumber,
                 'website' => $website,
                 'nearest_station' => $nearestStationName,
-                'holiday' => $holidayText, // 営業時間と定休日の情報を追加
+                'holiday' => $holidayText,
             ];
         } else {
             return [

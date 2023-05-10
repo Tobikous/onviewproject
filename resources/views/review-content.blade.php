@@ -21,7 +21,7 @@
 							class="ml-1.5">{{$review->onsen->area}}<span class="ml-4 font-bold">最寄り駅 :</span><span
 								class="ml-1.5">{{$review->onsen->nearest_station}}</div>
 					<div class="text-xs my-1"><span class="font-bold">営業日 :</span><span
-							class="ml-1.5">{{$review->onsen->opening_hours}}</span>
+							class="ml-1.5">{{$review->onsen->regular_holiday}}</span>
 						<div class="md:p-3"></div>
 					</div>
 				</div>
