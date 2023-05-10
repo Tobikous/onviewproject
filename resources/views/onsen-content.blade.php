@@ -34,21 +34,42 @@
 						<div class="md:p-3"></div>
 					</div>
 				</div>
+
 				@auth
+
+				@php
+				$isFavorite = auth()->user()->favorites->contains('id', $onsen->id);
+				@endphp
+
+
 				<div class="w-full overflow-hidden md:w-2/6 pt-3 mb-5 md:mb-0 md:ml-6">
 					<div class="mt-2.5 px-3 py-2.5 md:bg-gray-200 flex justify-center">
-
-						<a href=""
+						@if ($isFavorite)
+						<form action="{{ route('favorite.remove') }}" method="POST"
 							class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-sm font-medium leading-6 text-white bg-orange-400 border border-transparent rounded-lg md:w-auto hover:bg-orange-500">
-							お気に入り
-						</a>
+							@csrf
+							<input type="hidden" name="onsen_id" value="{{ $onsen->id }}">
+							<button type="submit">お気に入り解除</button>
+						</form>
+						@else
+						<form action="{{ route('favorite.add') }}" method="POST"
+							class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-sm font-medium leading-6 text-white bg-orange-400 border border-transparent rounded-lg md:w-auto hover:bg-orange-500">
+							@csrf
+							<input type="hidden" name="onsen_id" value="{{ $onsen->id }}">
+							<button type="submit">お気に入り追加</button>
+						</form>
+
+						@endif
 						<a href=""
 							class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-sm font-medium leading-6 text-white bg-orange-400 border border-transparent rounded-lg md:w-auto hover:bg-orange-500">
 							この温泉のレビューを書く
 						</a>
 					</div>
 				</div>
+
 				@endauth
+
+
 			</div>
 
 			<div class="flex">

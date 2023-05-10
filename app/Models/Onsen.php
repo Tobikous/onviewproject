@@ -16,6 +16,13 @@ class Onsen extends Model
     protected $fillable = ['name','area','evaluation','formatted_address','latitude','longitude','phone_number','URL','nearest_station','opening_hours'];
 
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'onsenName', 'name');
+    }
+
+
+
     public function reviewsWithRelations()
     {
         $reviews = $this->reviews();
@@ -28,18 +35,9 @@ class Onsen extends Model
         return $reviews;
     }
 
-
-
-    public static function searchByOnsenName($keyword)
+    public function users()
     {
-        return self::where('name', 'LIKE', "%{$keyword}%");
-    }
-
-
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class, 'onsenName', 'name');
+        return $this->belongsToMany(User::class, 'favorite', 'onsen_id', 'user_id');
     }
 
 
@@ -47,6 +45,13 @@ class Onsen extends Model
     public function scopeLatestOrder($query)
     {
         return $query->OrderBy('updated_at', 'DESC');
+    }
+
+
+
+    public static function searchByOnsenName($keyword)
+    {
+        return self::where('name', 'LIKE', "%{$keyword}%");
     }
 
 

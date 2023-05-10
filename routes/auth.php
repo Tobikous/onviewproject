@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\FavoriteController;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -76,4 +77,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/update/{id}', [ReviewController::class, 'update'])->name('update');
 
     Route::post('/delete/{id}', [ReviewController::class, 'delete'])->name('delete');
+
+    Route::post('/favorite/add', [FavoriteController::class, 'addFavorite'])->name('favorite.add');
+    Route::post('/favorite/remove', [FavoriteController::class, 'removeFavorite'])->name('favorite.remove');
 });
