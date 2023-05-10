@@ -1,5 +1,8 @@
 @extends('layouts.app1')
 
+@section('mypage-link')
+@endsection
+
 @section('content')
 
 <body>
@@ -141,7 +144,7 @@
 						<div class="w-full md:w-2/3 md:pl-5">
 							<div class="w-full overflow-hidden md:w-4/6">
 								<div class="pb-2.5 px-0.5">
-									<div class=""><span class="font-bold text-2xl">{{$review['onsenName']}}</span>
+									<div class=""><span class="font-bold text-2xl">{{$review['onsenName']}} のレビュー</span>
 									</div>
 									<div class="mt-1.5"><span
 											class="text-orange-500 text-2xl">{{$review['star']}}</span></div>

@@ -1,5 +1,7 @@
 @extends('layouts.app1')
 
+@section('onsens-link')
+@endsection
 
 @section('content')
 
@@ -7,7 +9,7 @@
 
 	@if (session('success'))
 	<div class="flex container  w-full flex-col text-center my-10">
-		<div class="mt-20 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
+		<div class="mt-10 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
 			<p class="font-bold">{{ session('success') }}</p>
 		</div>
 	</div>
@@ -46,23 +48,30 @@
 					<div class="mt-2.5 px-3 py-2.5 md:bg-gray-200 flex justify-center">
 						@if ($isFavorite)
 						<form action="{{ route('favorite.remove') }}" method="POST"
-							class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-sm font-medium leading-6 text-white bg-orange-400 border border-transparent rounded-lg md:w-auto hover:bg-orange-500">
+							class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-sm font-medium leading-6 text-white bg-orange-400 border border-transparent rounded md:w-auto hover:bg-orange-500">
 							@csrf
 							<input type="hidden" name="onsen_id" value="{{ $onsen->id }}">
-							<button type="submit">お気に入り解除</button>
+							<button type="submit" class="flex items-center"><img src="{{ asset('svg/heart_icon.svg') }}"
+									alt="customIcon" class="mr-1.5 w-5 h-5 mt-0.5">お気に入り解除</button>
 						</form>
 						@else
 						<form action="{{ route('favorite.add') }}" method="POST"
-							class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-sm font-medium leading-6 text-white bg-orange-400 border border-transparent rounded-lg md:w-auto hover:bg-orange-500">
+							class="my-1 inline-flex items-center justify-center px-2 py-0.5 text-sm font-medium leading-6 text-white bg-orange-400 border border-transparent rounded md:w-auto hover:bg-orange-500">
 							@csrf
 							<input type="hidden" name="onsen_id" value="{{ $onsen->id }}">
-							<button type="submit">お気に入り追加</button>
+							<button type="submit" class="flex items-center">
+								<img src="{{ asset('svg/heart_icon2.svg') }}" alt="customIcon"
+									class="mr-1.5 w-5 h-5 mt-0.5">
+								お気に入り
+							</button>
+
 						</form>
 
 						@endif
 						<a href=""
-							class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-sm font-medium leading-6 text-white bg-orange-400 border border-transparent rounded-lg md:w-auto hover:bg-orange-500">
-							この温泉のレビューを書く
+							class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-sm font-medium leading-6 text-white bg-orange-400 border border-transparent rounded md:w-auto hover:bg-orange-500">
+							<img src="{{ asset('svg/edit_article2.svg') }}" alt="customIcon"
+								class="mr-1.5 w-5 h-5 mt-0.5">レビューを書く
 						</a>
 					</div>
 				</div>
@@ -116,9 +125,11 @@
 								</div>
 								<div class="pt-2">
 									<h2 class="pl-2 font-bold">公式サイト</h2>
-									<div class="text-sm bg-white w-4/5 p-2.5 border-b border-gray-300">
-										{{$onsen['URL']}}</div>
+									<div class="text-sm bg-white w-4/5 p-2.5 border-b border-gray-300 underline">
+										<a href="{{ $onsen['URL'] }}" target="_blank">{{ $onsen['URL'] }}</a>
+									</div>
 								</div>
+
 
 							</div>
 
@@ -129,7 +140,10 @@
 
 						@foreach($reviews as $review)
 						<div class="my-2">
-							<span class="ml-2 text-gray-700 text-sm">{{ $review->user->name }}</span>
+							<div class="flex items-center">
+								<img src="{{ asset('svg/human_icon.svg') }}" alt="customIcon" class="ml-1.5 w-4 h-4">
+								<span class="ml-2 text-gray-700 text-sm">{{ $review->user->name }}</span>
+							</div>
 							<div class="mt-2 p-4 border border-gray-300 rounded">
 								<div class="truncate overflow-hidden text-gray-600 text-sm">{{$review['content']}}</div>
 
@@ -176,8 +190,9 @@
 
 					@foreach($reviews as $review)
 					<div class="p-3 border border-gray-300 rounded my-5">
-						<div class="pb-2 border-b border-gray-300"><span class="ml-2 text-gray-900 text-sm font-bold">{{
-								$review->user->name }}</span>
+						<div class="flex items-center pb-2 border-b border-gray-300">
+							<img src="{{ asset('svg/human_icon.svg') }}" alt="customIcon" class="ml-0.5 w-4 h-4">
+							<span class="ml-2 text-gray-900 text-sm font-bold">{{ $review->user->name }}</span>
 						</div>
 						<h2 class="text-orange-500 tracking-widest text-xl py-2.5 border-b border-gray-300">
 							{{$review['star']}} </h2>
@@ -290,9 +305,13 @@
 			<div class="w-full overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 mt-10 md:mt-0 md:pr-6">
 				<div class="mr-2 md:ml-2">
 
-					<div class="pr-1 flex items-center justify-between w-full py-3 mb-2 border-t border-gray-300">
-						<h2 class="text-2xl font-normal">{{$onsen['phone_number']}}</h2>
+					<div class="pr-1 w-full py-3 mb-2 border-t border-gray-300">
+						<h2 class="flex text-2xl font-normal">
+							<img src="{{ asset('svg/phone_icon.svg') }}" alt="customIcon" class="mr-1.5 w-5 h-5 mt-2">
+							<a href="tel:{{$review->onsen->phone_number}}">{{$review->onsen->phone_number}}</a>
+						</h2>
 					</div>
+
 
 
 					<div class="mt-10">

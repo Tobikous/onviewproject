@@ -10,7 +10,7 @@
 
 	@if (session('success'))
 	<div class="flex container  w-full flex-col text-center my-10">
-		<div class="mt-20 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
+		<div class="mt-10 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
 			<p class="font-bold">{{ session('success') }}</p>
 		</div>
 	</div>
@@ -18,7 +18,7 @@
 
 	@if (session('error'))
 	<div class="flex container  w-full flex-col text-center my-10">
-		<div class="mt-20 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
+		<div class="mt-10 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
 			<p class="font-bold">{{ session('error') }}</p>
 		</div>
 	</div>

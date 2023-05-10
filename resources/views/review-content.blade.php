@@ -1,5 +1,9 @@
 @extends('layouts.app1')
 
+
+@section('reviews-link')
+@endsection
+
 @section('content')
 
 <body>
@@ -79,9 +83,11 @@
 
 
 					<div class="p-3 border border-gray-300 rounded">
-						<div class="pb-2 border-b border-gray-300"><span class="ml-2 text-gray-900 text-sm font-bold">{{
-								$review->user->name }}</span>
+						<div class="flex items-center pb-2 border-b border-gray-300">
+							<img src="{{ asset('svg/human_icon.svg') }}" alt="customIcon" class="ml-0.5 w-4 h-4">
+							<span class="ml-2 text-gray-900 text-sm font-bold">{{ $review->user->name }}</span>
 						</div>
+
 						<h2 class="text-orange-500 tracking-widest text-xl py-2.5 border-b border-gray-300">
 							{{$review['star']}} </h2>
 
@@ -106,77 +112,17 @@
 				</div>
 			</div>
 
-			<div id="mapSection" class="w-full overflow-hidden md:w-4/6 lg:w-4/6 xl:w-4/6 md:px-5 "
-				style="display:none;">
-				<div class="md:ml-3 md:pb-5">
-					<div class="w-full aspect-w-5 aspect-h-4 relative">
-						<div id="map" class="w-full h-full absolute"></div>
-					</div>
-					<div class="container mx-auto mt-8 border border-gray-300">
-						<div class="flex">
-							<div class="text-sm font-bold bg-orange-100 w-1/5 p-2.5 border-r border-b border-gray-300">
-								住所</div>
-							<div class="text-sm bg-white w-4/5 p-2.5 border-b border-gray-300">
-								{{$review->onsen->formatted_address}}</div>
-						</div>
-						<div class="flex">
-							<div class="text-sm font-bold bg-orange-100 w-1/5 p-2.5 border-r border-gray-300">最寄り駅
-							</div>
-							<div class="text-sm bg-white w-4/5 p-2.5">{{$review->onsen->nearest_station}}</div>
-						</div>
-					</div>
-				</div>
-
-
-				<script>
-					var data = @json($review['onsen']);
-					var latData = data['latitude'];
-					var lngData = data['longitude'];
-					var adress = data['formatted_address'];
-					var areaData = data['name'];
-
-					function createInfoWindowContent(address, area) {
-						return `<div> <h1>${address}</h1>
-                    <p>${area}</p></div>`;
-					}
-
-					function initMap() {
-						const center = {
-							lat: parseFloat(latData),
-							lng: parseFloat(lngData)
-						};
-						const map = new google.maps.Map(document.getElementById('map'), {
-							zoom: 14,
-							center: center
-						});
-						const marker = new google.maps.Marker({
-							position: {
-								lat: parseFloat(latData),
-								lng: parseFloat(lngData)
-							},
-							map: map
-						});
-						var infowindow = new google.maps.InfoWindow({
-							content: createInfoWindowContent(areaData, adress)
-						});
-						infowindow.open(map, marker);
-						marker.addListener('click', function() {
-							infowindow.open(map, marker);
-						});
-					}
-					window.initMap = initMap;
-				</script>
-				<script async defer
-					src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
-				</script>
-			</div>
 
 			<div class="w-full overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 mt-10 md:mt-0 md:pr-6">
 				<div class="mr-2 md:ml-2">
 
-					<div class="pr-1 flex items-center justify-between w-full py-3 mb-2 border-t border-gray-300">
-						<h2 class="text-2xl font-normal">{{$review->onsen->phone_number}}</h2>
+					<div class="pr-1 w-full py-3 mb-2 border-t border-gray-300">
+						<h2 class="flex text-2xl font-normal">
+							<img src="{{ asset('svg/phone_icon.svg') }}" alt="customIcon" class="mr-1.5 w-5 h-5 mt-2">
+							<a href="tel:{{$review->onsen->phone_number}}">{{$review->onsen->phone_number}}</a>
+						</h2>
 					</div>
+
 
 
 					<div class="mt-10">

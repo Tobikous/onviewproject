@@ -1,16 +1,20 @@
 <div class="w-full overflow-hidden md:w-1/4">
 	<div class="p-3 bg-gray-200 rounded-md">
-		<div class="py-3 px-5 border-b bg-white rounded-md rounded-b-none">
-			<span class="text-xl font-bold">都道府県</span>
-			<span class="ml-1">から探す</span>
-
+		<div class="flex justify-between items-center py-3 px-5 border-b bg-white rounded-md rounded-b-none">
+			<div class="flex items-center">
+				<span class="text-xl font-bold pb-0.5">エリア</span>
+				<span class="ml-1">から探す</span>
+			</div>
+			<div>
+				<img src="{{ asset('svg/map_icon.svg') }}" alt="customIcon" class="w-5 h-5">
+			</div>
 		</div>
 		<form action="{{ route('onsen.filter') }}" method="GET">
 			@csrf
 			<div class="py-2 px-5 bg-white rounded-md rounded-t-none">
 				<select name='area' onchange="this.form.submit()"
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-					<option value="" selected hidden>エリアの選択</option>
+					<option value="" selected hidden>都道府県の選択</option>
 					<optgroup label="北海道">
 						<option value="北海道">北海道</option>
 					<optgroup label="東北">
@@ -77,7 +81,8 @@
 			</div>
 		</form>
 
-		<a href="{{ route('onsen_lists') }}" class="mt-3 py-3 px-5 border-b bg-white rounded-md block text-lg">
+		<a href="{{ route('onsen_lists') }}"
+			class="mt-3 py-3 px-5 border-b bg-white rounded-md block text-lg font-normal">
 			すべての温泉を見る
 		</a>
 	</div>
