@@ -54,7 +54,7 @@
 									src="{{ asset($review->image) }}" alt="onsenImage">
 							</a>
 						</div>
-						<div class="w-full md:w-2/3 md:pl-5">
+						<a href="/review/{{$review['id']}}" class="w-full md:w-2/3 md:pl-5">
 							<div class="w-full overflow-hidden md:w-4/6">
 								<div class="pb-2.5 px-0.5">
 									<div class=""><span class="font-bold text-2xl">{{$review['onsenName']}}</span>
@@ -70,7 +70,7 @@
 									{{$review['content']}}
 								</div>
 							</div>
-						</div>
+						</a>
 					</div>
 				</div>
 				@endforeach
@@ -140,7 +140,7 @@
 							</a>
 							@endif
 						</div>
-						<div class="w-full md:w-2/3 md:pl-5">
+						<a href="/onsen/{{$onsen['id']}}" class="w-full md:w-2/3 md:pl-5">
 							<div class="w-full overflow-hidden md:w-4/6">
 								<div class="pb-2.5 px-0.5">
 									<div class=""><span class="font-bold text-2xl">{{$onsen['name']}}</span>
@@ -158,7 +158,7 @@
 									<div class="md:p-3"></div>
 								</div>
 							</div>
-						</div>
+						</a>
 					</div>
 				</div>
 				@endforeach
