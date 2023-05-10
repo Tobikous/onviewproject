@@ -47,7 +47,7 @@
 				<img src="{{ asset('header-icon.png') }}" alt="headerName" class="ml-3 opacity-1 md:w-full w-1/2">
 			</a>
 
-			<nav class="items-center justify-center hidden space-x-8 text-white md:flex">
+			<nav class="items-center justify-center hidden space-x-7 text-white md:flex">
 				@section('home-link')
 				<a href="{{ url('/') }}" x-data="{ hover: false }" @mouseenter="hover = true"
 					@mouseleave="hover = false"
@@ -106,6 +106,29 @@
 					@mouseleave="hover = false"
 					class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
 					<span class="block">レビューの投稿</span>
+					<span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
+						<span x-show="hover"
+							class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-orange-200"
+							x-transition:enter="transition ease-out duration-300"
+							x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+							x-transition:leave="transition ease-out duration-300"
+							x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+							data-primary="orange-600" style="display: none;"></span>
+					</span>
+				</a>
+				@show
+
+				@section('mypage-link')
+				<a href="{{ route('mypage.favorites') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+					@mouseleave="hover = false"
+					class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
+					<span class="block"><svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24"
+							height="24" viewBox="0 0 24 24">
+							<circle fill="none" cx="12" cy="7" r="3"></circle>
+							<path
+								d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z">
+							</path>
+						</svg></span>
 					<span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
 						<span x-show="hover"
 							class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-orange-200"

@@ -41,6 +41,12 @@ class Onsen extends Model
     }
 
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+
 
     public function scopeLatestOrder($query)
     {

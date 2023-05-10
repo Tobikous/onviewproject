@@ -48,6 +48,18 @@ class ArticleController extends Controller
         return view('onsen-list', compact('loggedInUser', 'onsens', 'reviews', 'selectedArea'));
     }
 
+    public function myReviews()
+    {
+        $loggedInUser = \Auth::user();
+
+        $myReviews = Review::withRelations()
+                    ->where('user_id', $loggedInUser->id)
+                    ->latestOrder()
+                    ->paginate(10);
+
+        return view('mypage', compact('myReviews'));
+    }
+
     public function reviewContent($id)
     {
         $loggedInUser = \Auth::user();

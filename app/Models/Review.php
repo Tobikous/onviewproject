@@ -112,7 +112,7 @@ class Review extends Model
                 $onsen->phone_number = $geocodedData['formatted_phone_number'];
                 $onsen->URL = $geocodedData['website'];
                 $onsen->nearest_station = $geocodedData['nearest_station'];
-                $onsen->opening_hours = $geocodedData['holiday'];
+                $onsen->regular_holiday = $geocodedData['holiday'];
 
                 $onsen->save();
             }

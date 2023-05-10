@@ -15,8 +15,8 @@ class FavoriteController extends Controller
     public function addFavorite(Request $request)
     {
         $loggedInUser = Auth::user();
-        $onsenId = $request->input('onsen_id');
 
+        $onsenId = $request->input('onsen_id');
 
         $isFavorite = $loggedInUser->favorites()->where('onsen_id', $onsenId)->exists();
 
@@ -34,11 +34,24 @@ class FavoriteController extends Controller
     public function removeFavorite(Request $request)
     {
         $onsenId = $request->input('onsen_id');
-        $loggedInUser = Auth::user();
 
+        $loggedInUser = Auth::user();
 
         $loggedInUser->favorites()->detach($onsenId);
 
         return back()->with('success', 'お気に入りから削除しました');
+    }
+
+    public function favoritesOnsen()
+    {
+        $loggedInUser = Auth::user();
+
+        $favorites = $loggedInUser->favorites()->paginate(10);
+
+        $onsenNames = $favorites->pluck('name');
+
+        $reviews = Review::whereIn('onsenName', $onsenNames)->get();
+
+        return view('mypage', compact('favorites', 'reviews'));
     }
 }
