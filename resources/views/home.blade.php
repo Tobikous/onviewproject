@@ -42,9 +42,9 @@
 					<div
 						class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
 						<p class="mx-auto text-gray-700 sm:max-w-md lg:text-lg md:max-w-2xl text-lg tracking-widest">
-							温泉レビューサイトおんびゅ～へようこそ！<br><br>当サイトは、普段の温泉ライフをより豊かにする為につくられた、温泉専用のレビューサイトです。
-							みなさまと共に全国の温泉をレビューして、より良い温泉ライフを楽しみましょう！<br><br>
-							会員登録することでレビューを投稿することが可能になります。宿泊案内や宿の予約等につながるようなサイトではないので悪しからずご了承くださいませ。
+							温泉レビューサイトおんびゅ～へようこそ！<br><br>当サイトは、普段の温泉ライフをより豊かにする為につくられた、温泉レビューサイトです。
+							みなさまと共に全国の温泉をレビューして、より楽しく、濃密な温泉ライフを楽しみましょう！<br><br>
+							会員登録することでレビューを投稿したり、お気に入りの温泉を登録することがが可能になります。宿泊案内や宿の予約等につながるようなサイトではないので悪しからずご了承くださいませ。
 							<br><br>さぁ、ひとっ風呂いきますか！
 						</p>
 					</div>
@@ -141,7 +141,7 @@
 						<h2 class="text-3xl font-bold text-gray-800">投稿レビュー一覧</h2>
 					</div>
 
-					<div class="pb-12 md:mr-5">
+					<div class="pb-12">
 						@foreach($reviews as $review)
 						@if($loop->first)
 						<a href="/review/{{$review['id']}}"

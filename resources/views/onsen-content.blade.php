@@ -52,7 +52,7 @@
 							@csrf
 							<input type="hidden" name="onsen_id" value="{{ $onsen->id }}">
 							<button type="submit" class="flex items-center"><img src="{{ asset('svg/heart_icon.svg') }}"
-									alt="customIcon" class="mr-1.5 w-5 h-5 mt-0.5">お気に入り解除</button>
+									alt="customIcon" class="mr-1.5 w-5 h-5 mt-0.5">お気に入りをはずす</button>
 						</form>
 						@else
 						<form action="{{ route('favorite.add') }}" method="POST"
@@ -62,17 +62,17 @@
 							<button type="submit" class="flex items-center">
 								<img src="{{ asset('svg/heart_icon2.svg') }}" alt="customIcon"
 									class="mr-1.5 w-5 h-5 mt-0.5">
-								お気に入り
+								お気に入りに追加
 							</button>
 
 						</form>
 
 						@endif
-						<a href=""
+						<!-- <a href="{{ route('create') }}"
 							class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-sm font-medium leading-6 text-white bg-orange-400 border border-transparent rounded md:w-auto hover:bg-orange-500">
 							<img src="{{ asset('svg/edit_article2.svg') }}" alt="customIcon"
 								class="mr-1.5 w-5 h-5 mt-0.5">レビューを書く
-						</a>
+						</a> -->
 					</div>
 				</div>
 
