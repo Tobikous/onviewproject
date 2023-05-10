@@ -19,7 +19,7 @@ class HomeController extends Controller
         $onsens = Onsen::latestOrder()->paginate(3);
 
         $randomReviews = $onsens->map(function ($onsen) {
-            return $onsen->reviews->random();
+            return $onsen->reviews->isNotEmpty() ? $onsen->reviews->random() : null;
         });
 
         $reviews = Review::latestOrder()->paginate(3);
