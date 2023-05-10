@@ -30,11 +30,9 @@
 					</div>
 				</div>
 				@auth
+				@if($review->isWrittenByUser(auth()->user()))
 				<div class="w-full overflow-hidden md:w-2/6 pt-3 mb-5 md:mb-0 md:ml-6">
 					<div class="mt-2.5 px-3 py-2.5 md:bg-gray-200 flex justify-center">
-
-						@auth
-						@if($review->isWrittenByUser(auth()->user()))
 						<a href="/edit/{{$review['id']}}"
 							class="flex text-gray-600 border-0 py-1.5 px-2 mr-4 font-semibold focus:outline-none rounded hover:bg-white"><img
 								src="{{ asset('svg/edit_article.svg') }}" alt="customIcon"
@@ -66,10 +64,9 @@
 								</div>
 							</form>
 						</x-modal>
-						@endif
-						@endauth
 					</div>
 				</div>
+				@endif
 				@endauth
 			</div>
 		</div>
