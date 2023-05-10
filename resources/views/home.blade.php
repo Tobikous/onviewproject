@@ -61,7 +61,7 @@
 				@foreach($onsens as $count =>$onsen)
 				<div id="slider-{{$count+1}}" class="container mx-auto">
 					<div class="relative bg-cover bg-center h-auto text-white py-24 px-10 object-fill rounded-md"
-						style="background-image: url({{ $randomReviews[$count] !== null ? $randomReviews[$count]['image'] : 'public/images/onsennoimage.jpg' }})">
+						style="background-image: url({{ $randomReviews[$count] !== null ? $randomReviews[$count]['image'] : 'images/onsennoimage.jpg' }})">
 						<div class="absolute inset-0 bg-black opacity-30 rounded-md"></div>
 						<div class="relative md:w-1/2">
 							<p class="font-bold text-sm uppercase">{{$onsen['area']}}</p>
