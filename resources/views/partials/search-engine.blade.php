@@ -89,7 +89,7 @@
 
 	<div class="rounded-lg bg-gray-200 mt-5 p-7">
 		<div class="text-left">
-			<h2 class="mb-1 text-lg font-medium text-gray-900">レビュー検索</h2>
+			<h2 class="mb-1 text-lg font-medium text-gray-900">キーワード検索</h2>
 			<form action="/review_search" method="GET">
 				@csrf
 				<div class="mt-5 overflow-hidden bg-white border-none rounded-lg">

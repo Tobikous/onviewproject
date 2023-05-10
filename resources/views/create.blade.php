@@ -160,7 +160,7 @@
 				<label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">写真</label>
 				<label for="image"
 					class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 p-4 cursor-pointer">
-					<input type="file" name='image' id="image" style="display: none;" accept=".png, .jpg, .jpeg">
+					<input type="file" name='image' id="image" style="display: none;" accept=".png, .jpg, .jpeg, .HEIC">
 					<div class="space-y-1 text-center" id="initial">
 						<svg id="upload-icon" class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
 							viewBox="0 0 48 48" aria-hidden="true">
@@ -171,7 +171,7 @@
 						<div class="flex text-sm text-gray-600">
 							<p class="pl-1">クリックして画像を挿入</p>
 						</div>
-						<p class="text-xs text-gray-500">PNG, JPG up</p>
+						<p class="text-xs text-gray-500">PNG, JPG 画像を入れてください</p>
 					</div>
 					<div id="preview" class="space-y-1 text-center"
 						style="display: none; align-items: center; justify-content: center;">
