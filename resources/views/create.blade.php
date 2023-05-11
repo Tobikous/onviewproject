@@ -112,9 +112,6 @@
 
 
 			<script>
-				var apiKey = "{{ env('GOOGLE_MAPS_API_KEY') }}";
-				var language = 'ja';
-
 				function initAutocomplete() {
 					var input = document.getElementById('autocomplete');
 					var autocomplete = new google.maps.places.Autocomplete(input);

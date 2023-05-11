@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Http\Requests\SearchRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SearchReviewRequest;
 
