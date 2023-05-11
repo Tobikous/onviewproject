@@ -75,7 +75,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/edit/{id}', [ReviewController::class, 'edit'])->name('edit');
 
+    Route::get('/edit_onsen/{id}', [ReviewController::class, 'editOnsen'])->name('edit.onsen');
+
     Route::post('/update/{id}', [ReviewController::class, 'update'])->name('update');
+
+    Route::post('/update_onsen/{id}', [ReviewController::class, 'updateOnsen'])->name('update.onsen');
 
     Route::post('/delete/{id}', [ReviewController::class, 'delete'])->name('delete');
 

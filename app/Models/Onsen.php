@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 use App\Http\Requests\ReviewStoreRequest;
+use App\Http\Requests\OnsenUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Models\GeocodeCalculator;
@@ -78,5 +79,21 @@ class Onsen extends Model
         if ($onsen) {
             $onsen->update(['evaluation' => $averageRating]);
         }
+    }
+
+    public static function updateOnsenRequest(OnsenUpdateRequest $request, $id)
+    {
+        $data = $request->all();
+
+        $onsen = Onsen::findOrFail($id);
+
+        $onsen->update([
+            'area' => $data['area'],
+            'formatted_address' => $data['formatted_address'],
+            'nearest_station' => $data['nearest_station'],
+            'regular_holiday' => $data['regular_holiday'],
+        ]);
+
+        return $onsen;
     }
 }

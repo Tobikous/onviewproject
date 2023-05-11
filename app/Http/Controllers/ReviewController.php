@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\Onsen;
 use App\Models\User;
 use App\Http\Requests\ReviewStoreRequest;
+use App\Http\Requests\OnsenUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,7 @@ class ReviewController extends Controller
 
         Onsen::updateOnsenEvaluation($review->onsenName);
 
-        return redirect()->route('home')->with('success', 'レビューを更新しました。');
+        return redirect()->route('review', [ 'id' =>$review['id'] ])->with('success', 'レビューを更新しました。');
     }
 
 
@@ -74,5 +75,27 @@ class ReviewController extends Controller
         Review::where('id', $id)->delete();
 
         return redirect()->route('home')->with('success', 'レビュー投稿を削除しました。');
+    }
+
+
+    public function editOnsen($id)
+    {
+        $loggedInUser = \Auth::user();
+
+        $onsen = Onsen::find($id);
+
+        if (!$loggedInUser) {
+            return redirect()->back()->with('error', 'この温泉を編集する権限はありません。');
+        }
+
+        return view('edit-onsen', compact('loggedInUser', 'onsen'));
+    }
+
+
+    public function updateOnsen(OnsenUpdateRequest $request, $id)
+    {
+        $onsen = Onsen::updateOnsenRequest($request, $id);
+
+        return redirect()->route('onsen_content', [ 'id' =>$onsen['id'] ])->with('success', '温泉の情報を更新しました。');
     }
 }

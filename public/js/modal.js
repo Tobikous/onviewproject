@@ -112,10 +112,35 @@ function validateForm() {
 }
 
 
+function openEditOnsenModal() {
+    const onsenName = document.querySelector("input[name='name']").value;
+    const area = document.querySelector("select[name='area']").value;
+    const formattedAddress = document.querySelector("input[name='formatted_address']").value;
+    const nearestStation = document.querySelector("input[name='nearest_station']").value;
+    const regularHoliday = document.querySelector("input[name='regular_holiday']").value;
+
+
+    const modalContent = document.getElementById("modalContent");
+    modalContent.innerHTML = `
+    <p class="mb-2"><strong>温泉名:</strong> ${onsenName}</p>
+    <p class="mb-2"><strong>所在地:</strong> ${area}</p>
+    <p class="mb-2"><strong>住所:</strong> ${formattedAddress}</p>
+    <p class="mb-2"><strong>最寄り駅:</strong> ${nearestStation}</p>
+    <p class="mb-2"><strong>定休日:</strong> ${regularHoliday}</p>
+    `;
+
+    document.getElementById("modal").classList.remove("hidden");
+}
+
 
 function submitReview() {
     document.getElementById("modal").classList.add("hidden");
     document.getElementById("review-form").submit();
+}
+
+function submitOnsen() {
+    document.getElementById("modal").classList.add("hidden");
+    document.getElementById("onsen-edit-form").submit();
 }
 
 function cancelModal() {

@@ -15,6 +15,14 @@
 	</div>
 	@endif
 
+	@if (session('error'))
+	<div class="flex container  w-full flex-col text-center my-10">
+		<div class="mt-10 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
+			<p class="font-bold">{{ session('error') }}</p>
+		</div>
+	</div>
+	@endif
+
 
 	<main class="max-w-5xl px-5 py-5 md:py-10 mx-auto xl:px-0 tails-selected-element">
 
@@ -52,7 +60,7 @@
 							@csrf
 							<input type="hidden" name="onsen_id" value="{{ $onsen->id }}">
 							<button type="submit" class="flex items-center"><img src="{{ asset('svg/heart_icon.svg') }}"
-									alt="customIcon" class="mr-1.5 w-5 h-5 mt-0.5">お気に入りをはずす</button>
+									alt="customIcon" class="mr-1.5 w-5 h-5 mt-0.5">お気に入り解除</button>
 						</form>
 						@else
 						<form action="{{ route('favorite.add') }}" method="POST"
@@ -68,11 +76,11 @@
 						</form>
 
 						@endif
-						<!-- <a href="{{ route('create') }}"
+						<a href="/edit_onsen/{{$onsen['id']}}"
 							class="m-1 inline-flex items-center justify-center px-2 py-0.5 text-sm font-medium leading-6 text-white bg-orange-400 border border-transparent rounded md:w-auto hover:bg-orange-500">
 							<img src="{{ asset('svg/edit_article2.svg') }}" alt="customIcon"
-								class="mr-1.5 w-5 h-5 mt-0.5">レビューを書く
-						</a> -->
+								class="mr-1.5 w-5 h-5 mt-0.5">温泉情報の編集
+						</a>
 					</div>
 				</div>
 
