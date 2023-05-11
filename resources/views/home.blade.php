@@ -325,25 +325,27 @@
 							自分が投稿したレビュー
 						</h2>
 						<ul class="ml-1.5">
-							@foreach($myReviews AS $myReview)
+							@foreach($reviews AS $review)
+							@if($review->isWrittenByUser(auth()->user()))
 							<li class="mb-5">
-								<a href="/review/{{$myReview['id']}}" class="flex">
+								<a href="/review/{{$review['id']}}" class="flex">
 									<div class="w-1/3 overflow-hidden rounded">
 										<img class="object-cover object-center w-full h-full transition duration-300 ease-out transform scale-100 rounded hover:scale-105"
-											src="{{ asset($myReview->image) }}" alt="onsenImage">
+											src="{{ asset($review->image) }}" alt="onsenImage">
 									</div>
 									<div class="flex flex-col items-start justify-center w-2/3 p-2">
-										<h3 href="/review/{{$myReview['id']}}"
+										<h3 href="/review/{{$review['id']}}"
 											class="font-medium leading-tight text-gray-700 hover:text-gray-900 ext-gray-900">
-											{{$myReview['onsenName']}}
+											{{$review['onsenName']}}
 										</h3>
 										<h2 class="text-orange-500 tracking-widest  title-font font-base text-sm">
-											{{$myReview['star']}}</h2>
+											{{$review['star']}}</h2>
 										<span
-											class="block text-xs text-gray-500">更新日：{{$myReview['updated_at']->format('Y年m月d日')}}</span>
+											class="block text-xs text-gray-500">更新日：{{$review['updated_at']->format('Y年m月d日')}}</span>
 									</div>
 								</a>
 							</li>
+							@endif
 							@endforeach
 						</ul>
 						@endauth

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Tag;
 use App\Models\Onsen;
-use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
@@ -25,12 +24,9 @@ class HomeController extends Controller
 
         $reviews = Review::latestOrder()->paginate(3);
 
-        $myReviews = $loggedInUser->reviews()->latestOrder()->get();
-
-
         $allTags = Tag::get();
 
-        return view('home', compact('loggedInUser', 'randomReviews', 'onsens', 'reviews', 'allTags', 'myReviews'));
+        return view('home', compact('loggedInUser', 'randomReviews', 'onsens', 'reviews', 'allTags'));
     }
 
     public function teamOfService()
