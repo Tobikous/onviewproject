@@ -6,7 +6,7 @@
 
 @section('content')
 
-<body>
+<main>
 
 	@if (session('success'))
 	<div class="flex container  w-full flex-col text-center my-10">
@@ -54,7 +54,7 @@
 	</section>
 	@endguest
 
-	<main class="px-5 py-10 mx-auto xl:px-20 tails-selected-element">
+	<section class="px-5 py-10 mx-auto xl:px-20 tails-selected-element">
 
 		<div class="px-7">
 			<div class="sliderAx h-auto">
@@ -85,56 +85,10 @@
 		</div>
 
 
-		<script>
-			var cont = 0;
-			var sliderCount = @json(count($onsens));
-			var xx;
-
-			function loopSlider() {
-				xx = setInterval(function() {
-					cont = (cont + 1) % sliderCount;
-					updateSlider();
-				}, 8000);
-			}
-
-			function sliderButton(count) {
-				cont = parseInt(count) - 1;
-				updateSlider();
-				reinitLoop(4000);
-			}
-
-			function updateSlider() {
-				for (var i = 1; i <= sliderCount; i++) {
-					if (i === cont + 1) {
-						$("#slider-" + i).stop(true, true).delay(400).fadeIn(400);
-						$("#sButton" + i).addClass("bg-orange-800");
-					} else {
-						$("#slider-" + i).stop(true, true).fadeOut(410);
-						$("#sButton" + i).removeClass("bg-orange-800");
-					}
-				}
-			}
-			$(window).ready(function() {
-				for (var i = 2; i <= sliderCount; i++) {
-					$("#slider-" + i).hide();
-				}
-				loopSlider();
-			});
-
-			function reinitLoop(time) {
-				clearInterval(xx);
-				setTimeout(loopSlider, time);
-			}
-		</script>
 
 
 
-
-
-
-
-
-		<section class="flex flex-wrap mt-14 overflow-hidden px-7 md:px-0">
+		<div class="flex flex-wrap mt-14 overflow-hidden px-7 md:px-0">
 			<div class="w-full overflow-hidden md:w-4/6 md:px-5">
 				<div class="md:ml-2 md:mr-4">
 					<div class="flex items-center justify-between w-full pb-5 mb-8 border-b border-gray-200">
@@ -353,10 +307,53 @@
 				</div>
 			</div>
 
-		</section>
+		</div>
 
-	</main>
+	</section>
 
-</body>
+
+	<script>
+		var cont = 0;
+		var sliderCount = @json(count($onsens));
+		var xx;
+
+		function loopSlider() {
+			xx = setInterval(function() {
+				cont = (cont + 1) % sliderCount;
+				updateSlider();
+			}, 8000);
+		}
+
+		function sliderButton(count) {
+			cont = parseInt(count) - 1;
+			updateSlider();
+			reinitLoop(4000);
+		}
+
+		function updateSlider() {
+			for (var i = 1; i <= sliderCount; i++) {
+				if (i === cont + 1) {
+					$("#slider-" + i).stop(true, true).delay(400).fadeIn(400);
+					$("#sButton" + i).addClass("bg-orange-800");
+				} else {
+					$("#slider-" + i).stop(true, true).fadeOut(410);
+					$("#sButton" + i).removeClass("bg-orange-800");
+				}
+			}
+		}
+		$(window).ready(function() {
+			for (var i = 2; i <= sliderCount; i++) {
+				$("#slider-" + i).hide();
+			}
+			loopSlider();
+		});
+
+		function reinitLoop(time) {
+			clearInterval(xx);
+			setTimeout(loopSlider, time);
+		}
+	</script>
+
+</main>
 
 @endsection

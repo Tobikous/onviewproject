@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container m-auto p-24">
+<main class="container m-auto p-24">
 	<div class="mb-10">
 		<h1 class="text-2xl font-bold text-center mb-10">利用規約</h1>
 		<p class="pt-4">
@@ -184,6 +184,6 @@
 	<div class="">
 		<p class="pt-4">2023年04月30日 制定</p>
 	</div>
-</div>
+</main>
 
 @endsection

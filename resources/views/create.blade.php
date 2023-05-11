@@ -5,7 +5,7 @@
 
 @section('content')
 
-<body>
+<main>
 
 	<div class="flex container  w-full flex-col text-center my-10">
 		@if (session('error'))
@@ -111,28 +111,6 @@
 			</div>
 
 
-			<script>
-				function initAutocomplete() {
-					var input = document.getElementById('autocomplete');
-					var autocomplete = new google.maps.places.Autocomplete(input);
-
-					autocomplete.addListener('place_changed', function() {
-						var place = autocomplete.getPlace();
-
-						if (!place.name) {
-							return;
-						}
-
-						input.value = place.name;
-					});
-				}
-			</script>
-			<script
-				src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initAutocomplete"
-				async defer></script>
-
-
-
 			<div class="mb-8">
 				<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">レビュー点数:</label>
 				<select name='star'
@@ -205,7 +183,6 @@
 
 			</div>
 
-			<script src="{{ asset('js/create-insert-image.js') }}"></script>
 
 
 
@@ -238,6 +215,30 @@
 		</div>
 
 	</div>
-</body>
+
+	<script>
+		function initAutocomplete() {
+			var input = document.getElementById('autocomplete');
+			var autocomplete = new google.maps.places.Autocomplete(input);
+
+			autocomplete.addListener('place_changed', function() {
+				var place = autocomplete.getPlace();
+
+				if (!place.name) {
+					return;
+				}
+
+				input.value = place.name;
+			});
+		}
+	</script>
+
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initAutocomplete"
+		async defer></script>
+
+	<script src="{{ asset('js/create-insert-image.js') }}"></script>
+
+</main>
 
 @endsection

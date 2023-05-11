@@ -2,7 +2,7 @@
 
 @section('content')
 
-<body>
+<main>
 
 	<div class="max-w-2xl mx-auto bg-white p-16">
 
@@ -104,8 +104,6 @@
 
 			</div>
 
-			<script src="{{ asset('js/create-insert-image.js') }}"></script>
-
 
 			<button type="button" onclick="openEditModal()"
 				class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-600">更新する</button>
@@ -138,6 +136,9 @@
 		</div>
 
 	</div>
-</body>
+
+	<script src="{{ asset('js/create-insert-image.js') }}"></script>
+
+</main>
 
 @endsection

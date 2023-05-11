@@ -5,7 +5,7 @@
 
 @section('content')
 
-<body>
+<main>
 
 	@if (session('success'))
 	<div class="flex container  w-full flex-col text-center my-10">
@@ -265,49 +265,6 @@
 						</div>
 					</div>
 				</div>
-
-
-				<script>
-					var data = @json($onsen);
-					var latData = data['latitude'];
-					var lngData = data['longitude'];
-					var adress = data['formatted_address'];
-					var areaData = data['name'];
-
-					function createInfoWindowContent(address, area) {
-						return `<div> <h1>${address}</h1>
-                    <p>${area}</p></div>`;
-					}
-
-					function initMap() {
-						const center = {
-							lat: parseFloat(latData),
-							lng: parseFloat(lngData)
-						};
-						const map = new google.maps.Map(document.getElementById('map'), {
-							zoom: 14,
-							center: center
-						});
-						const marker = new google.maps.Marker({
-							position: {
-								lat: parseFloat(latData),
-								lng: parseFloat(lngData)
-							},
-							map: map
-						});
-						var infowindow = new google.maps.InfoWindow({
-							content: createInfoWindowContent(areaData, adress)
-						});
-						infowindow.open(map, marker);
-						marker.addListener('click', function() {
-							infowindow.open(map, marker);
-						});
-					}
-					window.initMap = initMap;
-				</script>
-				<script async defer
-					src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
-				</script>
 			</div>
 
 			<div class="w-full overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 mt-10 md:mt-0 md:pr-6">
@@ -356,33 +313,77 @@
 				</div>
 			</div>
 
-			<script>
-				window.onload = function() {
-					const topButton = document.getElementById('topButton');
-					const reviewButton = document.getElementById('reviewButton');
-					const mapButton = document.getElementById('mapButton');
-					const topSection = document.getElementById('topSection');
-					const reviewSection = document.getElementById('reviewSection');
-					const mapSection = document.getElementById('mapSection');
-
-					function showSection(sectionToShow) {
-						topSection.style.display = 'none';
-						reviewSection.style.display = 'none';
-						mapSection.style.display = 'none';
-						sectionToShow.style.display = 'block';
-					}
-
-					reviewButton.addEventListener('click', () => showSection(reviewSection));
-					topButton.addEventListener('click', () => showSection(topSection));
-					mapButton.addEventListener('click', () => showSection(mapSection));
-				};
-			</script>
-
 
 		</section>
 
 	</main>
 
-</body>
+
+
+
+	<script>
+		var data = @json($onsen);
+		var latData = data['latitude'];
+		var lngData = data['longitude'];
+		var adress = data['formatted_address'];
+		var areaData = data['name'];
+
+		function createInfoWindowContent(address, area) {
+			return `<div> <h1>${address}</h1>
+                    <p>${area}</p></div>`;
+		}
+
+		function initMap() {
+			const center = {
+				lat: parseFloat(latData),
+				lng: parseFloat(lngData)
+			};
+			const map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 14,
+				center: center
+			});
+			const marker = new google.maps.Marker({
+				position: {
+					lat: parseFloat(latData),
+					lng: parseFloat(lngData)
+				},
+				map: map
+			});
+			var infowindow = new google.maps.InfoWindow({
+				content: createInfoWindowContent(areaData, adress)
+			});
+			infowindow.open(map, marker);
+			marker.addListener('click', function() {
+				infowindow.open(map, marker);
+			});
+		}
+		window.initMap = initMap;
+
+		window.onload = function() {
+			const topButton = document.getElementById('topButton');
+			const reviewButton = document.getElementById('reviewButton');
+			const mapButton = document.getElementById('mapButton');
+			const topSection = document.getElementById('topSection');
+			const reviewSection = document.getElementById('reviewSection');
+			const mapSection = document.getElementById('mapSection');
+
+			function showSection(sectionToShow) {
+				topSection.style.display = 'none';
+				reviewSection.style.display = 'none';
+				mapSection.style.display = 'none';
+				sectionToShow.style.display = 'block';
+			}
+
+			reviewButton.addEventListener('click', () => showSection(reviewSection));
+			topButton.addEventListener('click', () => showSection(topSection));
+			mapButton.addEventListener('click', () => showSection(mapSection));
+		};
+	</script>
+
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
+	</script>
+
+</main>
 
 @endsection

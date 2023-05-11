@@ -2,7 +2,7 @@
 
 @section('content')
 
-<body>
+<main>
 
 	<div class="max-w-2xl mx-auto bg-white p-16">
 
@@ -164,6 +164,6 @@
 		</div>
 
 	</div>
-</body>
+</main>
 
 @endsection

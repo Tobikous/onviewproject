@@ -6,7 +6,7 @@
 
 @section('content')
 
-<body>
+<main>
 
 	@if (session('success'))
 	<div class="flex container  w-full flex-col text-center my-10">
@@ -24,7 +24,7 @@
 	</div>
 	@endif
 
-	<main class="max-w-5xl px-5 py-5 md:py-10 mx-auto xl:px-0 tails-selected-element">
+	<section class="max-w-5xl px-5 py-5 md:py-10 mx-auto xl:px-0 tails-selected-element">
 
 
 
@@ -89,7 +89,7 @@
 			</div>
 		</div>
 
-		<section class="flex flex-wrap overflow-hidden px-7 md:px-0">
+		<div class="flex flex-wrap overflow-hidden px-7 md:px-0">
 
 
 
@@ -152,11 +152,11 @@
 			</div>
 
 
-		</section>
+		</div>
 
-	</main>
+	</section>
 
 
 
-</body>
+</main>
 @endsection
