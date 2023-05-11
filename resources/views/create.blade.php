@@ -106,9 +106,35 @@
 			<div class="mb-8">
 				<label for="onsenName"
 					class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">温泉名:</label>
-				<input type="text" name='onsenName' placeholder="行った場所を記入してください"
+				<input id="autocomplete" type="text" name='onsenName' placeholder="行った場所を記入してください"
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 			</div>
+
+
+			<script>
+				var apiKey = "{{ env('GOOGLE_MAPS_API_KEY') }}";
+				var language = 'ja';
+
+				function initAutocomplete() {
+					var input = document.getElementById('autocomplete');
+					var autocomplete = new google.maps.places.Autocomplete(input);
+
+					autocomplete.addListener('place_changed', function() {
+						var place = autocomplete.getPlace();
+
+						if (!place.name) {
+							return;
+						}
+
+						input.value = place.name;
+					});
+				}
+			</script>
+			<script
+				src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initAutocomplete"
+				async defer></script>
+
+
 
 			<div class="mb-8">
 				<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">レビュー点数:</label>
