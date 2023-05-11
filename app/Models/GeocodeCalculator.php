@@ -36,7 +36,7 @@ class GeocodeCalculator
             // 最寄り駅のデータを取得
             $latitude = $location['lat'];
             $longitude = $location['lng'];
-            $radius = 5000; // 5skm範囲で検索
+            $radius = 2000; // 2km範囲で検索
             $type = 'train_station'; // 電車の駅を検索
             $nearbyStationsUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={$latitude},{$longitude}&radius={$radius}&type={$type}&key={$apiKey}&language={$language}";
 
