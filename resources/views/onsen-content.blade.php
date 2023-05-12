@@ -52,7 +52,7 @@
 				@endphp
 
 
-				<div class="w-full overflow-hidden md:w-2/6 pt-3 mb-5 md:mb-0 md:ml-6">
+				<div class="w-full overflow-hidden md:w-2/6 pt-3 mb-5 md:mb-0 md:ml-5">
 					<div class="mt-2.5 px-3 py-2.5 md:bg-gray-200 flex justify-center">
 						@if ($isFavorite)
 						<form action="{{ route('favorite.remove') }}" method="POST"
