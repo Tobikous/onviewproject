@@ -44,7 +44,7 @@
 				</div>
 				<div class="w-full md:w-1/2  px-4 md:px-7">
 					<div
-						class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
+						class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 md:pr-5 lg:pr-0 md:pb-0">
 						<p class="mx-auto text-gray-700 sm:max-w-md lg:text-lg md:max-w-2xl text-lg tracking-widest">
 							温泉レビューサイトおんびゅ～へようこそ！<br><br>当サイトは、普段の温泉ライフをより豊かにする為につくられた、温泉レビューサイトです。
 							みなさまと共に全国の温泉をレビューして、より楽しく、濃密な温泉ライフを楽しみましょう！<br><br>

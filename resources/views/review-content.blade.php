@@ -111,7 +111,7 @@
 
 						<div class="text-gray-900 text-base my-2 p-2 bg-gray-200 rounded-sm">{{$review['content']}}
 						</div>
-						<div class="w-1/3 overflow-hidden mt-5 mb-3">
+						<div class="w-full md:w-1/3 overflow-hidden mt-5 mb-3">
 							<img class="object-cover object-center w-full h-full" src="{{ asset($review->image) }}"
 								alt="onsenImage">
 						</div>
