@@ -23,23 +23,10 @@ class HomeController extends Controller
         });
 
         $reviews = Review::latestOrder()->paginate(3);
+        $myReviews = \Auth::check() ? $loggedInUser->reviews()->latestOrder()->paginate(3) : collect();
 
         $allTags = Tag::get();
 
-        return view('home', compact('loggedInUser', 'randomReviews', 'onsens', 'reviews', 'allTags'));
-    }
-
-    public function teamOfService()
-    {
-        $loggedInUser = \Auth::user();
-
-        return view('team-of-service', compact('loggedInUser'));
-    }
-
-    public function privacyPolicy()
-    {
-        $loggedInUser = \Auth::user();
-
-        return view('privacy-policy', compact('loggedInUser'));
+        return view('home', compact('randomReviews', 'onsens', 'reviews', 'allTags', 'myReviews'));
     }
 }

@@ -3,6 +3,8 @@
 @section('onsens-link')
 @endsection
 
+@section('modal-onsens-link')
+@endsection
 
 @section('content')
 

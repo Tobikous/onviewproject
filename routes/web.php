@@ -27,8 +27,8 @@ Route::get('/onsen_lists', [ArticleController::class, 'onsenLists'])->name('onse
 Route::get('/review_search', [SearchController::class, 'reviewSearch'])->name('review_search');
 Route::get('/onsen_search', [SearchController::class, 'onsenSearch'])->name('onsen_search');
 Route::get('/tag/{id}', [SearchController::class, 'tagSearch'])->name('tag_search');
-Route::get('/team_of_service', [HomeController::class, 'teamOfService'])->name('team_of_service');
-Route::get('/privacy_policy', [HomeController::class, 'privacyPolicy'])->name('privacy_policy');
+Route::view('/team_of_service', 'team-of-service')->name('team_of_service');
+Route::view('/privacy_policy', 'privacy-policy')->name('privacy_policy');
 
 
 require __DIR__.'/auth.php';

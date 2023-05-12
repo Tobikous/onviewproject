@@ -3,6 +3,9 @@
 @section('profile-link')
 @endsection
 
+@section('modal-profile-link')
+@endsection
+
 @section('content')
 
 <body>

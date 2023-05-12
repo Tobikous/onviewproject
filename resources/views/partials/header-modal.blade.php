@@ -30,6 +30,8 @@
 	x-transition:leave-end="opacity-0 transform scale-90">
 
 	<div class="flex flex-col space-y-3 p-2">
+
+		@section('modal-home-link')
 		<a href="{{ url('/') }}" class="flex items-center space-x-2 transition hover:text-orange-600">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
 				stroke="currentColor" class="w-4 h-4 mr-2.5">
@@ -37,7 +39,9 @@
 					d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
 			</svg>ホーム
 		</a>
+		@show
 
+		@section('modal-onsens-link')
 		<a href="{{ route('onsen_lists') }}"
 			class="flex items-center space-x-2 transition hover:text-orange-600  hover:text-orange-600">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="_x32_"
@@ -48,7 +52,9 @@
 				</g>
 			</svg>温泉一覧
 		</a>
+		@show
 
+		@section('modal-reviews-link')
 		<a href="{{ route('review_lists') }}" class="flex items-center space-x-2 transition hover:text-orange-600">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
 				stroke="currentColor" class="w-4 h-4 mr-2.5">
@@ -56,8 +62,11 @@
 					d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
 			</svg>レビュー一覧
 		</a>
+		@show
 
 		@auth
+
+		@section('modal-review-create-link')
 		<a href="{{ route('create') }}" class="flex items-center space-x-2 transition hover:text-orange-600">
 			<svg class="w-4 h-4 mr-2.5 fill-current text-gray-800" xmlns="http://www.w3.org/2000/svg"
 				xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 512 512" xml:space="preserve">
@@ -69,6 +78,7 @@
 				</g>
 			</svg>レビューを投稿する
 		</a>
+		@show
 
 		@endauth
 	</div>
@@ -76,6 +86,7 @@
 	<div class="p-2">
 
 		@guest
+
 		<a class="flex items-center space-x-2 transition hover:text-orange-600 pb-2" href="{{ route('login') }}">
 			<svg class="w-4 h-4 mr-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
 				xmlns="http://www.w3.org/2000/svg">
@@ -86,6 +97,7 @@
 			ログイン
 		</a>
 
+		@section('modal-register-link')
 		<a class="flex items-center space-x-2 transition hover:text-orange-600" href="{{ route('register') }}">
 			<svg class="w-4 h-4 mr-2.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path
@@ -96,12 +108,13 @@
 			</svg>
 			会員登録
 		</a>
+		@show
 
 		@endguest
 
-
 		@auth
 
+		@section('modal-mypage-link')
 		<a href="{{ route('mypage.favorites') }}"
 			class="mb-2 flex items-center space-x-2 transition hover:text-orange-600">
 			<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="18" height="24" viewBox="0 0 24 24">
@@ -111,7 +124,9 @@
 				</path>
 			</svg><span class="ml-0.5">マイページ</span>
 		</a>
+		@show
 
+		@section('modal-profile-link')
 		<a href="{{ route('profile.edit') }}" class="mb-2 flex items-center space-x-2 transition hover:text-orange-600">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
 				stroke="currentColor" class="h-4 w-4 mr-2.5">
@@ -120,6 +135,7 @@
 				<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
 			</svg>設定
 		</a>
+		@show
 
 		<a class="flex items-center space-x-2 transition hover:text-orange-600" href="{{ route('logout') }}" onclick="event.preventDefault();
             			document.getElementById('logout-form').submit();">
@@ -134,6 +150,7 @@
 		<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 			@csrf
 		</form>
+
 		@endauth
 	</div>
 </div>

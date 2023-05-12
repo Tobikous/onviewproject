@@ -3,6 +3,9 @@
 @section('home-link')
 @endsection
 
+@section('modal-home-link')
+@endsection
+
 
 @section('content')
 
@@ -279,27 +282,25 @@
 							自分が投稿したレビュー
 						</h2>
 						<ul class="ml-1.5">
-							@foreach($reviews AS $review)
-							@if($review->isWrittenByUser(auth()->user()))
+							@foreach($myReviews AS $myReview)
 							<li class="mb-5">
-								<a href="/review/{{$review['id']}}" class="flex">
+								<a href="/review/{{$myReview['id']}}" class="flex">
 									<div class="w-1/3 overflow-hidden rounded">
 										<img class="object-cover object-center w-full h-full transition duration-300 ease-out transform scale-100 rounded hover:scale-105"
-											src="{{ asset($review->image) }}" alt="onsenImage">
+											src="{{ asset($myReview->image) }}" alt="onsenImage">
 									</div>
 									<div class="flex flex-col items-start justify-center w-2/3 p-2">
-										<h3 href="/review/{{$review['id']}}"
+										<h3 href="/review/{{$myReview['id']}}"
 											class="font-medium leading-tight text-gray-700 hover:text-gray-900 ext-gray-900">
-											{{$review['onsenName']}}
+											{{$myReview['onsenName']}}
 										</h3>
 										<h2 class="text-orange-500 tracking-widest  title-font font-base text-sm">
-											{{$review['star']}}</h2>
+											{{$myReview['star']}}</h2>
 										<span
-											class="block text-xs text-gray-500">更新日：{{$review['updated_at']->format('Y年m月d日')}}</span>
+											class="block text-xs text-gray-500">更新日：{{$myReview['updated_at']->format('Y年m月d日')}}</span>
 									</div>
 								</a>
 							</li>
-							@endif
 							@endforeach
 						</ul>
 						@endauth

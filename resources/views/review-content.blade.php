@@ -4,6 +4,9 @@
 @section('reviews-link')
 @endsection
 
+@section('modal-reviews-link')
+@endsection
+
 @section('content')
 
 <main>

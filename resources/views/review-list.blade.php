@@ -3,6 +3,9 @@
 @section('reviews-link')
 @endsection
 
+@section('modal-reviews-link')
+@endsection
+
 @section('content')
 
 <main class="px-5 py-2 mx-auto xl:px-20 tails-selected-element">

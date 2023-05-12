@@ -4,6 +4,9 @@
 @section('register-link')
 @endsection
 
+@section('modal-register-link')
+@endsection
+
 @section('remove-in-register-link')
 @endsection
 

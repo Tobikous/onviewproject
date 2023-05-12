@@ -3,6 +3,9 @@
 @section('mypage-link')
 @endsection
 
+@section('modal-mypage-link')
+@endsection
+
 @section('content')
 
 <main>
