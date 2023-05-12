@@ -11,7 +11,7 @@
 <main class="px-5 py-2 mx-auto xl:px-20 tails-selected-element">
 
 
-	<div class="flex flex-wrap mt-14 overflow-hidden px-5 md:px-0">
+	<section class="flex flex-wrap mt-14 overflow-hidden">
 		@include('partials.search-engine')
 
 
@@ -92,7 +92,7 @@
 
 		</div>
 
-	</div>
+	</section>
 
 
 

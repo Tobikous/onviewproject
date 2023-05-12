@@ -200,7 +200,7 @@
 		<main class="text-gray-600 body-font">
 			<form name="loginForm" method="POST" action="{{ route('login') }}">
 				@csrf
-				<div class="container px-10 py-20 mx-auto flex flex-wrap justify-center md:items-center">
+				<div class="container px-10 py-10 md:py-20 mx-auto flex flex-wrap justify-center md:items-center">
 					<div class="lg:w-3/5 md:w-1/2 lg:pr-0 pr-0 text-center text-white">
 						<h1 class="mb-2 title-font font-medium text-2xl md:text-3xl">温泉レビューサイト <br
 								class="md:hidden">おんびゅーへようこそ！</h1>

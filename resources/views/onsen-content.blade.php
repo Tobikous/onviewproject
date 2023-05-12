@@ -29,7 +29,7 @@
 
 	<main class="max-w-5xl px-5 py-5 md:py-10 mx-auto xl:px-0 tails-selected-element">
 
-		<section class="mx-7 mb-5">
+		<section class="mx-1.5 md:mx-7 mb-5">
 			<div class="flex flex-wrap md:flex-nowrap">
 				<div class="w-full overflow-hidden md:w-4/6">
 					<div class="pt-4 pb-2.5 px-0.5">
@@ -109,7 +109,7 @@
 			</div>
 		</section>
 
-		<section class="flex flex-wrap overflow-hidden px-7 md:px-0">
+		<section class="flex flex-wrap overflow-hidden md:px-0">
 
 			<div id="topSection" class="w-full overflow-hidden md:w-4/6 lg:w-4/6 xl:w-4/6 md:px-5">
 				<div class="md:ml-2 md:mr-4">
@@ -136,9 +136,11 @@
 								</div>
 								<div class="pt-2">
 									<h2 class="pl-2 font-bold">公式サイト</h2>
-									<div class="text-sm bg-white w-4/5 p-2.5 border-b border-gray-300 underline">
+									<div class="text-sm bg-white w-4/5 p-2.5 border-b border-gray-300 underline overflow-hidden"
+										style="word-wrap: break-word;">
 										<a href="{{ $onsen['URL'] }}" target="_blank">{{ $onsen['URL'] }}</a>
 									</div>
+
 								</div>
 
 

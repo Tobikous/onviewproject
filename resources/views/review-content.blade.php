@@ -31,7 +31,7 @@
 
 
 
-		<div class="mx-7 mb-5">
+		<div class="mx-1.5 md:mx-7 mb-5">
 			<div class="flex flex-wrap md:flex-nowrap">
 				<div class="w-full overflow-hidden md:w-4/6">
 					<div class="pt-4 pb-2.5 px-0.5">
@@ -92,7 +92,7 @@
 			</div>
 		</div>
 
-		<div class="flex flex-wrap overflow-hidden px-7 md:px-0">
+		<div class="flex flex-wrap overflow-hidden">
 
 
 
