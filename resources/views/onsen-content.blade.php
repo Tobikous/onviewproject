@@ -29,7 +29,7 @@
 
 	<main class="max-w-5xl px-5 py-5 md:py-10 mx-auto xl:px-0 tails-selected-element">
 
-		<div class="mx-7 mb-5">
+		<section class="mx-7 mb-5">
 			<div class="flex flex-wrap md:flex-nowrap">
 				<div class="w-full overflow-hidden md:w-4/6">
 					<div class="pt-4 pb-2.5 px-0.5">
@@ -107,7 +107,7 @@
 					地図
 				</button>
 			</div>
-		</div>
+		</section>
 
 		<section class="flex flex-wrap overflow-hidden px-7 md:px-0">
 

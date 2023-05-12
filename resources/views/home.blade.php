@@ -121,7 +121,7 @@
 						<div class="p-1 rounded bg-gray-100">
 							<p class="leading-relaxed truncate overflow-hidden">{{$review['content']}}</p>
 							<a href="/review/{{$review['id']}}"
-								class="inline-flex items-center inline text-sm underline  text-gray-500">
+								class="inline-flex items-center inline text-sm underline text-gray-500">
 								<span>続きを読む</span>
 								<svg class="w-3 h-3 ml-1 transform -rotate-45" fill="none" stroke="currentColor"
 									viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
