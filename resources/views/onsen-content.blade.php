@@ -273,7 +273,7 @@
 			</div>
 
 			<div class="w-full flex justify-center md:hidden mt-6">
-				<a href="{{ route('create') }}"
+				<a href="{{ route('create', ['onsenName' => $onsen['name'], 'area' => $onsen['area']]) }}"
 					class="flex items-center px-5 py-3 text-md font-semibold tracking-widest text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
 					<img src="{{ asset('svg/edit_article2.svg') }}" alt="customIcon" class="mr-1.5 w-5 h-5 mt-0.5">
 					この温泉のレビューを投稿する

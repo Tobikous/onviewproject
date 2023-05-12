@@ -15,16 +15,17 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
         $loggedInUser = \Auth::user();
-
         $allTags = Tag::get();
 
-        $reviews = Review::latestOrder()->get();
+        $onsenName = $request->input('onsenName');
+        $area = $request->input('area');
 
-        return view('create', compact('loggedInUser', 'allTags', 'reviews'));
+        return view('create', compact('loggedInUser', 'allTags', 'onsenName', 'area'));
     }
+
 
 
 

@@ -40,9 +40,14 @@
 				<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">都道府県:</label>
 				<select name='area'
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+					@if($area == null)
 					<option value="" selected hidden>選択してください</option>
+					@else
+					<option value="{{$area}}" selected>{{$area}}</option>
+					@endif
 					<optgroup label="北海道">
 						<option value="北海道">北海道</option>
+					</optgroup>
 					<optgroup label="東北">
 						<option value="青森県">青森県</option>
 						<option value="秋田県">秋田県</option>
@@ -110,6 +115,7 @@
 				<label for="onsenName"
 					class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">温泉名:</label>
 				<input id="autocomplete" type="text" name='onsenName' placeholder="行った場所を記入してください"
+					value="{{ old('onsenName', $onsenName ?? '') }}"
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 			</div>
 
