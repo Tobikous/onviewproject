@@ -29,10 +29,11 @@
 
 	@guest
 	<section class="px-2 bg-white md:px-0 pt-10 pb-12 tails-selected-element">
-		<div class="container items-center max-w-6xl px-8 mx-auto">
+		<div class="container items-center max-w-6xl md:px-8 mx-auto">
 			<div class="flex flex-wrap items-center sm:-mx-3">
 				<div class="relative flex items-center justify-center w-full">
-					<img src="{{ asset('svg/onsen_icon02.svg') }}" alt="customIcon" class="w-16 h-16 opacity-1 m-4">
+					<img src="{{ asset('svg/onsen_icon02.svg') }}" alt="customIcon"
+						class="w-16 h-16 opacity-1 mr-2 md:m-4">
 					<h2 class="text-4xl font-normal text-gray-800 tracking-widest">はじめに</h2>
 				</div>
 
@@ -59,7 +60,7 @@
 
 	<section class="px-5 py-10 mx-auto xl:px-20 tails-selected-element">
 
-		<div class="px-7">
+		<div class="md:px-7">
 			<div class="sliderAx h-auto">
 				@foreach($onsens as $count =>$onsen)
 				<div id="slider-{{$count+1}}" class="container mx-auto">
@@ -91,9 +92,9 @@
 
 
 
-		<div class="flex flex-wrap mt-14 overflow-hidden px-7 md:px-0">
-			<div class="w-full overflow-hidden md:w-4/6 md:px-5">
-				<div class="md:ml-2 md:mr-4">
+		<div class="flex flex-wrap mt-14 overflow-hidden md:px-7 md:px-0">
+			<div class="w-full overflow-hidden md:w-4/6">
+				<div class="md:mr-4">
 					<div class="flex items-center justify-between w-full pb-5 mb-8 border-b border-gray-200">
 						<h2 class="text-3xl font-bold text-gray-800">投稿レビュー一覧</h2>
 					</div>
@@ -184,8 +185,8 @@
 
 			</div>
 
-			<div class="w-full mt-12 overflow-hidden md:w-2/6 md:mt-0 md:px-5">
-				<div class="ml-2 mr-2 md:ml-4">
+			<div class="w-full mt-12 overflow-hidden md:w-2/6 md:mt-0">
+				<div class="md:ml-10">
 
 					<div class="rounded-lg bg-gray-100 p-7">
 						<div class="pb-6 text-left">
