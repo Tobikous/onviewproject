@@ -184,7 +184,7 @@
 			</div>
 
 			<div id="reviewSection" class="w-full md:w-4/6 lg:w-4/6 xl:w-4/6 md:px-5" style="display:none;">
-				<div class="md:ml-2 md:mr-4 pb-10 md:pb-5">
+				<div class="md:ml-2 md:mr-4 md:pb-5">
 					<div class="mb-6">
 						<p class="text-base text-gray-700 leading-5">
 							@if ($reviews->firstItem())
@@ -229,7 +229,7 @@
 					@endforeach
 
 
-					<div class="flex flex-row-reverse justify-center pt-5 pb-10">
+					<div class="flex flex-row-reverse justify-center pt-3 md:pt-5 pb-4 md:pb-10">
 						<p class="ml-5">{{ $reviews->links() }}</p>
 						<p class="text-base text-gray-700 leading-5 pr-4 pt-2.5">
 							表示中
@@ -250,7 +250,7 @@
 				</div>
 			</div>
 
-			<div id="mapSection" class="w-full overflow-hidden md:w-4/6 lg:w-4/6 xl:w-4/6 md:px-5 "
+			<div id="mapSection" class="w-full overflow-hidden md:w-4/6 lg:w-4/6 xl:w-4/6 md:px-5 mb-3 md:mb-0"
 				style="display:none;">
 				<div class="md:ml-3 md:pb-5">
 					<div class="w-full aspect-w-5 aspect-h-4 relative">
@@ -271,6 +271,16 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="w-full flex justify-center md:hidden mt-6">
+				<a href="{{ route('create') }}"
+					class="flex items-center px-5 py-3 text-md font-semibold tracking-widest text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
+					<img src="{{ asset('svg/edit_article2.svg') }}" alt="customIcon" class="mr-1.5 w-5 h-5 mt-0.5">
+					この温泉のレビューを投稿する
+				</a>
+			</div>
+
+
 
 			<div class="w-full overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 mt-10 md:mt-0 md:pr-6">
 				<div class="mr-2 md:ml-2">
