@@ -89,7 +89,7 @@ class ReviewController extends Controller
             return redirect()->back()->with('error', 'この温泉を編集する権限はありません。');
         }
 
-        return view('edit-onsen', compact('loggedInUser', 'onsen'));
+        return view('edit-onsen', compact('onsen'));
     }
 
 

@@ -2,26 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Favorite;
 use App\Models\Review;
-use App\Models\Tag;
-use App\Models\Onsen;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
     public function addFavorite(Request $request)
     {
-        $loggedInUser = Auth::user();
-
         $onsenId = $request->input('onsen_id');
 
-        $isFavorite = $loggedInUser->favorites()->where('onsen_id', $onsenId)->exists();
+        $isFavorite = Auth::user()->favorites()->where('onsen_id', $onsenId)->exists();
 
         if (!$isFavorite) {
-            $loggedInUser->favorites()->attach($onsenId);
+            Auth::user()->favorites()->attach($onsenId);
 
             return back()->with('success', 'お気に入りに追加しました');
         }
@@ -29,24 +24,18 @@ class FavoriteController extends Controller
         return back()->with('success', '既にお気に入りに入っています');
     }
 
-
-
     public function removeFavorite(Request $request)
     {
         $onsenId = $request->input('onsen_id');
 
-        $loggedInUser = Auth::user();
-
-        $loggedInUser->favorites()->detach($onsenId);
+        Auth::user()->favorites()->detach($onsenId);
 
         return back()->with('success', 'お気に入りから削除しました');
     }
 
     public function favoritesOnsen()
     {
-        $loggedInUser = Auth::user();
-
-        $favorites = $loggedInUser->favorites()->paginate(10);
+        $favorites = Auth::user()->favorites()->paginate(10);
 
         $onsenNames = $favorites->pluck('name');
 

@@ -9,10 +9,12 @@ use App\Http\Requests\ReviewStoreRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Models\GeocodeCalculator;
+use App\Traits\OrderByLatest;
 
 class Review extends Model
 {
     use HasFactory;
+    use OrderByLatest;
     protected $table = 'review';
     protected $fillable = ['content','star','time','user_id','onsenName','tag_id','image'];
 
@@ -44,14 +46,6 @@ class Review extends Model
 
 
 
-
-    public function scopeLatestOrder($query)
-    {
-        return $query->OrderBy('updated_at', 'DESC');
-    }
-
-
-
     public function scopeMatchId($query, $id)
     {
         return $query->where('id', $id);
@@ -72,27 +66,28 @@ class Review extends Model
     }
 
 
+    private static function uploadImage(ReviewStoreRequest $request): string
+    {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = Storage::disk('s3')->putFile('/', $image, 'public');
+            return Storage::disk('s3')->url($path);
+        } else {
+            return 'images/onsennoimage.jpg';
+        }
+    }
+
 
     public static function createFromRequest(ReviewStoreRequest $request)
     {
         $data = $request->all();
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $path = Storage::disk('s3')->putFile('/', $image, 'public');
-            $data['image'] = Storage::disk('s3')->url($path);
-        } else {
-            $data['image'] = 'images/onsennoimage.jpg';
-        }
+        $data['image'] = self::uploadImage($request);
 
         return DB::transaction(function () use ($data) {
-            $tag = Tag::firstOrCreate(
-                ['name' => $data['tag']],
-                ['user_id' => $data['user_id']]
-            );
+            $tag = Tag::createFromData($data);
 
             $geocodedData = GeocodeCalculator::geocodeAddress($data['onsenName']);
-
 
             if ($geocodedData === null) {
                 $geocodedData = [
@@ -102,21 +97,7 @@ class Review extends Model
                 ];
             }
 
-            $onsen = Onsen::firstOrNew(['name' => $data['onsenName']]);
-
-            if (!$onsen->exists || ($onsen->exists && empty($onsen->formatted_address))) {
-                $onsen->area = $data['area'];
-                $onsen->latitude = $geocodedData['latitude'];
-                $onsen->longitude = $geocodedData['longitude'];
-                $onsen->formatted_address = $geocodedData['formatted_address'];
-                $onsen->phone_number = $geocodedData['formatted_phone_number'];
-                $onsen->URL = $geocodedData['website'];
-                $onsen->nearest_station = $geocodedData['nearest_station'];
-                $onsen->regular_holiday = $geocodedData['holiday'];
-
-                $onsen->save();
-            }
-
+            $onsen = Onsen::updateOrGetFromData($data, $geocodedData);
 
             $review = Review::create([
                 'content' => $data['content'],
@@ -138,18 +119,9 @@ class Review extends Model
     {
         $data = $request->all();
 
-        $tag = Tag::firstOrCreate(
-            ['name' => $data['tag']],
-            ['user_id' => $data['user_id']]
-        );
+        $tag = Tag::createFromData($data);
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $path = Storage::disk('s3')->putFile('/', $image, 'public');
-            $data['image'] = Storage::disk('s3')->url($path);
-        } else {
-            $data['image'] = 'images/onsennoimage.jpg';
-        }
+        $data['image'] = self::uploadImage($request);
 
         $review = Review::findOrFail($id);
 

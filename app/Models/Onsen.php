@@ -10,9 +10,11 @@ use App\Http\Requests\OnsenUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Models\GeocodeCalculator;
+use App\Traits\OrderByLatest;
 
 class Onsen extends Model
 {
+    use OrderByLatest;
     protected $table = 'onsenAreaData';
     protected $fillable = ['name','area','evaluation','formatted_address','latitude','longitude','phone_number','URL','nearest_station','regular_holiday'];
 
@@ -47,12 +49,6 @@ class Onsen extends Model
         return $this->hasMany(Favorite::class);
     }
 
-
-
-    public function scopeLatestOrder($query)
-    {
-        return $query->OrderBy('updated_at', 'DESC');
-    }
 
 
 
@@ -93,6 +89,26 @@ class Onsen extends Model
             'nearest_station' => $data['nearest_station'],
             'regular_holiday' => $data['regular_holiday'],
         ]);
+
+        return $onsen;
+    }
+
+    public static function updateOrGetFromData(array $data, array $geocodedData): Onsen
+    {
+        $onsen = self::firstOrNew(['name' => $data['onsenName']]);
+
+        if (!$onsen->exists || ($onsen->exists && empty($onsen->formatted_address))) {
+            $onsen->area = $data['area'];
+            $onsen->latitude = $geocodedData['latitude'];
+            $onsen->longitude = $geocodedData['longitude'];
+            $onsen->formatted_address = $geocodedData['formatted_address'];
+            $onsen->phone_number = $geocodedData['formatted_phone_number'];
+            $onsen->URL = $geocodedData['website'];
+            $onsen->nearest_station = $geocodedData['nearest_station'];
+            $onsen->regular_holiday = $geocodedData['holiday'];
+
+            $onsen->save();
+        }
 
         return $onsen;
     }

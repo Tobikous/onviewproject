@@ -17,43 +17,36 @@ class ArticleController extends Controller
 {
     public function reviewLists()
     {
-        $loggedInUser = \Auth::user();
-
         $reviews = Review::withRelations()->latestOrder()->paginate(10);
 
-        return view('review-list', compact('loggedInUser', 'reviews'));
+        return view('review-list', compact('reviews'));
     }
 
     public function onsenLists()
     {
-        $loggedInUser = \Auth::user();
-
         $onsens = Onsen::latestOrder()->paginate(10);
 
         $reviews = Review::withRelations()->whereIn('onsenName', $onsens->pluck('name'))->get();
 
-        return view('onsen-list', compact('loggedInUser', 'onsens', 'reviews'));
+        return view('onsen-list', compact('onsens', 'reviews'));
     }
 
     public function filterByArea(Request $request)
     {
-        $loggedInUser = \Auth::user();
-
         $selectedArea = $request->input('area');
 
         $onsens = Onsen::where('area', $selectedArea)->latestOrder()->paginate(10);
 
         $reviews = Review::withRelations()->whereIn('onsenName', $onsens->pluck('name'))->get();
 
-        return view('onsen-list', compact('loggedInUser', 'onsens', 'reviews', 'selectedArea'));
+        return view('onsen-list', compact('onsens', 'reviews', 'selectedArea'));
     }
 
     public function myReviews()
     {
         $loggedInUser = \Auth::user();
 
-        $myReviews = Review::withRelations()
-                    ->where('user_id', $loggedInUser->id)
+        $myReviews =$loggedInUser->reviews()
                     ->latestOrder()
                     ->paginate(10);
 
@@ -62,22 +55,18 @@ class ArticleController extends Controller
 
     public function reviewContent($id)
     {
-        $loggedInUser = \Auth::user();
-
         $review = Review::with(['user', 'tag', 'onsen'])->find($id);
 
-        return view('review-content', compact('loggedInUser', 'review'));
+        return view('review-content', compact('review'));
     }
 
 
     public function onsenContent($id)
     {
-        $loggedInUser = \Auth::user();
-
         $onsen = Onsen::find($id);
 
         $reviews = $onsen->reviewsWithRelations()->paginate(10);
 
-        return view('onsen-content', compact('loggedInUser', 'onsen', 'reviews'));
+        return view('onsen-content', compact('onsen', 'reviews'));
     }
 }

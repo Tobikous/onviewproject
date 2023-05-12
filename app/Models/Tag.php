@@ -14,4 +14,12 @@ class Tag extends Model
     {
         return $this->hasMany(Review::class, 'tag_id');
     }
+
+    public static function createFromData(array $data): Tag
+    {
+        return self::firstOrCreate(
+            ['name' => $data['tag']],
+            ['user_id' => $data['user_id']]
+        );
+    }
 }

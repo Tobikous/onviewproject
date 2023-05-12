@@ -8,7 +8,6 @@
 
 		<form id="onsen-edit-form" method='POST' action="{{ route('update.onsen', [ 'id' =>$onsen['id'] ]) }}"
 			enctype="multipart/form-data">
-			<input type='hidden' name='user_id' value="{{$loggedInUser['id']}}">
 			<input type='hidden' name='name' value="{{$onsen['name']}}">
 			@csrf
 
