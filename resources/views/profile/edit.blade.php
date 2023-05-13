@@ -15,21 +15,21 @@
 		</h2>
 	</x-slot>
 
-	<div class="py-12">
-		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-			<div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+	<div class="pt-16 pb-8 px-3 md:px-0">
+		<div class="md:px-8 md:justify-center md:flex">
+			<div class="p-6 sm:p-8 shadow rounded-lg mx-3 mb-10 bg-gray-200">
 				<div class="max-w-xl">
 					@include('profile.partials.update-profile-information-form')
 				</div>
 			</div>
 
-			<div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+			<div class="p-6 sm:p-8 shadow rounded-lg mx-3 mb-10 bg-gray-200">
 				<div class="max-w-xl">
 					@include('profile.partials.update-password-form')
 				</div>
 			</div>
 
-			<div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+			<div class="p-6 sm:p-8 shadow rounded-lg mx-3 mb-10 bg-gray-200">
 				<div class="max-w-xl">
 					@include('profile.partials.delete-user-form')
 				</div>

@@ -73,7 +73,7 @@
 							<button type="submit" class="flex items-center">
 								<img src="{{ asset('svg/heart_icon2.svg') }}" alt="customIcon"
 									class="mr-1.5 w-5 h-5 mt-0.5">
-								お気に入りに追加
+								お気に入り追加
 							</button>
 
 						</form>
@@ -275,7 +275,7 @@
 			<div class="w-full flex justify-center md:hidden mt-6">
 				<a href="{{ route('create', ['onsenName' => $onsen['name'], 'area' => $onsen['area']]) }}"
 					class="flex items-center px-5 py-3 text-md font-semibold tracking-widest text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
-					<img src="{{ asset('svg/edit_article2.svg') }}" alt="customIcon" class="mr-1.5 w-5 h-5 mt-0.5">
+					<img src="{{ asset('svg/edit_article3.svg') }}" alt="customIcon" class="mr-1.5 w-5 h-5 mt-0.5">
 					この温泉のレビューを投稿する
 				</a>
 			</div>
@@ -284,24 +284,27 @@
 
 			<div class="w-full overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 mt-10 md:mt-0 md:pr-6">
 				<div class="mr-2 md:ml-2">
-
 					<div class="pr-1 w-full py-3 mb-2 border-t border-gray-300">
 						<h2 class="flex text-2xl font-normal">
 							<img src="{{ asset('svg/phone_icon.svg') }}" alt="customIcon" class="mr-1.5 w-5 h-5 mt-2">
 							<a href="tel:{{$onsen->phone_number}}">{{$onsen->phone_number}}</a>
 						</h2>
 					</div>
+				</div>
 
 
-
-					<div class="mt-10">
-						<div class="pr-1 flex items-center justify-between w-full pb-2 mb-2 border-b border-gray-300">
-							<h2 class="text-base font-medium text-gray-900">周辺の温泉</h2>
-						</div>
-
+				<div class="mx-5">
+					<div class="w-full flex justify-center hidden md:block mt-10">
+						<a href="{{ route('create', ['onsenName' => $onsen['name'], 'area' => $onsen['area']]) }}"
+							class="flex justify-center px-5 py-3 text-md font-semibold text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
+							<img src="{{ asset('svg/edit_article3.svg') }}" alt="customIcon"
+								class="mr-1.5 w-5 h-5 mt-0.5">
+							この温泉のレビューを投稿
+						</a>
 					</div>
+				</div>
 
-					<!-- <div class="mt-12">
+				<!-- <div class="mt-12">
 						<div class="pr-1 flex items-center justify-between w-full pb-2 mb-2 border-b border-gray-300">
 							<h2 class="text-base font-medium text-gray-900">周辺の温泉</h2>
 						</div>
@@ -325,7 +328,7 @@
 						</ul>
 						@endforeach
 					</div> -->
-				</div>
+			</div>
 			</div>
 
 

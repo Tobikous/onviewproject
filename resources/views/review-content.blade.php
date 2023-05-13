@@ -35,7 +35,8 @@
 			<div class="flex flex-wrap md:flex-nowrap">
 				<div class="w-full overflow-hidden md:w-4/6">
 					<div class="pt-4 pb-2.5 px-0.5">
-						<a href="/onsen/{{$review->onsen->id}}" class="underline pt-2 font-bold text-2xl">
+						<a href="/onsen/{{$review->onsen->id}}"
+							class="underline pt-2 font-bold text-2xl hover:text-orange-500">
 							{{$review->onsen->name}}
 						</a>
 						<div class="mt-1.5"><span class="text-orange-500 text-2xl">{{ str_replace(['(',
@@ -53,7 +54,7 @@
 				@auth
 				@if($review->isWrittenByUser(auth()->user()))
 				<div class="w-full overflow-hidden md:w-2/6 pt-3 mb-5 md:mb-0 md:ml-6">
-					<div class="mt-2.5 px-3 py-2.5 md:bg-gray-200 flex justify-center">
+					<div class="mt-2.5 px-3 py-2.5 bg-gray-200 flex justify-center">
 						<a href="/edit/{{$review['id']}}"
 							class="flex text-gray-600 border-0 py-1.5 px-2 mr-4 font-semibold focus:outline-none rounded hover:bg-white"><img
 								src="{{ asset('svg/edit_article.svg') }}" alt="customIcon"
@@ -131,6 +132,15 @@
 			</div>
 
 
+			<div class="w-full flex justify-center md:hidden mt-6">
+				<a href="{{ route('create', ['onsenName' => $review->onsen->name, 'area' => $review->onsen->area]) }}"
+					class="flex items-center px-5 py-3 text-md font-semibold tracking-widest text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
+					<img src="{{ asset('svg/edit_article3.svg') }}" alt="customIcon" class="mr-1.5 w-5 h-5 mt-0.5">
+					この温泉のレビューを投稿する
+				</a>
+			</div>
+
+
 			<div class="w-full overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 mt-10 md:mt-0 md:pr-6">
 				<div class="mr-2 md:ml-2">
 
@@ -140,14 +150,17 @@
 							<a href="tel:{{$review->onsen->phone_number}}">{{$review->onsen->phone_number}}</a>
 						</h2>
 					</div>
+				</div>
 
+				<div class="mx-5">
 
-
-					<div class="mt-10">
-						<div class="pr-1 flex items-center justify-between w-full pb-2 mb-2 border-b border-gray-300">
-							<h2 class="text-base font-medium text-gray-900">周辺の温泉</h2>
-						</div>
-
+					<div class="w-full flex justify-center hidden md:block mt-10">
+						<a href="{{ route('create', ['onsenName' => $review->onsen->name, 'area' => $review->onsen->area]) }}"
+							class="flex justify-center px-5 py-3 text-md font-semibold text-white uppercase bg-orange-500 hover:bg-orange-600 rounded-lg">
+							<img src="{{ asset('svg/edit_article3.svg') }}" alt="customIcon"
+								class="mr-1.5 w-5 h-5 mt-0.5">
+							この温泉のレビューを投稿
+						</a>
 					</div>
 
 
