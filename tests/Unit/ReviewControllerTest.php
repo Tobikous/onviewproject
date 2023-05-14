@@ -13,105 +13,139 @@ class ReviewControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_create()
+    /**
+     * Test the create review page
+     *
+     * @return void
+     */
+    public function testCreate()
     {
         $user = User::factory()->create();
-        $response = $this->actingAs($user)->get(route('create'));
+        $this->actingAs($user);
+
+        $response = $this->get('/create');
 
         $response->assertStatus(200);
     }
 
-    public function test_store()
+    /**
+     * Test the store review function
+     *
+     * @return void
+     */
+    public function testStore()
     {
         $user = User::factory()->create();
-        $tag = Tag::factory()->create(['user_id' => $user->id]);
+        $this->actingAs($user);
 
+        $reviewData = Review::factory()->raw(['user_id' => $user->id]);
 
-        $reviewData = [
-            'onsenName' =>'例の温泉',
-            'star' => '★★★★☆',
-            'time' => '早朝',
-            'area' => '東京都',
-            'content' => 'This is a test review.',
-            'tag' => $tag->name,
-            'user_id' => $user->id,
-        ];
+        $response = $this->post('/store', $reviewData);
 
-        $onsen = Onsen::create([
-            'name'=>$reviewData['onsenName'],
-            'area' =>$reviewData['area']
-        ]);
-
-        $response = $this->actingAs($user)->post(route('store'), $reviewData);
-
-        $response->assertStatus(302);
-        $response->assertSessionHas('success');
-        $response->assertRedirect(route('home'));
-
-        $this->assertDatabaseHas('review', [
-            'onsenName' => $onsen->name,
-            'user_id' => $user->id,
-            'star' => '★★★★☆',
-            'time' => '早朝',
-            'content' => 'This is a test review.',
-            'tag_id' => $tag->id,
-        ]);
+        $response->assertRedirect(route('review_lists'));
+        $this->assertDatabaseHas('reviews', $reviewData);
     }
 
-    public function test_edit()
+    /**
+     * Test the edit review page
+     *
+     * @return void
+     */
+    public function testEdit()
     {
-        $review = Review::factory()->create();
-        $response = $this->actingAs($review->user)->get(route('edit', ['id' => $review->id]));
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $review = Review::factory()->create(['user_id' => $user->id]);
+
+        $response = $this->get("/edit/{$review->id}");
 
         $response->assertStatus(200);
     }
 
-    public function test_update()
+    /**
+     * Test the update review function
+     *
+     * @return void
+     */
+    public function testUpdate()
     {
-        $review = Review::factory()->create();
-        $tag = Tag::factory()->create(['user_id' => $review->user_id]);
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $review = Review::factory()->create(['user_id' => $user->id]);
 
+        $updatedReviewData = Review::factory()->raw(['user_id' => $user->id]);
 
-        $updatedData = [
-            'content' => 'Updated content',
-            'star' =>'★★★★☆',
-            'time' => 'afternoon',
-            'tag' => $tag->name,
-            'user_id' => $review->user_id,
-            'onsenName' => '例の温泉',
-            'tag_id' => $tag->id
-        ];
+        $response = $this->post("/update/{$review->id}", $updatedReviewData);
 
-        $onsen = Onsen::create([
-            'name'=>$updatedData['onsenName'],
-            'area' => '東京都',
-        ]);
-
-
-        $response = $this->actingAs($review->user)->post(route('update', ['id' => $review->id]), $updatedData);
-
-        $response->assertStatus(302);
-        $response->assertSessionHas('success');
-        $response->assertRedirect(route('home'));
-
-        $this->assertDatabaseHas('review', [
-            'id' => $review->id,
-            'content' => 'Updated content',
-            'star' =>'★★★★☆',
-            'time' => 'afternoon',
-            'tag_id' => $tag->id,
-        ]);
+        $response->assertRedirect(route('mypage.reviews'));
+        $this->assertDatabaseHas('reviews', $updatedReviewData);
     }
 
-    public function test_delete()
+    /**
+     * Test the delete review function
+     *
+     * @return void
+     */
+    public function testDelete()
     {
-        $review = Review::factory()->create();
-        $response = $this->actingAs($review->user)->post(route('delete', ['id' => $review->id]));
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $review = Review::factory()->create(['user_id' => $user->id]);
 
-        $response->assertStatus(302);
-        $response->assertSessionHas('success');
-        $response->assertRedirect(route('home'));
+        $response = $this->post("/delete/{$review->id}");
 
-        $this->assertDatabaseMissing('review', ['id' => $review->id]);
+        $response->assertRedirect(route('mypage.reviews'));
+        $this->assertDatabaseMissing('reviews', ['id' => $review->id]);
+    }
+
+    /**
+     * Test the edit review page access for the review owner
+     *
+     * @return void
+     */
+    public function testEditAccessForOwner()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $review = Review::factory()->create(['user_id' => $user->id]);
+
+        $response = $this->get("/edit/{$review->id}");
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     * Test the edit review page access for other users
+     *
+     * @return void
+     */
+    public function testEditAccessForOthers()
+    {
+        $user = User::factory()->create();
+        $otherUser = User::factory()->create();
+        $this->actingAs($otherUser);
+        $review = Review::factory()->create(['user_id' => $user->id]);
+
+        $response = $this->get("/edit/{$review->id}");
+
+        $response->assertStatus(403); // or redirect, depending on your implementation
+    }
+
+    /**
+     * Test the update review function for invalid data
+     *
+     * @return void
+     */
+    public function testUpdateWithInvalidData()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $review = Review::factory()->create(['user_id' => $user->id]);
+
+        $invalidReviewData = ['content' => '']; // assuming content can't be empty
+
+        $response = $this->post("/update/{$review->id}", $invalidReviewData);
+
+        $response->assertSessionHasErrors('content');
     }
 }

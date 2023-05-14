@@ -6,18 +6,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\SearchController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/review/{id}', [ArticleController::class, 'reviewContent'])->name('review');
 Route::get('/onsen/{id}', [ArticleController::class, 'onsenContent'])->name('onsen_content');
