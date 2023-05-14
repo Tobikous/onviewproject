@@ -20,7 +20,7 @@ class SearchController extends Controller
     {
         $keyword = $request->input('keyword');
 
-        $reviews = Review::searchByOnsenName($keyword)->paginate(10);
+        $reviews = Review::searchByName('onsenName', $keyword)->paginate(10);
 
         return view('search-result', compact('reviews', 'keyword'));
     }
@@ -29,7 +29,7 @@ class SearchController extends Controller
     {
         $onsenkeyword = $request->input('keyword');
 
-        $onsens = Onsen::searchByOnsenName($onsenkeyword)->paginate(10);
+        $onsens = Onsen::searchByName('name', $onsenkeyword)->paginate(10);
 
         $reviews = Review::withRelations()->whereIn('onsenName', $onsens->pluck('name'))->get();
 

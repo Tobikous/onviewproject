@@ -35,9 +35,9 @@
 			<div class="flex flex-wrap md:flex-nowrap">
 				<div class="w-full overflow-hidden md:w-4/6">
 					<div class="pt-4 pb-2.5 px-0.5">
-						<a href="/onsen/{{$review->onsen->id}}"
-							class="underline pt-2 font-bold text-2xl hover:text-orange-500">
-							{{$review->onsen->name}}
+						<a href="/onsen/{{$review->onsen->id}}" class="pt-2 font-bold text-2xl">
+							<span class="hover:underline hover:text-orange-500">「{{$review->onsen->name}}」
+							</span><span> のレビュー</span>
 						</a>
 						<div class="mt-1.5"><span class="text-orange-500 text-2xl">{{ str_replace(['(',
 								')'], '', star_rating($review->onsen->evaluation)) }}</span><span

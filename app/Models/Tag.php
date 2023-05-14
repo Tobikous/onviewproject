@@ -10,10 +10,12 @@ class Tag extends Model
     use HasFactory;
     protected $fillable = ['name','user_id'];
 
+
     public function searchReviews()
     {
         return $this->hasMany(Review::class, 'tag_id');
     }
+
 
     public static function createFromData(array $data): Tag
     {

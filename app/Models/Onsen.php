@@ -11,9 +11,12 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Models\GeocodeCalculator;
 use App\Traits\OrderByLatest;
+use App\Traits\SearchableByName;
 
 class Onsen extends Model
 {
+    use HasFactory;
+    use SearchableByName;
     use OrderByLatest;
     protected $table = 'onsenAreaData';
     protected $fillable = ['name','area','evaluation','formatted_address','latitude','longitude','phone_number','URL','nearest_station','regular_holiday'];
@@ -23,7 +26,6 @@ class Onsen extends Model
     {
         return $this->hasMany(Review::class, 'onsenName', 'name');
     }
-
 
 
     public function reviewsWithRelations()
@@ -38,6 +40,7 @@ class Onsen extends Model
         return $reviews;
     }
 
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'favorite', 'onsen_id', 'user_id');
@@ -48,15 +51,6 @@ class Onsen extends Model
     {
         return $this->hasMany(Favorite::class);
     }
-
-
-
-
-    public static function searchByOnsenName($keyword)
-    {
-        return self::where('name', 'LIKE', "%{$keyword}%");
-    }
-
 
 
     public static function updateOnsenEvaluation($onsenName)
@@ -77,6 +71,7 @@ class Onsen extends Model
         }
     }
 
+
     public static function updateOnsenRequest(OnsenUpdateRequest $request, $id)
     {
         $data = $request->all();
@@ -92,6 +87,7 @@ class Onsen extends Model
 
         return $onsen;
     }
+
 
     public static function updateOrGetFromData(array $data, array $geocodedData): Onsen
     {

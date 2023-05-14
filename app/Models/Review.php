@@ -10,19 +10,21 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Models\GeocodeCalculator;
 use App\Traits\OrderByLatest;
+use App\Traits\SearchableByName;
 
 class Review extends Model
 {
     use HasFactory;
+    use SearchableByName;
     use OrderByLatest;
     protected $table = 'review';
     protected $fillable = ['content','star','time','user_id','onsenName','tag_id','image'];
+
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
 
 
     public function tag()
@@ -31,12 +33,10 @@ class Review extends Model
     }
 
 
-
     public function scopeWithRelations($query)
     {
         return $query->with(['user', 'tag']);
     }
-
 
 
     public function onsen()
@@ -45,24 +45,15 @@ class Review extends Model
     }
 
 
-
     public function scopeMatchId($query, $id)
     {
         return $query->where('id', $id);
     }
 
 
-
     public function isWrittenByUser(User $user): bool
     {
         return $this->user_id == $user->id;
-    }
-
-
-
-    public static function searchByOnsenName($keyword)
-    {
-        return self::where('onsenName', 'LIKE', "%{$keyword}%");
     }
 
 
@@ -89,14 +80,6 @@ class Review extends Model
 
             $geocodedData = GeocodeCalculator::geocodeAddress($data['onsenName']);
 
-            if ($geocodedData === null) {
-                $geocodedData = [
-                    'latitude' => null,
-                    'longitude' => null,
-                    'formatted_address' => null,
-                ];
-            }
-
             $onsen = Onsen::updateOrGetFromData($data, $geocodedData);
 
             $review = Review::create([
@@ -112,7 +95,6 @@ class Review extends Model
             return $review;
         });
     }
-
 
 
     public static function updateFromRequest(ReviewStoreRequest $request, $id)

@@ -17,32 +17,38 @@ class GeocodeCalculator
         $geocodeData = $geocodeResponse->json();
 
         if ($geocodeData['status'] === 'OK') {
+            // 住所、位置情報の取得
             $location = $geocodeData['results'][0]['geometry']['location'];
+            $latitude = $location['lat'];
+            $longitude = $location['lng'];
             $formattedAddress = $geocodeData['results'][0]['formatted_address'];
-            $placeId = $geocodeData['results'][0]['place_id'];
 
+
+            // PlacedIDを取得してGoogle Places APIを使用
+            $placeId = $geocodeData['results'][0]['place_id'];
             $placeDetailsUrl = "https://maps.googleapis.com/maps/api/place/details/json?place_id={$placeId}&fields=formatted_phone_number,website,opening_hours&key={$apiKey}&language={$language}";
             $placeDetailsResponse = Http::retry(3, 100)->get($placeDetailsUrl);
             $placeDetailsData = $placeDetailsResponse->json();
-            $formattedPhoneNumber = $placeDetailsData['result']['formatted_phone_number'] ?? null;
+
+
+            // WebサイトのURL取得
             $website = $placeDetailsData['result']['website'] ?? null;
-            $openingHours = $placeDetailsData['result']['opening_hours'] ?? null;
 
 
+            // 電話番号の取得
+            $formattedPhoneNumber = $placeDetailsData['result']['formatted_phone_number'] ?? null;
             if ($formattedPhoneNumber !== null) {
                 $formattedPhoneNumber = preg_replace('/^\+81/', '0', $formattedPhoneNumber);
             }
 
+
             // 最寄り駅のデータを取得
-            $latitude = $location['lat'];
-            $longitude = $location['lng'];
             $radius = 2000; // 2km範囲で検索
             $type = 'train_station'; // 電車の駅を検索
             $nearbyStationsUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={$latitude},{$longitude}&radius={$radius}&type={$type}&key={$apiKey}&language={$language}";
 
             $nearbyStationsResponse = Http::retry(3, 100)->get($nearbyStationsUrl);
             $nearbyStationsData = $nearbyStationsResponse->json();
-
             $nearestStation = $nearbyStationsData['results'][0] ?? null;
 
             $nearestStationName = null;
@@ -50,6 +56,9 @@ class GeocodeCalculator
                 $nearestStationName = $nearestStation['name'];
             }
 
+
+            // 定休日情報の取得
+            $openingHours = $placeDetailsData['result']['opening_hours'] ?? null;
             $holidayText = '定休日情報なし';
             $closedDays = [];
             if ($openingHours !== null) {
@@ -78,16 +87,15 @@ class GeocodeCalculator
                 'nearest_station' => $nearestStationName,
                 'holiday' => $holidayText,
             ];
-        } else {
-            return [
-                'latitude' => null,
-                'longitude' => null,
-                'formatted_address' => null,
-                'formatted_phone_number' => null,
-                'website' => null,
-                'nearest_station' => null,
-                'holiday' => null,
-            ];
         }
+        return [
+            'latitude' => null,
+            'longitude' => null,
+            'formatted_address' => null,
+            'formatted_phone_number' => null,
+            'website' => null,
+            'nearest_station' => null,
+            'holiday' => null,
+        ];
     }
 }

@@ -18,6 +18,7 @@ class Favorite extends Model
         return $this->belongsTo(User::class);
     }
 
+
     public function onsen()
     {
         return $this->belongsTo(Onsen::class);
