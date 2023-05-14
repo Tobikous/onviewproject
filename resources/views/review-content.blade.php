@@ -35,10 +35,11 @@
 			<div class="flex flex-wrap md:flex-nowrap">
 				<div class="w-full overflow-hidden md:w-4/6">
 					<div class="pt-4 pb-2.5 px-0.5">
-						<a href="/onsen/{{$review->onsen->id}}" class="pt-2 font-bold text-2xl">
-							<span class="hover:underline hover:text-orange-500">「{{$review->onsen->name}}」
-							</span><span> のレビュー</span>
+						<a href="/onsen/{{$review->onsen->id}}" class="pt-2 font-bold text-2xl flex items-center">
+							<span class="underline hover:text-orange-500">「{{$review->onsen->name}}」</span>
+							<span class="ml-1"> のレビュー</span>
 						</a>
+
 						<div class="mt-1.5"><span class="text-orange-500 text-2xl">{{ str_replace(['(',
 								')'], '', star_rating($review->onsen->evaluation)) }}</span><span
 								class="ml-1">{{$review->onsen->evaluation}}</span></div>
@@ -145,7 +146,7 @@
 				<div class="mr-2 md:ml-2">
 
 					<div class="pr-1 w-full py-3 mb-2 border-t border-gray-300">
-						<h2 class="flex text-2xl font-normal">
+						<h2 class="flex text-2xl font-normal justify-center md:justify-start">
 							<img src="{{ asset('svg/phone_icon.svg') }}" alt="customIcon" class="mr-1.5 w-5 h-5 mt-2">
 							<a href="tel:{{$review->onsen->phone_number}}">{{$review->onsen->phone_number}}</a>
 						</h2>
