@@ -29,13 +29,8 @@
 
 	@guest
 	<section class="px-2 bg-white md:px-0 pt-10 pb-12 tails-selected-element">
-		<div class="container items-center max-w-6xl md:px-8 mx-auto">
+		<div class="container items-center max-w-7xl md:px-20 mx-auto">
 			<div class="flex flex-wrap items-center sm:-mx-3">
-				<div class="relative flex items-center justify-center w-full">
-					<img src="{{ asset('svg/onsen_icon02.svg') }}" alt="customIcon"
-						class="w-16 h-16 opacity-1 mr-2 md:m-4">
-					<h2 class="text-4xl font-normal text-gray-800 tracking-widest">はじめに</h2>
-				</div>
 
 				<div class="w-full md:w-1/2 p-7">
 					<div class="w-full h-auto overflow-hidden shadow-xl rounded-sm">
@@ -58,9 +53,9 @@
 	</section>
 	@endguest
 
-	<section class="px-5 py-10 mx-auto xl:px-20 tails-selected-element">
+	<section class="px-5 py-10 mx-auto tails-selected-element max-w-7xl">
 
-		<div class="md:px-7">
+		<div class="md:px-20">
 			<div class="sliderAx h-auto">
 				@foreach($onsens as $count =>$onsen)
 				<div id="slider-{{$count+1}}" class="container mx-auto">
@@ -92,7 +87,7 @@
 
 
 
-		<div class="flex flex-wrap mt-14 overflow-hidden md:px-7 md:px-0">
+		<div class="flex flex-wrap mt-14 overflow-hidden md:px-20 md:px-0">
 			<div class="w-full overflow-hidden md:w-4/6">
 				<div class="md:mr-4">
 					<div class="flex items-center justify-between w-full pb-5 mb-8 border-b border-gray-200">

@@ -26,7 +26,7 @@
 </head>
 
 
-<body class="relative">
+<body class="relative mx-auto max-w-7xl">
 	<div class="absolute inset-0 z-(-1) bg-cover bg-center bg-no-repeat opacity-70"
 		style="background-image: url('images/onsenback02.jpg');"></div>
 	<div class="relative">
@@ -277,6 +277,27 @@
 								会員登録はこちらから
 							</a>
 						</div>
+
+						<!-- <a href="#_"
+							class="mt-5 w-full flex items-center shadow justify-center rounded bg-white border border-gray-300 text-gray-600 py-3.5 px-2 text-center font-medium tails-selected-element">
+							<svg class="w-5 h-5" viewBox="0 0 24 25" xmlns="http://www.w3.org/2000/svg">
+								<g fill-rule="nonzero" fill="none">
+									<path
+										d="M23.998 13.278a10.881 10.881 0 00-.252-2.52H12.414v4.576h6.653a6.034 6.034 0 01-2.466 4l-.024.15 3.582 2.836.248.025c2.275-2.149 3.591-5.31 3.591-9.067"
+										fill="#4285F4"></path>
+									<path
+										d="M12.585 24.828c3.303 0 6.078-1.1 8.105-2.998l-3.86-3.027a7.174 7.174 0 01-4.24 1.238c-3.173-.02-5.978-2.093-6.964-5.144l-.146.014-3.776 2.954-.049.137c2.07 4.19 6.301 6.83 10.93 6.826"
+										fill="#34A853"></path>
+									<path
+										d="M4.966 14.986a8.672 8.672 0 01-.383-2.542 9.2 9.2 0 01.373-2.541l-.004-.168-3.604-3.114-.118.06a14.114 14.114 0 000 11.526l3.736-3.221"
+										fill="#FBBC05"></path>
+									<path
+										d="M12.544 4.785a6.662 6.662 0 014.708 1.844l3.438-3.41A11.611 11.611 0 0012.54.002C7.933 0 3.72 2.637 1.655 6.825L5.593 9.93c.992-3.052 3.789-5.127 6.951-5.146"
+										fill="#EB4335"></path>
+								</g>
+							</svg>
+							<span class="ml-2.5">Googleアカウントでログイン</span>
+						</a> -->
 					</div>
 				</div>
 

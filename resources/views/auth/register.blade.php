@@ -12,7 +12,7 @@
 
 @section('content')
 
-<div class="h-screen md:flex">
+<div class="h-screen md:flex mx-auto max-w-7xl">
 	<div class="absolute inset-0 z-(-1) bg-cover bg-center bg-no-repeat opacity-80 relative overflow-hidden md:flex w-1/2 justify-around items-center hidden"
 		style="background-image: url('images/onsenback04.jpg');">
 

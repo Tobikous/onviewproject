@@ -27,7 +27,7 @@
 	@endif
 
 
-	<main class="max-w-5xl px-5 py-5 md:py-10 mx-auto xl:px-0 tails-selected-element">
+	<main class="max-w-6xl px-5 py-5 md:py-10 mx-auto md:px-10 tails-selected-element">
 
 		<section class="mx-1.5 md:mx-7 mb-5">
 			<div class="flex flex-wrap md:flex-nowrap">

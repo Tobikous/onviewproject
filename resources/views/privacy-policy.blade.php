@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main class="container m-auto p-24">
+<main class="container m-auto p-24 max-w-7xl md:px-30">
 	<div class="mb-16">
 		<h1 class="text-2xl font-bold text-center mb-10">プライバシーポリシー</h1>
 	</div>

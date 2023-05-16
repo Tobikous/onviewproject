@@ -5,7 +5,7 @@
 <main>
 
 
-	<section class="px-5 py-2 mx-auto xl:px-20 tails-selected-element">
+	<section class="px-5 py-2 mx-auto xl:px-20 tails-selected-element mx-auto max-w-7xl">
 
 
 		<div class="flex flex-wrap mt-14 overflow-hidden">

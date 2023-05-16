@@ -34,7 +34,7 @@
 <body>
 
 	<header x-data="{ open: false }"
-		class="fixed inset-x-0 top-0 z-50 py-2 bg-gradient-to-br from-orange-600 via-indigo-00 to-yellow-300 tails-selected-element"
+		class="fixed inset-x-0 top-0 z-50 py-2 bg-gradient-to-br from-orange-600 via-indigo-00 to-yellow-300 tails-selected-element mx-auto"
 		data-primary="orange-500" data-tails-scripts="//unpkg.com/alpinejs">
 		<div class="flex items-center justify-between h-20 px-8 mx-auto max-w-7xl">
 
@@ -245,7 +245,7 @@
 	@yield('content')
 
 	<footer class="bg-gray-100">
-		<div class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
+		<div class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col mx-auto max-w-7xl">
 			<a href="{{ url('/') }}" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
 				<img src="{{ asset('svg/onsen_icon01.svg') }}" alt="customIcon" class="w-9 h-9 opacity-1">
 				<img src="{{ asset('footer-icon.png') }}" alt="footerName" class="ml-1 mt-2 opacity-1">

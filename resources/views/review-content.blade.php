@@ -27,7 +27,7 @@
 	</div>
 	@endif
 
-	<section class="max-w-5xl px-5 py-5 md:py-10 mx-auto xl:px-0 tails-selected-element">
+	<section class="max-w-6xl px-5 py-5 md:py-10 mx-auto md:px-3 tails-selected-element">
 
 
 
