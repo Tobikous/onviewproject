@@ -12,7 +12,7 @@
 <main>
 
 	@if (session('success'))
-	<div class="flex container  w-full flex-col text-center my-10">
+	<div class="flex container mx-auto w-full flex-col text-center my-10">
 		<div class="mt-10 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
 			<p class="font-bold">{{ session('success') }}</p>
 		</div>
@@ -20,7 +20,7 @@
 	@endif
 
 	@if (session('error'))
-	<div class="flex container  w-full flex-col text-center my-10">
+	<div class="flex container mx-auto w-full flex-col text-center my-10">
 		<div class="mt-10 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
 			<p class="font-bold">{{ session('error') }}</p>
 		</div>
@@ -117,7 +117,7 @@
 							<img class="object-cover object-center w-full h-full" src="{{ asset($review->image) }}"
 								alt="onsenImage">
 						</div>
-						<div class="text-gray-600 items-center text-sm p-2.5 my-3 bg-gray-100 rounded-sm">
+						<div class="text-gray-600 items-center text-sm p-2.5 my-3 rounded-sm">
 							<div class="flex justify-between items-center">
 								<a href="/tag/{{$review['tag_id']}}"
 									class="mb-3 inline-flex items-center justify-center px-2 py-0.5 font-medium leading-6 text-white bg-orange-400 border border-transparent rounded md:w-auto hover:bg-orange-500">

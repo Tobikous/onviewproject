@@ -12,7 +12,7 @@
 <main>
 
 	@if (session('success'))
-	<div class="flex container  w-full flex-col text-center my-10">
+	<div class="flex container mx-auto w-full flex-col text-center my-10">
 		<div class="mt-10 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
 			<p class="font-bold">{{ session('success') }}</p>
 		</div>
@@ -20,7 +20,7 @@
 	@endif
 
 	@if (session('error'))
-	<div class="flex container  w-full flex-col text-center my-10">
+	<div class="flex container mx-auto w-full flex-col text-center my-10">
 		<div class="mt-10 bg-orange-100 border-t border-b border-orange-500 text-orange-700 px-4 py-3" role="alert">
 			<p class="font-bold">{{ session('error') }}</p>
 		</div>
@@ -114,7 +114,7 @@
 								更新日:{{$review['updated_at']->format('Y年m月d日')}}</span></h2>
 
 
-						<div class="p-1 rounded bg-gray-100">
+						<div class="p-2.5 rounded bg-gray-100">
 							<p class="leading-relaxed truncate overflow-hidden">{{$review['content']}}</p>
 							<a href="/review/{{$review['id']}}"
 								class="inline-flex items-center inline text-sm underline text-gray-500">
@@ -151,7 +151,7 @@
 									更新日:{{$review['updated_at']->format('Y年m月d日')}}</span>
 							</h2>
 
-							<div class="p-1 rounded bg-gray-100">
+							<div class="p-2.5 rounded bg-gray-100">
 								<p class="leading-relaxed truncate overflow-hidden text-gray-800">{{$review['content']}}
 								</p>
 								<a href="/review/{{$review['id']}}"
