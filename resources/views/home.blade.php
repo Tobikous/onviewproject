@@ -90,9 +90,10 @@
 		<div class="flex flex-wrap mt-14 overflow-hidden md:px-20 md:px-0">
 			<div class="w-full overflow-hidden md:w-4/6">
 				<div class="md:mr-4">
-					<div class="flex items-center justify-between w-full pb-5 mb-8 border-b border-gray-200">
+					<div class="flex items-center justify-between w-full pb-5 mb-5">
 						<h2 class="text-3xl font-bold text-gray-800">投稿レビュー一覧</h2>
 					</div>
+
 
 					<div class="pb-12">
 						@foreach($reviews as $review)
@@ -210,8 +211,7 @@
 					</div>
 
 					<div class="mt-10">
-						<div
-							class="ml-1 pr-1 flex items-center justify-between w-full pb-2 mb-2 border-b border-gray-200">
+						<div class="ml-1 pr-1 flex items-center justify-between w-full pb-2 mb-2">
 							<h2 class="text-lg font-bold text-gray-900">タグ一覧</h2>
 							<button type="button" onclick="openModal()"
 								class="flex items-center text-sm font-semibold text-blue-400 hover:text-blue-500 group">
@@ -274,7 +274,7 @@
 
 					<div class="mt-12">
 						@auth
-						<h2 class="ml-1 pb-2 mb-2 text-lg font-medium text-gray-900 border-b border-gray-200">
+						<h2 class="ml-1 pb-2 mb-2 text-lg font-medium text-gray-900">
 							自分が投稿したレビュー
 						</h2>
 						<ul class="ml-1.5">

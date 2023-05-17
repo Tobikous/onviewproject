@@ -145,7 +145,7 @@
 			<div class="w-full overflow-hidden md:w-2/6 lg:w-2/6 xl:w-2/6 mt-10 md:mt-0 md:pr-6">
 				<div class="mr-2 md:ml-2">
 
-					<div class="pr-1 w-full py-3 mb-2 border-t border-gray-300">
+					<div class="pr-1 w-full py-3 mb-2 md:border-t border-gray-300">
 						<h2 class="flex text-2xl font-normal justify-center md:justify-start">
 							<img src="{{ asset('svg/phone_icon.svg') }}" alt="customIcon" class="mr-1.5 w-5 h-5 mt-2">
 							<a href="tel:{{$review->onsen->phone_number}}">{{$review->onsen->phone_number}}</a>
