@@ -25,8 +25,6 @@
 	<script src="{{ asset('js/modal.js') }}"></script>
 
 	<link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
-	header-icon.png
-
 </head>
 
 
