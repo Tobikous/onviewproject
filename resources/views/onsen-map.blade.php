@@ -33,13 +33,29 @@
 	<script>
 		var onsens = @json($onsens);
 
+		function starRating(evaluation) {
+			if (evaluation >= 0 && evaluation <= 1.8) {
+				return '★☆☆☆☆';
+			} else if (evaluation > 1.8 && evaluation <= 2.8) {
+				return '★★☆☆☆';
+			} else if (evaluation > 2.8 && evaluation <= 3.8) {
+				return '★★★☆☆';
+			} else if (evaluation > 3.8 && evaluation <= 4.6) {
+				return '★★★★☆';
+			} else if (evaluation > 4.6 && evaluation <= 5) {
+				return '★★★★★';
+			}
+		}
+
 		function createInfoWindowContent(onsen) {
 			return `<div> 
-					<h1 class="font-bold">${onsen.name}</h1>
-                    <p>${onsen.formatted_address}</p>
-                    <a href="/onsen/${onsen.id}" class="text-gray-700 underline">詳細</a>
-                </div>`;
+                <h1 class="font-bold">${onsen.name}</h1>
+                <p class="text-orange-500">${starRating(onsen.evaluation)}</p>
+                <p>${onsen.formatted_address}</p>
+                <a href="/onsen/${onsen.id}" class="text-gray-700 hover:text-orange-500 underline">詳細</a>
+            </div>`;
 		}
+
 
 		function initMap() {
 			var strictBounds = new google.maps.LatLngBounds(
