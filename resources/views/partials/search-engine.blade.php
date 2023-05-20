@@ -81,10 +81,13 @@
 			</div>
 		</form>
 
-		<a href="{{ route('onsen_lists') }}"
-			class="mt-3 py-3 px-5 border-b bg-white rounded-md block text-lg font-normal">
-			すべての温泉を見る
+		@section('onsen-map-link')
+		<a href="{{ route('onsen_map') }}" class="flex mt-3 py-3 px-2 bg-white rounded-md block text-lg font-normal">
+			<img src="{{ asset('svg/google_maps.svg') }}" alt="customIcon" class="w-8 h-8 opacity-1">
+			<span class="mt-1.5 ml-0.5 text-base hover:underline hover:text-orange-500">マップから温泉を探す</span>
 		</a>
+		@show
+
 	</div>
 
 	<div class="rounded-lg bg-gray-200 mt-5 p-7">
@@ -107,7 +110,6 @@
 					</svg>
 					検索
 				</button>
-
 			</form>
 		</div>
 	</div>

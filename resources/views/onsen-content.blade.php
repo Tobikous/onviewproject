@@ -347,7 +347,7 @@
 		var areaData = data['name'];
 
 		function createInfoWindowContent(address, area) {
-			return `<div> <h1>${address}</h1>
+			return `<div> <h1 class="font-bold text-base">${address}</h1>
                     <p>${area}</p></div>`;
 		}
 

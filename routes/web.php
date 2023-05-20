@@ -15,6 +15,8 @@ Route::get('/onsen_lists', [ArticleController::class, 'onsenLists'])->name('onse
 Route::get('/review_search', [SearchController::class, 'reviewSearch'])->name('review_search');
 Route::get('/onsen_search', [SearchController::class, 'onsenSearch'])->name('onsen_search');
 Route::get('/tag/{id}', [SearchController::class, 'tagSearch'])->name('tag_search');
+Route::get('/onsen_map', [ArticleController::class, 'onsenMap'])->name('onsen_map');
+
 Route::view('/team_of_service', 'team-of-service')->name('team_of_service');
 Route::view('/privacy_policy', 'privacy-policy')->name('privacy_policy');
 

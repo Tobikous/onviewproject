@@ -28,9 +28,9 @@
 
 			<div class="w-full overflow-hidden md:w-3/4 md:pr-5 md:pl-9">
 				@if (isset($selectedArea))
-				<div class="p-5 text-2xl font-bold bg-orange-100 mt-5 md:mt-0">{{$selectedArea}}の温泉</div>
+				<div class="py-4 px-5 text-2xl font-bold bg-orange-100 mt-5 md:mt-0">{{$selectedArea}}の温泉</div>
 				@else
-				<div class="p-5 text-2xl font-bold bg-orange-100 mt-5 md:mt-0">すべての温泉</div>
+				<div class="py-4 px-5 text-2xl font-bold bg-orange-100 mt-5 md:mt-0">すべての温泉</div>
 				@endif
 
 				<div class="pt-6 pb-4">

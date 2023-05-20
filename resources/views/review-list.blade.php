@@ -19,7 +19,7 @@
 
 			<div class="w-full overflow-hidden md:w-3/4 md:pr-4 md:pl-10">
 
-				<div class="p-5 text-2xl font-bold bg-orange-100 mt-5 md:mt-0">投稿レビュー一覧
+				<div class="py-4 px-5 text-2xl font-bold bg-orange-100 mt-5 md:mt-0">投稿レビュー一覧
 					<p class="text-sm font-normal mt-2 text-gray-500">
 						これまで投稿されたレビューを閲覧できます。</p>
 				</div>

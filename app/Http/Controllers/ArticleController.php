@@ -69,4 +69,11 @@ class ArticleController extends Controller
 
         return view('onsen-content', compact('onsen', 'reviews'));
     }
+
+
+    public function onsenMap()
+    {
+        $onsens = Onsen::all();
+        return view('onsen-map', compact('onsens'));
+    }
 }

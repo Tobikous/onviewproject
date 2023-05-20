@@ -28,7 +28,7 @@
 	@endif
 
 	@guest
-	<section class="px-2 bg-white md:px-0 pt-10 pb-12 tails-selected-element">
+	<section class="px-2 bg-white md:px-0 pt-10 pb-10 tails-selected-element">
 		<div class="container items-center max-w-7xl md:px-20 mx-auto">
 			<div class="flex flex-wrap items-center sm:-mx-3">
 
@@ -39,7 +39,7 @@
 				</div>
 				<div class="w-full md:w-1/2  px-4 md:px-7">
 					<div
-						class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 md:pr-5 lg:pr-0 md:pb-0">
+						class="w-full pb-6 space-y-6 px-1.5 md:px-0 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 md:pr-5 lg:pr-0 md:pb-0">
 						<p class="mx-auto text-gray-700 sm:max-w-md lg:text-lg md:max-w-2xl text-lg tracking-widest">
 							温泉レビューサイトおんびゅ～へようこそ！<br><br>当サイトは、普段の温泉ライフをより豊かにする為につくられた、温泉レビューサイトです。
 							みなさまと共に全国の温泉をレビューして、より楽しく、濃密な温泉ライフを楽しみましょう！<br><br>
@@ -82,9 +82,6 @@
 			</div>
 
 		</div>
-
-
-
 
 
 		<div class="flex flex-wrap mt-14 overflow-hidden md:px-20 md:px-0">
@@ -184,8 +181,8 @@
 			<div class="w-full mt-12 overflow-hidden md:w-2/6 md:mt-0">
 				<div class="md:ml-10">
 
-					<div class="rounded-lg bg-gray-100 p-7">
-						<div class="pb-6 text-left">
+					<div class="rounded-lg bg-gray-200 p-7">
+						<div class="text-left">
 							<h2 class="mb-1 text-lg font-medium text-gray-900">キーワード検索</h2>
 							<form action="/review_search" method="GET">
 								@csrf
@@ -205,9 +202,17 @@
 									</svg>
 									検索
 								</button>
-
 							</form>
 						</div>
+					</div>
+
+					<div class="mt-5 p-3 bg-gray-200 rounded-md">
+						<a href="{{ route('onsen_map') }}"
+							class="flex py-3 px-2 bg-white rounded-md block text-lg font-normal">
+							<img src="{{ asset('svg/google_maps.svg') }}" alt="customIcon" class="w-8 h-8 opacity-1">
+							<span
+								class="mt-1.5 ml-0.5 text-base hover:underline hover:text-orange-500">マップから温泉を探す</span>
+						</a>
 					</div>
 
 					<div class="mt-10">
