@@ -287,7 +287,7 @@
 					<div class="pr-1 w-full py-3 mb-2 md:border-t border-gray-300">
 						<h2 class="flex text-2xl font-normal justify-center md:justify-start">
 							<img src="{{ asset('svg/phone_icon.svg') }}" alt="customIcon" class="mr-1.5 w-5 h-5 mt-2">
-							<a href="tel:{{$review->onsen->phone_number}}">{{$review->onsen->phone_number}}</a>
+							<a href="tel:{{$onsen->phone_number}}">{{$onsen->phone_number}}</a>
 						</h2>
 					</div>
 				</div>
