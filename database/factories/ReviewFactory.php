@@ -19,7 +19,7 @@ class ReviewFactory extends Factory
         return [
             'content' => $this->faker->paragraph,
             'star' => $this->faker->numberBetween(1, 5),
-            'time' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'time' => $this->faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d H:i:s'),
             'user_id' => User::factory(),
             'onsenName' => $onsen->name,
             'onsenName' => $this->faker->unique()->company,
