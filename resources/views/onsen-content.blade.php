@@ -347,8 +347,11 @@
 		var areaData = data['name'];
 
 		function createInfoWindowContent(address, area) {
+			var mapUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(address);
 			return `<div> <h1 class="font-bold text-base">${address}</h1>
-                    <p>${area}</p></div>`;
+                    <p>${area}</p>
+					<a href="${mapUrl}" target="_blank" class="text-blue-500 hover:text-orange-500 underline">GoogleMapsで表示する</a>
+					</div>`;
 		}
 
 		function initMap() {
