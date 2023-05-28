@@ -53,10 +53,13 @@
         <h1 class="font-bold">${onsen.name}</h1>
         <p class="text-orange-500">${starRating(onsen.evaluation)}</p>
         <p>${onsen.formatted_address}</p>
-		<a href="/onsen/${onsen.id}" class="text-blue-500 hover:text-orange-500 underline">詳細</a>
-		<a href="${mapUrl}" target="_blank" class="ml-5 text-blue-500 hover:text-orange-500 underline">GoogleMapsで表示する</a>
-    	</div>`;
+		<div class="md:flex md:justify-between">
+			<a href="/onsen/${onsen.id}" class="block md:inline-block text-blue-500 hover:text-orange-500 underline">詳細</a>
+			<a href="${mapUrl}" target="_blank" class="block md:inline-block text-blue-500 hover:text-orange-500 underline">GoogleMapsで表示する</a>
+			</div>
+		</div>`;
 		}
+
 
 
 		function initMap() {
