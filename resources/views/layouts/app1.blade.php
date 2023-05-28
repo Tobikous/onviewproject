@@ -262,7 +262,7 @@
 				<a href="https://docs.google.com/forms/d/e/1FAIpQLSdL40esRd1466UnATVxCDCBZ84YBGL4JyOfOJIpATUcCRyJNA/viewform?usp=sf_link"
 					class="ml-3 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-700"
 					aria-label="Reddit"> お問い合わせ </a>
-				<a href="https://twitter.com/tobikouov" class="ml-5 text-gray-500 hover:text-gray-700">
+				<a href="https://twitter.com/tobikouov" class="ml-5 text-gray-500 hover:text-gray-700" target="_blank">
 					<svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 						class="w-5 h-5" viewBox="0 0 24 24">
 						<path
@@ -270,7 +270,8 @@
 						</path>
 					</svg>
 				</a>
-				<a href="https://www.linkedin.com/in/tobiyama-a40369271" class="ml-3 text-gray-500 hover:text-gray-700">
+				<a href="https://www.linkedin.com/in/tobiyama-a40369271" class="ml-3 text-gray-500 hover:text-gray-700"
+					target="_blank">
 					<svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
 						stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
 						<path stroke="none"

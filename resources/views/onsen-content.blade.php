@@ -137,7 +137,7 @@
 								<div class="pt-2">
 									<h2 class="pl-2 font-bold">公式サイト</h2>
 									<div class="text-sm bg-white w-4/5 p-2.5 border-b border-gray-300 underline overflow-hidden"
-										style="word-wrap: break-word;">
+										target="_blank" style="word-wrap: break-word;">
 										<a href="{{ $onsen['URL'] }}" target="_blank">{{ $onsen['URL'] }}</a>
 									</div>
 

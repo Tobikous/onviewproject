@@ -312,10 +312,10 @@
 					<img src="{{ asset('footer-icon.png') }}" alt="footerName" class="ml-1 mt-2 opacity-1">
 				</a>
 				<p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2022 Tobiyama Kosuke —
-					<a href=# rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@Tobikous</a>
+					<a rel="noopener noreferrer" class="text-gray-600 ml-1">@Tobikous</a>
 				</p>
 				<span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-					<a href="https://twitter.com/tobikouov" class="ml-3 text-gray-500">
+					<a href="https://twitter.com/tobikouov" class="ml-3 text-gray-500" target="_blank">
 						<svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 							class="w-5 h-5" viewBox="0 0 24 24">
 							<path
@@ -323,7 +323,7 @@
 							</path>
 						</svg>
 					</a>
-					<a href="https://www.linkedin.com/in/tobiyama-a40369271" class="ml-3 text-gray-500">
+					<a href="https://www.linkedin.com/in/tobiyama-a40369271" class="ml-3 text-gray-500" target="_blank">
 						<svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
 							stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
 							<path stroke="none"
