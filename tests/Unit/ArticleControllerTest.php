@@ -17,6 +17,8 @@ class ArticleControllerTest extends TestCase
 
     public function testIndex()
     {
+        $onsens = Onsen::factory()->create();
+        $review = Review::factory()->create(['onsenName' => $onsens->name]);
         $response = $this->get('/');
 
         $response->assertStatus(200);
@@ -74,18 +76,18 @@ class ArticleControllerTest extends TestCase
 
     public function testReviewSearch()
     {
-        $response = $this->get('/review_search');
+        $response = $this->get('/review_search?keyword=test');
 
         $response->assertStatus(200);
     }
-
 
     public function testOnsenSearch()
     {
-        $response = $this->get('/onsen_search');
+        $response = $this->get('/onsen_search?keyword=test');
 
         $response->assertStatus(200);
     }
+
 
 
     public function testTagSearch()
