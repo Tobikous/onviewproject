@@ -76,17 +76,43 @@ class ArticleControllerTest extends TestCase
 
     public function testReviewSearch()
     {
-        $response = $this->get('/review_search?keyword=test');
+        $onsenCount = 5;
+        $keyword = 'test_onsen';
+
+        for ($i = 0; $i < $onsenCount; $i++) {
+            $onsen = Onsen::factory()->create(['name' => $keyword]);
+            Review::factory()->create(['onsenName' => $onsen->name]);
+        }
+
+        $response = $this->get('/review_search?keyword=' . $keyword);
 
         $response->assertStatus(200);
+        $response->assertViewHas('reviews', function ($reviews) use ($onsenCount) {
+            return count($reviews) == $onsenCount;
+        });
     }
 
     public function testOnsenSearch()
     {
-        $response = $this->get('/onsen_search?keyword=test');
+        $onsenCount = 5;
+        $keyword = 'test_onsen';
+
+        for ($i = 0; $i < $onsenCount; $i++) {
+            $onsen = Onsen::factory()->create(['name' => $keyword]);
+            Review::factory()->create(['onsenName' => $onsen->name]);
+        }
+
+        $response = $this->get('/onsen_search?keyword=' . $keyword);
 
         $response->assertStatus(200);
+        $response->assertViewHas('onsens', function ($onsens) use ($onsenCount) {
+            return count($onsens) == $onsenCount;
+        });
+        $response->assertViewHas('reviews', function ($reviews) use ($onsenCount) {
+            return count($reviews) == $onsenCount;
+        });
     }
+
 
 
 
